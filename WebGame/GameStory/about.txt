@@ -1,0 +1,19 @@
+This game is about a guy needing to do his homework, you will need to search informations for it via imported search bar, but with a twist, when trying to search for it you will face sevier challenges, 
+
+
+challenges ideas
+1. lost mouse, lost keyboard, lost search icon
+2. where to find the things - in the hay, in a code 
+
+
+function
+animations a lot, then draging, clicking at some objects, jumping game mabye
+
+
+things to do - jumping game, snake scorer and then 
+
+Theme make it into old school kid with an old pc
+
+make only one ending 
+
+
