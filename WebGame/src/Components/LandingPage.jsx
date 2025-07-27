@@ -69,7 +69,7 @@ function LandingPage() {
           </div>
 
           {/* Retro start button */}
-          <Link to="/login">
+          <Link to="/game">
             <div className="group relative inline-block">
               <div className="bg-yellow-400 hover:bg-yellow-500 border-4 border-gray-800 px-8 py-4 font-mono font-bold text-gray-800 text-xl uppercase tracking-wider transition-all duration-200 hover:scale-105 cursor-pointer relative overflow-hidden">
                 <span className="relative z-10">[ START THE GAME ]</span>

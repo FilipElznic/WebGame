@@ -29,3 +29,10 @@ DONT FORGET TO TELL THE IMAGES ARE AI GENERATER
 
 Welcome to the (name of the game), your mission today is simple Help Peter with his homework, to continue this game you will need to sign up to make your progress saveable
 please crete an account or login into already existing one.
+
+
+
+
+
+Project will have 5 stages the stages will be devided by users xp and will unlock by time, there wont be inventory, only mabye if the user has enought xp 
+It can be used like that, but owning one item per stage
