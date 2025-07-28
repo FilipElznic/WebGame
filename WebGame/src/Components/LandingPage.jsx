@@ -49,7 +49,7 @@ function LandingPage() {
                 &gt; MISSION BRIEFING:
               </span>
               <br />
-              Your mission today is simple: Help Peter with his homework! To
+              Your mission today is simple: Help Peter with his to do list! To
               continue this epic adventure, you'll need to sign up to make your
               progress saveable. Please create an account or login to your
               existing one.
@@ -63,7 +63,7 @@ function LandingPage() {
               </p>
               <p className="text-green-600">
                 <span className="text-yellow-600">&gt;</span> DIFFICULTY:
-                HOMEWORK_HERO
+                TO_DO_HERO
               </p>
             </div>
           </div>

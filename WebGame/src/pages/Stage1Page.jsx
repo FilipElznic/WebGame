@@ -22,11 +22,12 @@ function Stage1Page() {
   const [buttonMovingDisabled, setButtonMovingDisabled] = useState(false);
   const [challengeCompleted, setChallengeCompleted] = useState(false);
 
-  const challengeFullText = 'Search for "When was the bicycle invented";';
-  const correctAnswer = "When was the bicycle invented"; // or "1885" depending on what you consider the first bicycle
+  const challengeFullText =
+    'Search for "Super secret password for moms computer";';
+  const correctAnswer = "Super secret password for moms computer";
 
   const fullText =
-    "Welcome to Stage 1 of my homework! I've got some tasks for you. Are you ready to help me search for some info?";
+    "Welcome to Stage 1 of my todo list! I've got some tasks for you. Are you ready to help me search for some info?";
 
   useEffect(() => {
     let currentIndex = 0;
@@ -245,9 +246,8 @@ function Stage1Page() {
                       type="text"
                       value={userInput}
                       onChange={handleInputChange}
-                      placeholder="When was the bicycle invented"
+                      placeholder="Super secret password for moms computer"
                       className="flex-1 text-lg outline-none bg-transparent text-gray-700 placeholder-gray-400"
-                      onKeyPress={(e) => e.key === "Enter" && handleSearch()}
                     />
 
                     {/* Moving Search Button with Icon Inside - positioned on the right */}

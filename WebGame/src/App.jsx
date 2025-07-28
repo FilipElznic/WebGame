@@ -19,6 +19,7 @@ import Stage6Page from "./pages/Stage6Page";
 import Stage1PageInternet from "./pages/Stage1PageInternet";
 import ContactPage from "./pages/ContactPage";
 import Peter from "./Components/Peter";
+import Stage1PageInternet2 from "./pages/Stage1PageInternet2";
 
 function App() {
   return (
@@ -55,6 +56,16 @@ function App() {
               <RequireAuth>
                 <XPProtectedRoute requiredStage={1}>
                   <Stage1PageInternet />
+                </XPProtectedRoute>
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/stage1internet2"
+            element={
+              <RequireAuth>
+                <XPProtectedRoute requiredStage={1}>
+                  <Stage1PageInternet2 />
                 </XPProtectedRoute>
               </RequireAuth>
             }

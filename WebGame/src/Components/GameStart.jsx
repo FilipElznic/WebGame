@@ -23,7 +23,7 @@ function GameStart() {
     {
       title: "What's the Problem?",
       description:
-        "I have found myself alone home with this note that has a homework assignment on it.",
+        "I have found myself alone home with this to do list that I need to complete.",
     },
     {
       title: "Will you Help Me?",

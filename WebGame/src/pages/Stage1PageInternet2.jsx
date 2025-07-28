@@ -1,20 +1,16 @@
 import React, { useState, useEffect } from "react";
-import peterThink from "/peterThink.png";
-import { Link } from "react-router-dom";
+import peterHappy from "/peterHappy.png";
 
-function Stage1PageInternet() {
+function Stage1PageInternet2() {
   const [displayText, setDisplayText] = useState("");
   const [isTypingComplete, setIsTypingComplete] = useState(false);
   const [showButton, setShowButton] = useState(false);
   const [isPeterVisible, setIsPeterVisible] = useState(true);
-  const [isDarkMode, setIsDarkMode] = useState(false);
-  const [showConsole, setShowConsole] = useState(false);
-  const [showDevMenu, setShowDevMenu] = useState(false);
-  const [showJoke, setShowJoke] = useState("");
+
   const [InternetOnHidden, setInternetOnHidden] = useState(false);
 
   const fullText =
-    "Well it looks like we are out of internet. But you look like you can find the solution!";
+    "Great job, I knew you would find the solution! Now click copy text to earn XP.";
 
   useEffect(() => {
     let currentIndex = 0;
@@ -41,110 +37,12 @@ function Stage1PageInternet() {
     setIsPeterVisible(false);
   };
 
-  const toggleDarkMode = () => {
-    setIsDarkMode(!isDarkMode);
-  };
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-yellow-50 via-white to-yellow-100 relative overflow-hidden">
-      {/* 3-dot menu in the top right corner */}
-      {/* 3-dot menu in the top right corner */}
-      <div
-        className="absolute top-6 right-8 z-50 flex flex-col items-center cursor-pointer group select-none"
-        onClick={() => setShowDevMenu(true)}
-      >
-        <div className="w-2 h-2 rounded-full bg-gray-700 mb-1 group-hover:bg-yellow-400 transition" />
-        <div className="w-2 h-2 rounded-full bg-gray-700 mb-1 group-hover:bg-yellow-400 transition" />
-        <div className="w-2 h-2 rounded-full bg-gray-700 group-hover:bg-yellow-400 transition" />
-        <span className="sr-only">Open Dev Tools Menu</span>
-      </div>
-
-      {/* Dev Tools Popup Menu */}
-      {showDevMenu && (
-        <div
-          className="fixed inset-0 z-50"
-          onClick={() => setShowDevMenu(false)}
-        >
-          <div
-            className="absolute top-16 right-10 bg-white border-2 border-yellow-400 rounded-lg shadow-xl w-56 flex flex-col p-4 space-y-2"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <button
-              className="bg-yellow-400 hover:bg-yellow-500 border-2 border-yellow-600 text-black font-bold px-4 py-2 rounded font-mono w-full text-left transition-all duration-200"
-              onClick={() => {
-                setShowJoke("network");
-                setShowDevMenu(false);
-              }}
-            >
-              Network Diagnostics
-            </button>
-            <button
-              className="bg-yellow-400 hover:bg-yellow-500 border-2 border-yellow-600 text-black font-bold px-4 py-2 rounded font-mono w-full text-left transition-all duration-200"
-              onClick={() => {
-                setShowJoke("troubleshoot");
-                setShowDevMenu(false);
-              }}
-            >
-              Troubleshoot
-            </button>
-            <button
-              className="bg-yellow-400 hover:bg-yellow-500 border-2 border-yellow-600 text-black font-bold px-4 py-2 rounded font-mono w-full text-left transition-all duration-200"
-              onClick={() => {
-                setShowConsole(true);
-                setShowDevMenu(false);
-              }}
-            >
-              Dev Tools
-            </button>
-          </div>
-        </div>
-      )}
-
-      {/* Joke/Funny Modal for Network Diagnostics and Troubleshoot */}
-      {showJoke && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/40"
-          onClick={() => setShowJoke("")}
-        >
-          <div
-            className="bg-white border-2 border-yellow-400 rounded-lg shadow-xl p-6 min-w-[300px] max-w-[90vw] relative"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <button
-              className="absolute top-2 right-2 text-gray-400 hover:text-black text-lg font-bold bg-transparent border-none"
-              onClick={() => setShowJoke("")}
-              aria-label="Close"
-            >
-              ×
-            </button>
-            <div className="font-mono text-lg text-yellow-700 mb-2">
-              {showJoke === "network" ? "Network Diagnostics" : "Troubleshoot"}
-            </div>
-            <div className="font-mono text-base text-black">
-              {showJoke === "network" && (
-                <>
-                  <div>Running network diagnostics...</div>
-                  <div className="mt-2">
-                    Nope, this is not the thing you are looking for. 🕵️‍♂️
-                  </div>
-                </>
-              )}
-              {showJoke === "troubleshoot" && (
-                <>
-                  <div>Troubleshooting in progress...</div>
-                  <div className="mt-2">
-                    Sorry, this is not the thing you are looking for. 🤔
-                  </div>
-                </>
-              )}
-            </div>
-          </div>
-        </div>
-      )}
       {isPeterVisible && (
         <div className="z-50">
           <img
-            src={peterThink}
+            src={peterHappy}
             alt="Peter's Idea"
             className="absolute max-w-2xl bottom-0 right-0 z-40"
           />
@@ -215,79 +113,39 @@ function Stage1PageInternet() {
         </div>
       )}
 
-      {/* Challenge Section - Inline (no popup) */}
-
       <div className="container mx-auto px-4 py-8 relative z-10">
         <div
-          className={`${
-            InternetOnHidden ? "bg-black " : "hidden bg-transparent"
-          } absolute h-20 w-44 bg-black z-50 bottom-9 left-5 text-center rounded-lg shadow-lg flex items-center justify-center`}
-        >
-          <Link to="/stage1internet2" className="text-white">
-            Turn on Wifi 🛜{" "}
-          </Link>
-        </div>
-        <div
-          className={`${
-            isDarkMode ? "bg-zinc-900" : "bg-white"
-          } backdrop-blur-sm p-8 border-4 border-yellow-400 shadow-2xl h-[90vh] relative overflow-hidden flex flex-col items-center justify-center`}
+          className={` backdrop-blur-sm p-8 border-4 border-yellow-400 shadow-2xl h-[90vh] relative overflow-hidden flex flex-col items-center justify-center`}
         >
           <div className="w-full h-[5vh] border-2 relative">
             <div className="absolute right-0 top-0 bg-red-500 h-full w-11 text-center text-white text-xl items-center flex justify-center">
               X
             </div>
             <div
-              className={`${
-                isDarkMode ? "bg-zinc-700 text-white" : "bg-white text-zinc-800"
-              }"absolute left-3-0 top-0 bg-white border-2 border-gray-300  h-full w-32 rounded-t-xl rounded-lg text-center  text-xl items-center flex justify-center`}
+              className={`"absolute left-3-0 top-0 bg-white border-2 border-gray-300  h-full w-32 rounded-t-xl rounded-lg text-center  text-xl items-center flex justify-center`}
             >
               <span className=" font-bold">Search bar</span>
             </div>
           </div>
           <div
-            className={`w-full h-full text-balance border-1 ${
-              isDarkMode ? "text-white" : "text-black"
-            } flex items-center flex-col`}
+            className={`w-full h-full text-balance border-1 flex items-center flex-col`}
           >
             <div>
               <img src="/dino.png" alt="Dino" className="mb-4 w-20 h-20 " />
               <h1 className="text-4xl font-mono font-bold mb-4 text-center">
-                Oouuppsss it looks like you <br /> are out of internet
-                connection!
+                Stage 1: Internet Connection
               </h1>
               <p
-                className={`text-xl font-mono text-center ${
-                  isDarkMode ? "text-gray-300" : "text-gray-700"
-                }`}
+                className={`text-xl font-mono text-center 
+                   
+                  }`}
               >
                 Try to explore the page to maybe find something to fix it
               </p>
-
-              {/* Dev Tools Console (shows when 3-dot menu is clicked) */}
-              {showConsole && (
-                <div className="bg-black text-green-400 font-mono mt-8 p-4 rounded-lg w-96 mx-auto border-2 border-yellow-400 shadow-lg absolute bottom-0 right-0">
-                  <div className="mb-2 text-yellow-300">Dev Console</div>
-                  <div>
-                    <span className="text-green-500">&gt; </span>
-                    Hint: Try clicking the yellow diamond in the top left corner
-                    !
-                  </div>
-                </div>
-              )}
             </div>
           </div>
 
           {/* Dark Mode Toggle Button */}
-          <button
-            onClick={toggleDarkMode}
-            className={`absolute bottom-4 left-4 ${
-              isDarkMode
-                ? "bg-yellow-400 hover:bg-yellow-500 text-black"
-                : "bg-gray-800 hover:bg-gray-700 text-white"
-            } border-2 border-yellow-400 font-bold py-2 px-3 font-mono text-sm transition-all duration-200 transform hover:scale-105 relative group`}
-          >
-            {isDarkMode ? "☀️" : "🌙"}
-          </button>
 
           <div className="absolute -top-2 -left-2 w-6 h-6 border-t-4 border-l-4 border-yellow-500"></div>
           <div className="absolute -top-2 -right-2 w-6 h-6 border-t-4 border-r-4 border-yellow-500"></div>
@@ -295,8 +153,6 @@ function Stage1PageInternet() {
           <div className="absolute -bottom-2 -right-2 w-6 h-6 border-b-4 border-r-4 border-yellow-500"></div>
         </div>
       </div>
-
-      {/* Retro grid background like main menu */}
 
       {/* Floating retro symbols */}
       <div className="absolute inset-0 pointer-events-none">
@@ -339,4 +195,4 @@ function Stage1PageInternet() {
   );
 }
 
-export default Stage1PageInternet;
+export default Stage1PageInternet2;
