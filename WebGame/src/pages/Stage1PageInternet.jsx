@@ -10,6 +10,7 @@ function Stage1PageInternet() {
   const [showConsole, setShowConsole] = useState(false);
   const [showDevMenu, setShowDevMenu] = useState(false);
   const [showJoke, setShowJoke] = useState("");
+  const [InternetOnHidden, setInternetOnHidden] = useState(false);
 
   const fullText =
     "Well it looks like we are out of internet. But you look like you can find the solution!";
@@ -123,7 +124,7 @@ function Stage1PageInternet() {
                 <>
                   <div>Running network diagnostics...</div>
                   <div className="mt-2">
-                    Nope, this is not the way you are looking for. 🕵️‍♂️
+                    Nope, this is not the thing you are looking for. 🕵️‍♂️
                   </div>
                 </>
               )}
@@ -131,7 +132,7 @@ function Stage1PageInternet() {
                 <>
                   <div>Troubleshooting in progress...</div>
                   <div className="mt-2">
-                    Sorry, this is not the way you are looking for. 🤔
+                    Sorry, this is not the thing you are looking for. 🤔
                   </div>
                 </>
               )}
@@ -214,14 +215,32 @@ function Stage1PageInternet() {
       )}
 
       {/* Challenge Section - Inline (no popup) */}
+
       <div className="container mx-auto px-4 py-8 relative z-10">
         <div
           className={`${
-            isDarkMode ? "bg-gray-900" : "bg-white"
+            InternetOnHidden ? "bg-black" : "hidden bg-transparent"
+          } absolute h-20 w-20 bg-black z-50 bottom-9 left-5`}
+        ></div>
+        <div
+          className={`${
+            isDarkMode ? "bg-zinc-900" : "bg-white"
           } backdrop-blur-sm p-8 border-4 border-yellow-400 shadow-2xl h-[90vh] relative overflow-hidden flex flex-col items-center justify-center`}
         >
+          <div className="w-full h-[5vh] border-2 relative">
+            <div className="absolute right-0 top-0 bg-red-500 h-full w-11 text-center text-white text-xl items-center flex justify-center">
+              X
+            </div>
+            <div
+              className={`${
+                isDarkMode ? "bg-zinc-700 text-white" : "bg-white text-zinc-800"
+              }"absolute left-3-0 top-0 bg-white border-2 border-gray-300  h-full w-32 rounded-t-xl rounded-lg text-center  text-xl items-center flex justify-center`}
+            >
+              <span className=" font-bold">Search bar</span>
+            </div>
+          </div>
           <div
-            className={`w-full h-full text-balance ${
+            className={`w-full h-full text-balance border-1 ${
               isDarkMode ? "text-white" : "text-black"
             } flex items-center flex-col`}
           >
@@ -236,7 +255,7 @@ function Stage1PageInternet() {
                   isDarkMode ? "text-gray-300" : "text-gray-700"
                 }`}
               >
-                Try to explore the page to maybe find something
+                Try to explore the page to maybe find something to fix it
               </p>
 
               {/* Dev Tools Console (shows when 3-dot menu is clicked) */}
@@ -278,7 +297,12 @@ function Stage1PageInternet() {
         <div className="absolute top-10 left-10 text-4xl text-yellow-400 opacity-20 animate-pulse font-mono">
           ◆
         </div>
-        <div className="absolute top-20 right-20 text-3xl text-yellow-500 opacity-30 animate-bounce font-mono">
+        <div
+          onClick={() => {
+            setInternetOnHidden(true);
+          }}
+          className="absolute cursor-pointer top-20 right-20 text-3xl text-yellow-500 opacity-30 animate-bounce font-mono pointer-events-auto"
+        >
           ★
         </div>
         <div className="absolute bottom-32 left-20 text-4xl text-yellow-400 opacity-25 animate-pulse font-mono">

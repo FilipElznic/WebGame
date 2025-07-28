@@ -20,12 +20,13 @@ function Stage1Page() {
   const [hoverAttempts, setHoverAttempts] = useState(0);
   const [showHint, setShowHint] = useState(false);
   const [buttonMovingDisabled, setButtonMovingDisabled] = useState(false);
+  const [challengeCompleted, setChallengeCompleted] = useState(false);
 
   const challengeFullText = 'Search for "When was the bicycle invented";';
   const correctAnswer = "When was the bicycle invented"; // or "1885" depending on what you consider the first bicycle
 
   const fullText =
-    "Hey there! Welcome to Stage 1 of my quest! I've got some exciting challenges prepared for you. Are you ready to test your skills and help me solve these puzzles?";
+    "Welcome to Stage 1 of my homework! I've got some tasks for you. Are you ready to help me search for some info?";
 
   useEffect(() => {
     let currentIndex = 0;
@@ -118,13 +119,11 @@ function Stage1Page() {
       userInput.includes(correctAnswer) &&
       userInput.toLowerCase().includes("please")
     ) {
-      alert(
-        "Congratulations! You found the answer and remembered to be polite!"
-      );
+      setChallengeCompleted(true);
       // Navigate to stage1internet after a short delay
       setTimeout(() => {
         navigate("/stage1internet");
-      }, 2000);
+      }, 1000);
     } else if (!userInput.toLowerCase().includes("please")) {
       alert("Don't forget to say please!");
     } else {
@@ -309,7 +308,7 @@ function Stage1Page() {
                   </div>
 
                   <p className="text-yellow-500 text-center mt-4">
-                    Type your search query above and press Enter.
+                    Type your search query above
                   </p>
                 </div>
 
