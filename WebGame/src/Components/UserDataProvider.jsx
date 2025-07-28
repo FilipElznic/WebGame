@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
-import { getCurrentUserData } from "../firebase/auth";
+import { getCurrentUserData, addXPIfEligible } from "../firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../firebase/config";
 
@@ -105,6 +105,35 @@ export const UserDataProvider = ({ children }) => {
     fetchUserData();
   };
 
+  // Function to add XP if user is eligible (has 0 XP)
+  const addXPForTask = async (xpAmount = 100) => {
+    if (!user || !userData) {
+      return { success: false, error: "User not authenticated" };
+    }
+
+    try {
+      const result = await addXPIfEligible(user.uid, xpAmount);
+
+      if (result.success) {
+        // Update local state immediately for better UX
+        setUserData((prevData) => ({
+          ...prevData,
+          xp: result.newXP,
+        }));
+
+        // Optionally refresh from server to ensure consistency
+        setTimeout(() => {
+          refreshUserData();
+        }, 1000);
+      }
+
+      return result;
+    } catch (error) {
+      console.error("Error adding XP:", error);
+      return { success: false, error: error.message };
+    }
+  };
+
   // Helper functions for XP-based features
   const getRequiredXPForStage = (stageNumber) => {
     return stageNumber * 100; // Each stage requires 100 more XP than the previous
@@ -126,6 +155,7 @@ export const UserDataProvider = ({ children }) => {
     loading,
     error,
     refreshUserData,
+    addXPForTask, // This was missing from your original provider
     getRequiredXPForStage,
     canAccessStage,
     isTaskCompleted,

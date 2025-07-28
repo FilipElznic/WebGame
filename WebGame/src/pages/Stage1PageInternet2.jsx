@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import peterHappy from "/peterHappy.png";
+import { useUserData } from "../Components/UserDataProvider";
+import { Link } from "react-router-dom";
 
 function Stage1PageInternet2() {
   const [displayText, setDisplayText] = useState("");
@@ -7,6 +9,10 @@ function Stage1PageInternet2() {
   const [showButton, setShowButton] = useState(false);
   const [isPeterVisible, setIsPeterVisible] = useState(true);
   const [copied, setCopied] = useState(false);
+  const [xpAwarded, setXpAwarded] = useState(false);
+  const [xpMessage, setXpMessage] = useState("");
+  const [isAddingXP, setIsAddingXP] = useState(false);
+  const { userData, addXPForTask, userXP } = useUserData();
 
   const [InternetOnHidden, setInternetOnHidden] = useState(false);
 
@@ -36,6 +42,57 @@ function Stage1PageInternet2() {
 
   const handleHidePeter = () => {
     setIsPeterVisible(false);
+  };
+
+  const handleCopyCode = async () => {
+    try {
+      // Copy to clipboard
+      await navigator.clipboard.writeText(
+        "a3F9kL7mV2X0nB6qW8rT1zY5hC4dE7uJ9sP3oG8xQ6vM2iN1A0"
+      );
+
+      setCopied(true);
+
+      // Check if user is eligible for XP (has 0 XP) and hasn't already been awarded
+      if (userXP === 0 && !xpAwarded) {
+        setIsAddingXP(true);
+
+        const result = await addXPForTask(100); // Add 100 XP
+
+        if (result.success) {
+          setXpAwarded(true);
+          setXpMessage("🎉 +100 XP Earned! Great job!");
+
+          // Show XP message for 3 seconds
+          setTimeout(() => {
+            setXpMessage("");
+          }, 3000);
+        } else {
+          console.error("Failed to add XP:", result.error);
+          if (result.error.includes("already has XP")) {
+            setXpMessage("Code copied! (XP already earned)");
+          } else {
+            setXpMessage("Code copied! (XP update failed)");
+          }
+
+          setTimeout(() => {
+            setXpMessage("");
+          }, 2000);
+        }
+
+        setIsAddingXP(false);
+      } else if (xpAwarded || userXP > 0) {
+        setXpMessage("Code copied! (XP already earned)");
+        setTimeout(() => {
+          setXpMessage("");
+        }, 2000);
+      }
+
+      // Reset copied state
+      setTimeout(() => setCopied(false), 1500);
+    } catch (error) {
+      console.error("Failed to copy code:", error);
+    }
   };
 
   return (
@@ -119,9 +176,12 @@ function Stage1PageInternet2() {
           className={` backdrop-blur-sm p-8 border-4 border-yellow-400 shadow-2xl h-[90vh] relative overflow-hidden flex flex-col items-center justify-center`}
         >
           <div className="w-full h-[5vh] border-2 relative">
-            <div className="absolute right-0 top-0 bg-red-500 h-full w-11 text-center text-white text-xl items-center flex justify-center">
+            <Link
+              to="/main-menu"
+              className="absolute right-0 top-0 bg-red-500 h-full w-11 text-center text-white text-xl items-center flex justify-center"
+            >
               X
-            </div>
+            </Link>
             <div
               className={`"absolute left-3-0 top-0 bg-white border-2 border-gray-300  h-full w-32 rounded-t-xl rounded-lg text-center  text-xl items-center flex justify-center`}
             >
@@ -141,21 +201,30 @@ function Stage1PageInternet2() {
                 continue. You will need it later in stage 2.
               </p>
               <div className="flex flex-col items-center mt-8">
-                <div className="bg-black text-green-400 font-mono px-6 py-4 rounded-lg border-2 border-yellow-400 shadow-lg text-lg select-all  text-center mb-3">
+                <div className="bg-black text-green-400 font-mono px-6 py-4 rounded-lg border-2 border-yellow-400 shadow-lg text-lg select-all text-center mb-3">
                   a3F9kL7mV2X0nB6qW8rT1zY5hC4dE7uJ9sP3oG8xQ6vM2iN1A0
                 </div>
+
                 <button
-                  onClick={() => {
-                    navigator.clipboard.writeText(
-                      "a3F9kL7mV2X0nB6qW8rT1zY5hC4dE7uJ9sP3oG8xQ6vM2iN1A0"
-                    );
-                    setCopied(true);
-                    setTimeout(() => setCopied(false), 1500);
-                  }}
-                  className="mt-1 bg-yellow-400 hover:bg-yellow-500 border-2 border-yellow-600 text-black font-bold py-2 px-6 rounded font-mono text-sm transition-all duration-200 transform hover:scale-105"
+                  onClick={handleCopyCode}
+                  disabled={isAddingXP}
+                  className={`mt-1 bg-yellow-400 hover:bg-yellow-500 border-2 border-yellow-600 text-black font-bold py-2 px-6 rounded font-mono text-sm transition-all duration-200 transform hover:scale-105 ${
+                    isAddingXP ? "opacity-50 cursor-not-allowed" : ""
+                  }`}
                 >
-                  {copied ? "Code Copied!" : "Copy Code"}
+                  {isAddingXP
+                    ? "Adding XP..."
+                    : copied
+                    ? "Code Copied!"
+                    : "Copy Code"}
                 </button>
+
+                {/* XP Message Display */}
+                {xpMessage && (
+                  <div className="mt-3 bg-green-100 border-2 border-green-400 text-green-800 px-4 py-2 rounded-lg font-mono text-sm animate-pulse">
+                    {xpMessage}
+                  </div>
+                )}
               </div>
             </div>
           </div>

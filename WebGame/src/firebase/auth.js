@@ -5,7 +5,7 @@ import {
   onAuthStateChanged,
   updateProfile,
 } from "firebase/auth";
-import { doc, setDoc, getDoc } from "firebase/firestore";
+import { doc, setDoc, getDoc, updateDoc } from "firebase/firestore";
 import { auth, db } from "./config";
 
 // Register new user
@@ -114,5 +114,57 @@ export const createMissingUserDoc = async (authUser) => {
     return { userData, error: null };
   } catch (error) {
     return { userData: null, error: error.message };
+  }
+};
+
+/**
+ * Adds XP to the current user if they have 0 XP
+ * @param {string} userId - The user's UID
+ * @param {number} xpToAdd - Amount of XP to add (default: 100)
+ * @returns {Promise<{success: boolean, newXP: number, error?: string}>}
+ */
+export const addXPIfEligible = async (userId, xpToAdd = 100) => {
+  try {
+    if (!userId) {
+      return { success: false, newXP: 0, error: "User ID is required" };
+    }
+
+    // Reference to the user document
+    const userDocRef = doc(db, "users", userId);
+
+    // Get current user data
+    const userDoc = await getDoc(userDocRef);
+
+    if (!userDoc.exists()) {
+      return { success: false, newXP: 0, error: "User document not found" };
+    }
+
+    const userData = userDoc.data();
+    const currentXP = userData.xp || 0;
+
+    // Check if user has 0 XP
+    if (currentXP !== 0) {
+      return {
+        success: false,
+        newXP: currentXP,
+        error: "User already has XP, cannot add more",
+      };
+    }
+
+    // Update user's XP
+    const newXP = currentXP + xpToAdd;
+    await updateDoc(userDocRef, {
+      xp: newXP,
+      lastXPUpdate: new Date().toISOString(),
+    });
+
+    return { success: true, newXP: newXP };
+  } catch (error) {
+    console.error("Error adding XP:", error);
+    return {
+      success: false,
+      newXP: 0,
+      error: error.message || "Failed to add XP",
+    };
   }
 };
