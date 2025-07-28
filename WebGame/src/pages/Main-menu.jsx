@@ -36,25 +36,29 @@ function MainMenu() {
     const isAccessible = canAccessStage(stageNumber);
     const requiredXP = getRequiredXPForStage(stageNumber - 1);
 
+    // Extract background color and other classes
+    const baseClassName = className.replace("bg-yellow-100", "");
+    const bgColor = isAccessible ? "bg-yellow-100" : "bg-red-100";
+    const finalClassName = `${baseClassName} ${bgColor}`;
+
     if (!isAccessible) {
-      // Locked stage
+      // Locked stage - just change background color
       return (
         <div
-          className={`${className} relative group cursor-not-allowed opacity-75`}
+          className={`${finalClassName} cursor-not-allowed opacity-75 group`}
         >
           {/* Corner decorations */}
-          <div className="absolute -top-1 -left-1 w-3 h-3 border-t-2 border-l-2 border-red-600"></div>
-          <div className="absolute -top-1 -right-1 w-3 h-3 border-t-2 border-r-2 border-red-600"></div>
-          <div className="absolute -bottom-1 -left-1 w-3 h-3 border-b-2 border-l-2 border-red-600"></div>
-          <div className="absolute -bottom-1 -right-1 w-3 h-3 border-b-2 border-r-2 border-red-600"></div>
+          <div className="absolute -top-1 -left-1 w-3 h-3 border-t-2 border-l-2 border-yellow-600"></div>
+          <div className="absolute -top-1 -right-1 w-3 h-3 border-t-2 border-r-2 border-yellow-600"></div>
+          <div className="absolute -bottom-1 -left-1 w-3 h-3 border-b-2 border-l-2 border-yellow-600"></div>
+          <div className="absolute -bottom-1 -right-1 w-3 h-3 border-b-2 border-r-2 border-yellow-600"></div>
 
-          {/* Lock overlay */}
-          <div className="absolute inset-0 bg-red-100 border-4 border-red-400 flex flex-col items-center justify-center">
-            <div className="text-2xl mb-1">🔒</div>
-            <span className="font-mono text-xs font-bold text-red-700">
-              LOCKED
-            </span>
+          <div className="bg-black text-white px-2 py-1 border border-gray-700 mb-1 transition-colors duration-200">
+            <span className="font-mono text-xs font-bold">STAGE</span>
           </div>
+          <span className="text-black font-mono text-lg font-bold">
+            {stageNumber.toString().padStart(2, "0")}
+          </span>
 
           {/* Tooltip on hover */}
           <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 bg-black text-white px-2 py-1 rounded text-xs font-mono opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap z-30">
@@ -132,91 +136,31 @@ function MainMenu() {
                 to="/stage1"
                 className="w-[10vw] h-[10vw] bg-yellow-100 border-4 border-yellow-400 absolute left-1/2 top-1/4 transform -translate-x-1/2 -translate-y-1/2 z-20 flex flex-col items-center justify-center cursor-pointer transition-colors duration-200 group"
               />
-              <Link
+              <StageLink
+                stageNumber={2}
                 to="/stage2"
-                className="w-[10vw] h-[10vw] bg-yellow-100 border-4 border-yellow-400 absolute right-1/4 top-1/3 transform translate-x-1/2 -translate-y-1/2 z-20 flex flex-col items-center justify-center cursor-pointer hover:bg-yellow-200 transition-colors duration-200 group"
-              >
-                {/* Corner decorations */}
-                <div className="absolute -top-1 -left-1 w-3 h-3 border-t-2 border-l-2 border-yellow-600"></div>
-                <div className="absolute -top-1 -right-1 w-3 h-3 border-t-2 border-r-2 border-yellow-600"></div>
-                <div className="absolute -bottom-1 -left-1 w-3 h-3 border-b-2 border-l-2 border-yellow-600"></div>
-                <div className="absolute -bottom-1 -right-1 w-3 h-3 border-b-2 border-r-2 border-yellow-600"></div>
-
-                <div className="bg-black text-white px-2 py-1 border border-gray-700 mb-1 group-hover:bg-gray-800 transition-colors duration-200">
-                  <span className="font-mono text-xs font-bold">STAGE</span>
-                </div>
-                <span className="text-black font-mono text-lg font-bold">
-                  02
-                </span>
-              </Link>
-              <Link
+                className="w-[10vw] h-[10vw] bg-yellow-100 border-4 border-yellow-400 absolute right-1/4 top-1/3 transform translate-x-1/2 -translate-y-1/2 z-20 flex flex-col items-center justify-center cursor-pointer transition-colors duration-200 group"
+              />
+              <StageLink
+                stageNumber={3}
                 to="/stage3"
-                className="w-[10vw] h-[10vw] bg-yellow-100 border-4 border-yellow-400 absolute right-1/4 bottom-1/3 transform translate-x-1/2 translate-y-1/2 z-20 flex flex-col items-center justify-center cursor-pointer hover:bg-yellow-200 transition-colors duration-200 group"
-              >
-                {/* Corner decorations */}
-                <div className="absolute -top-1 -left-1 w-3 h-3 border-t-2 border-l-2 border-yellow-600"></div>
-                <div className="absolute -top-1 -right-1 w-3 h-3 border-t-2 border-r-2 border-yellow-600"></div>
-                <div className="absolute -bottom-1 -left-1 w-3 h-3 border-b-2 border-l-2 border-yellow-600"></div>
-                <div className="absolute -bottom-1 -right-1 w-3 h-3 border-b-2 border-r-2 border-yellow-600"></div>
-
-                <div className="bg-black text-white px-2 py-1 border border-gray-700 mb-1 group-hover:bg-gray-800 transition-colors duration-200">
-                  <span className="font-mono text-xs font-bold">STAGE</span>
-                </div>
-                <span className="text-black font-mono text-lg font-bold">
-                  03
-                </span>
-              </Link>
-              <Link
+                className="w-[10vw] h-[10vw] bg-yellow-100 border-4 border-yellow-400 absolute right-1/4 bottom-1/3 transform translate-x-1/2 translate-y-1/2 z-20 flex flex-col items-center justify-center cursor-pointer transition-colors duration-200 group"
+              />
+              <StageLink
+                stageNumber={4}
                 to="/stage4"
-                className="w-[10vw] h-[10vw] bg-yellow-100 border-4 border-yellow-400 absolute left-1/2 bottom-1/4 transform -translate-x-1/2 translate-y-1/2 z-20 flex flex-col items-center justify-center cursor-pointer hover:bg-yellow-200 transition-colors duration-200 group"
-              >
-                {/* Corner decorations */}
-                <div className="absolute -top-1 -left-1 w-3 h-3 border-t-2 border-l-2 border-yellow-600"></div>
-                <div className="absolute -top-1 -right-1 w-3 h-3 border-t-2 border-r-2 border-yellow-600"></div>
-                <div className="absolute -bottom-1 -left-1 w-3 h-3 border-b-2 border-l-2 border-yellow-600"></div>
-                <div className="absolute -bottom-1 -right-1 w-3 h-3 border-b-2 border-r-2 border-yellow-600"></div>
-
-                <div className="bg-black text-white px-2 py-1 border border-gray-700 mb-1 group-hover:bg-gray-800 transition-colors duration-200">
-                  <span className="font-mono text-xs font-bold">STAGE</span>
-                </div>
-                <span className="text-black font-mono text-lg font-bold">
-                  04
-                </span>
-              </Link>
-              <Link
+                className="w-[10vw] h-[10vw] bg-yellow-100 border-4 border-yellow-400 absolute left-1/2 bottom-1/4 transform -translate-x-1/2 translate-y-1/2 z-20 flex flex-col items-center justify-center cursor-pointer transition-colors duration-200 group"
+              />
+              <StageLink
+                stageNumber={5}
                 to="/stage5"
-                className="w-[10vw] h-[10vw] bg-yellow-100 border-4 border-yellow-400 absolute left-1/4 bottom-1/3 transform -translate-x-1/2 translate-y-1/2 z-20 flex flex-col items-center justify-center cursor-pointer hover:bg-yellow-200 transition-colors duration-200 group"
-              >
-                {/* Corner decorations */}
-                <div className="absolute -top-1 -left-1 w-3 h-3 border-t-2 border-l-2 border-yellow-600"></div>
-                <div className="absolute -top-1 -right-1 w-3 h-3 border-t-2 border-r-2 border-yellow-600"></div>
-                <div className="absolute -bottom-1 -left-1 w-3 h-3 border-b-2 border-l-2 border-yellow-600"></div>
-                <div className="absolute -bottom-1 -right-1 w-3 h-3 border-b-2 border-r-2 border-yellow-600"></div>
-
-                <div className="bg-black text-white px-2 py-1 border border-gray-700 mb-1 group-hover:bg-gray-800 transition-colors duration-200">
-                  <span className="font-mono text-xs font-bold">STAGE</span>
-                </div>
-                <span className="text-black font-mono text-lg font-bold">
-                  05
-                </span>
-              </Link>
-              <Link
+                className="w-[10vw] h-[10vw] bg-yellow-100 border-4 border-yellow-400 absolute left-1/4 bottom-1/3 transform -translate-x-1/2 translate-y-1/2 z-20 flex flex-col items-center justify-center cursor-pointer transition-colors duration-200 group"
+              />
+              <StageLink
+                stageNumber={6}
                 to="/stage6"
-                className="w-[10vw] h-[10vw] bg-yellow-100 border-4 border-yellow-400 absolute left-1/4 top-1/3 transform -translate-x-1/2 -translate-y-1/2 z-20 flex flex-col items-center justify-center cursor-pointer hover:bg-yellow-200 transition-colors duration-200 group"
-              >
-                {/* Corner decorations */}
-                <div className="absolute -top-1 -left-1 w-3 h-3 border-t-2 border-l-2 border-yellow-600"></div>
-                <div className="absolute -top-1 -right-1 w-3 h-3 border-t-2 border-r-2 border-yellow-600"></div>
-                <div className="absolute -bottom-1 -left-1 w-3 h-3 border-b-2 border-l-2 border-yellow-600"></div>
-                <div className="absolute -bottom-1 -right-1 w-3 h-3 border-b-2 border-r-2 border-yellow-600"></div>
-
-                <div className="bg-black text-white px-2 py-1 border border-gray-700 mb-1 group-hover:bg-gray-800 transition-colors duration-200">
-                  <span className="font-mono text-xs font-bold">STAGE</span>
-                </div>
-                <span className="text-black font-mono text-lg font-bold">
-                  06
-                </span>
-              </Link>
+                className="w-[10vw] h-[10vw] bg-yellow-100 border-4 border-yellow-400 absolute left-1/4 top-1/3 transform -translate-x-1/2 -translate-y-1/2 z-20 flex flex-col items-center justify-center cursor-pointer transition-colors duration-200 group"
+              />
 
               {/* Central map decoration */}
               <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10">
