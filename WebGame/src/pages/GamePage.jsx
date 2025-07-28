@@ -123,7 +123,7 @@ function GamePage() {
                   </span>
                 </span>
               </h1>
-              INITIALIZED
+              <span className="text-yellow-600 mt-2">INITIALIZED</span>
             </div>
 
             {/* Game Status */}
@@ -162,20 +162,20 @@ function GamePage() {
                 </h3>
                 <div className="space-y-2 font-mono text-sm">
                   <p>
-                    <span className="text-yellow-600">WORLD:</span> Mysterious
-                    Island
+                    <span className="text-yellow-600">WORLD:</span> Peter's home
                   </p>
                   <p>
-                    <span className="text-yellow-600">QUEST:</span> Find Peter
+                    <span className="text-yellow-600">QUEST:</span> Help Peter
                   </p>
                   <p>
-                    <span className="text-yellow-600">PROGRESS:</span> 0%
+                    <span className="text-yellow-600">PROGRESS:</span> Unknown
                   </p>
                   <p>
                     <span className="text-yellow-600">DIFFICULTY:</span> Normal
                   </p>
                   <p>
-                    <span className="text-yellow-600">TIME:</span> 00:00:00
+                    <span className="text-yellow-600">TIME:</span> Won't be
+                    calculated
                   </p>
                 </div>
               </div>
@@ -193,8 +193,8 @@ function GamePage() {
                   world.
                 </p>
                 <p>
-                  &gt; Your mission: Find Peter who got shipwrecked on a
-                  mysterious island.
+                  &gt; Your mission: Help Peter with his unusual homework
+                  assignment
                 </p>
                 <p>
                   &gt; Use your skills and wit to navigate through challenges.

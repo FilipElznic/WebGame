@@ -31,28 +31,28 @@ function Footer() {
                 STATUS: ONLINE
               </p>
               <p className="text-gray-800 mb-2">
-                <span className="text-yellow-600 font-bold">&gt;</span>{" "}
-                PLATFORM: RETRO_GAMING_NETWORK
+                <span className="text-yellow-600 font-bold">&gt;</span> HOSTING:
+                VERCEL
               </p>
               <p className="text-gray-800">
                 <span className="text-yellow-600 font-bold">&gt;</span> MODE:
-                ADE_EXPERIENCEARC
+                RETRO GAMING
               </p>
             </div>
 
             <div className="flex space-x-4">
               <a
-                href="https://twitter.com"
+                href="https://www.instagram.com/fprofilipka/"
                 className="group relative text-gray-800 hover:text-yellow-600 transition-all duration-300 hover:scale-110"
                 aria-label="Follow us on Twitter"
               >
                 <div className="bg-yellow-100 border-2 border-yellow-400 p-3 group-hover:border-yellow-600 group-hover:bg-yellow-200 transition-colors duration-300">
-                  <span className="font-mono text-lg font-bold">TW</span>
+                  <span className="font-mono text-lg font-bold">IG</span>
                 </div>
                 <div className="absolute -inset-1 bg-yellow-300 opacity-0 group-hover:opacity-30 blur-sm transition-opacity duration-300"></div>
               </a>
               <a
-                href="https://github.com"
+                href="https://github.com/FilipElznic"
                 className="group relative text-gray-800 hover:text-yellow-600 transition-all duration-300 hover:scale-110"
                 aria-label="Follow us on GitHub"
               >
@@ -62,12 +62,11 @@ function Footer() {
                 <div className="absolute -inset-1 bg-yellow-300 opacity-0 group-hover:opacity-30 blur-sm transition-opacity duration-300"></div>
               </a>
               <a
-                href="https://discord.com"
+                href="https://www.linkedin.com/in/filip-elznic/"
                 className="group relative text-gray-800 hover:text-yellow-600 transition-all duration-300 hover:scale-110"
-                aria-label="Join our Discord"
               >
                 <div className="bg-yellow-100 border-2 border-yellow-400 p-3 group-hover:border-yellow-600 group-hover:bg-yellow-200 transition-colors duration-300">
-                  <span className="font-mono text-lg font-bold">DC</span>
+                  <span className="font-mono text-lg font-bold">LI</span>
                 </div>
                 <div className="absolute -inset-1 bg-yellow-300 opacity-0 group-hover:opacity-30 blur-sm transition-opacity duration-300"></div>
               </a>
@@ -176,7 +175,7 @@ function Footer() {
               <div className="text-gray-800">
                 <p className="mb-1">
                   <span className="text-yellow-600 font-bold">
-                    arcade_hub@retro:~$
+                    Filip Elznic
                   </span>{" "}
                   copyright {new Date().getFullYear()}
                 </p>
@@ -188,8 +187,8 @@ function Footer() {
               <div className="text-right">
                 <p className="text-yellow-600 text-xs font-bold">◆ GAME_ON ◆</p>
                 <p className="text-gray-700 text-xs">
-                  Made with <span className="text-red-500">♥</span> for retro
-                  gamers
+                  Made with <span className="text-red-500">♥</span> for
+                  shipwrecked hackathon
                 </p>
               </div>
             </div>

@@ -38,9 +38,10 @@ function About() {
 
               <div className="font-mono text-gray-800 space-y-3">
                 <p className="leading-relaxed">
-                  <span className="text-yellow-600 font-bold">&gt;</span> We are
-                  a team of passionate developers creating engaging web games
-                  for the retro gaming community.
+                  <span className="text-yellow-600 font-bold">&gt;</span> I am a
+                  solo full-stack developer with a passion for creating engaging
+                  web experiences. My goal is to bring retro gaming vibes to
+                  modern web technologies.
                 </p>
 
                 {/* Team stats */}
@@ -51,7 +52,7 @@ function About() {
                   </p>
                   <p className="text-sm mb-1">
                     <span className="text-yellow-600">&gt;</span> GAMES_CREATED:
-                    15+
+                    1
                   </p>
                   <p className="text-sm">
                     <span className="text-yellow-600">&gt;</span> STATUS:
@@ -72,16 +73,16 @@ function About() {
 
               <div className="font-mono text-gray-800 space-y-3">
                 <p className="leading-relaxed">
-                  <span className="text-yellow-600 font-bold">&gt;</span> Our
-                  mission is to provide fun and interactive retro gaming
-                  experiences for players of all ages and skill levels.
+                  <span className="text-yellow-600 font-bold">&gt;</span> My
+                  mission is to create a unique gaming experience that combines
+                  retro aesthetics with modern gameplay mechanics.
                 </p>
 
                 {/* Mission objectives */}
                 <div className="bg-white border border-yellow-300 p-3 mt-4">
                   <p className="text-sm mb-1">
-                    <span className="text-green-600">✓</span> Create engaging
-                    gameplay
+                    <span className="text-green-600">✓</span> Make it fun to
+                    play
                   </p>
                   <p className="text-sm mb-1">
                     <span className="text-green-600">✓</span> Retro aesthetic
@@ -126,10 +127,14 @@ function About() {
             </div>
           </div>
 
-          {/* Call to Action */}
           <div className="mt-8 text-center">
             <div className="bg-yellow-400 hover:bg-yellow-500 border-4 border-gray-800 px-8 py-4 font-mono font-bold text-gray-800 text-lg uppercase tracking-wider transition-all duration-200 hover:scale-105 cursor-pointer relative overflow-hidden inline-block">
-              <span className="relative z-10">[ JOIN THE ADVENTURE ]</span>
+              <span
+                onClick={() => (window.location.href = "/game")}
+                className="relative z-10"
+              >
+                [ JOIN THE ADVENTURE ]
+              </span>
               <div className="absolute inset-0 bg-white opacity-0 hover:opacity-20 transition-opacity duration-200"></div>
             </div>
           </div>

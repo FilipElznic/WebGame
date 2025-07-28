@@ -20,7 +20,6 @@ function Stage1Page() {
   const [hoverAttempts, setHoverAttempts] = useState(0);
   const [showHint, setShowHint] = useState(false);
   const [buttonMovingDisabled, setButtonMovingDisabled] = useState(false);
-  const [challengeCompleted, setChallengeCompleted] = useState(false);
 
   const challengeFullText = 'Search for "When was the bicycle invented";';
   const correctAnswer = "When was the bicycle invented"; // or "1885" depending on what you consider the first bicycle
@@ -119,7 +118,6 @@ function Stage1Page() {
       userInput.includes(correctAnswer) &&
       userInput.toLowerCase().includes("please")
     ) {
-      setChallengeCompleted(true);
       alert(
         "Congratulations! You found the answer and remembered to be polite!"
       );
@@ -333,21 +331,6 @@ function Stage1Page() {
                 </div>
               </div>
             )}
-          </div>
-        </div>
-      )}
-
-      {/* Success message */}
-      {challengeCompleted && (
-        <div className="absolute inset-0 flex items-center justify-center z-50">
-          <div className="bg-green-100 border-4 border-green-400 rounded-lg p-8 max-w-md text-center shadow-2xl">
-            <h2 className="text-2xl font-mono font-bold text-green-700 mb-4">
-              🎉 SUCCESS! 🎉
-            </h2>
-            <p className="font-mono text-green-800">
-              Well done! You completed the challenge and remembered your
-              manners!
-            </p>
           </div>
         </div>
       )}

@@ -34,7 +34,7 @@ please crete an account or login into already existing one.
 
 
 
-Project will have 5 stages the stages will be devided by users xp and will unlock by time, there wont be inventory, only mabye if the user has enought xp 
+Project will have 6 stages the stages will be devided by users xp and will unlock by time, there wont be inventory, only mabye if the user has enought xp 
 It can be used like that, but owning one item per stage
 
 

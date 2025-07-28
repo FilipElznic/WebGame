@@ -103,7 +103,7 @@ function Navbar() {
               </li>
               <li>
                 <a
-                  href="#contact"
+                  href="/contact"
                   className="group relative font-mono text-gray-700 hover:text-gray-900 px-4 py-2 text-sm font-bold uppercase tracking-wider transition-all duration-200 hover:scale-105"
                 >
                   <span className="relative z-10 bg-yellow-50 hover:bg-yellow-200 px-2 py-1 border border-yellow-400 transition-colors duration-200">

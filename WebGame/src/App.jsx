@@ -17,6 +17,8 @@ import Stage4Page from "./pages/Stage4Page";
 import Stage5Page from "./pages/Stage5Page";
 import Stage6Page from "./pages/Stage6Page";
 import Stage1PageInternet from "./pages/Stage1PageInternet";
+import ContactPage from "./pages/ContactPage";
+import Peter from "./Components/Peter";
 
 function App() {
   return (
@@ -26,6 +28,7 @@ function App() {
         <Routes>
           <Route path="/" element={<MainPage />} />
           <Route path="/shipwrecked" element={<ShipwreckedPage />} />
+          <Route path="/peter" element={<Peter />} />
 
           <Route
             path="/login"
@@ -131,6 +134,7 @@ function App() {
               </RequireAuth>
             }
           />
+          <Route path="/contact" element={<ContactPage />} />
           <Route path="/start" element={<GameStartPage />} />
         </Routes>
       </UserDataProvider>

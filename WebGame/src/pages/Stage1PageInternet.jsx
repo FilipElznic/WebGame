@@ -7,6 +7,9 @@ function Stage1PageInternet() {
   const [showButton, setShowButton] = useState(false);
   const [isPeterVisible, setIsPeterVisible] = useState(true);
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [showConsole, setShowConsole] = useState(false);
+  const [showDevMenu, setShowDevMenu] = useState(false);
+  const [showJoke, setShowJoke] = useState("");
 
   const fullText =
     "Well it looks like we are out of internet. But you look like you can find the solution!";
@@ -42,6 +45,100 @@ function Stage1PageInternet() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-yellow-50 via-white to-yellow-100 relative overflow-hidden">
+      {/* 3-dot menu in the top right corner */}
+      {/* 3-dot menu in the top right corner */}
+      <div
+        className="absolute top-6 right-8 z-50 flex flex-col items-center cursor-pointer group select-none"
+        onClick={() => setShowDevMenu(true)}
+      >
+        <div className="w-2 h-2 rounded-full bg-gray-700 mb-1 group-hover:bg-yellow-400 transition" />
+        <div className="w-2 h-2 rounded-full bg-gray-700 mb-1 group-hover:bg-yellow-400 transition" />
+        <div className="w-2 h-2 rounded-full bg-gray-700 group-hover:bg-yellow-400 transition" />
+        <span className="sr-only">Open Dev Tools Menu</span>
+      </div>
+
+      {/* Dev Tools Popup Menu */}
+      {showDevMenu && (
+        <div
+          className="fixed inset-0 z-50"
+          onClick={() => setShowDevMenu(false)}
+        >
+          <div
+            className="absolute top-16 right-10 bg-white border-2 border-yellow-400 rounded-lg shadow-xl w-56 flex flex-col p-4 space-y-2"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              className="bg-yellow-400 hover:bg-yellow-500 border-2 border-yellow-600 text-black font-bold px-4 py-2 rounded font-mono w-full text-left transition-all duration-200"
+              onClick={() => {
+                setShowJoke("network");
+                setShowDevMenu(false);
+              }}
+            >
+              Network Diagnostics
+            </button>
+            <button
+              className="bg-yellow-400 hover:bg-yellow-500 border-2 border-yellow-600 text-black font-bold px-4 py-2 rounded font-mono w-full text-left transition-all duration-200"
+              onClick={() => {
+                setShowJoke("troubleshoot");
+                setShowDevMenu(false);
+              }}
+            >
+              Troubleshoot
+            </button>
+            <button
+              className="bg-yellow-400 hover:bg-yellow-500 border-2 border-yellow-600 text-black font-bold px-4 py-2 rounded font-mono w-full text-left transition-all duration-200"
+              onClick={() => {
+                setShowConsole(true);
+                setShowDevMenu(false);
+              }}
+            >
+              Dev Tools
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Joke/Funny Modal for Network Diagnostics and Troubleshoot */}
+      {showJoke && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/40"
+          onClick={() => setShowJoke("")}
+        >
+          <div
+            className="bg-white border-2 border-yellow-400 rounded-lg shadow-xl p-6 min-w-[300px] max-w-[90vw] relative"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              className="absolute top-2 right-2 text-gray-400 hover:text-black text-lg font-bold bg-transparent border-none"
+              onClick={() => setShowJoke("")}
+              aria-label="Close"
+            >
+              ×
+            </button>
+            <div className="font-mono text-lg text-yellow-700 mb-2">
+              {showJoke === "network" ? "Network Diagnostics" : "Troubleshoot"}
+            </div>
+            <div className="font-mono text-base text-black">
+              {showJoke === "network" && (
+                <>
+                  <div>Running network diagnostics...</div>
+                  <div className="mt-2">
+                    Nope, this is not the way you are looking for. 🕵️‍♂️
+                  </div>
+                </>
+              )}
+              {showJoke === "troubleshoot" && (
+                <>
+                  <div>Troubleshooting in progress...</div>
+                  <div className="mt-2">
+                    Sorry, this is not the way you are looking for. 🤔
+                  </div>
+                </>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
       {isPeterVisible && (
         <div className="z-50">
           <img
@@ -130,17 +227,28 @@ function Stage1PageInternet() {
           >
             <div>
               <img src="/dino.png" alt="Dino" className="mb-4 w-20 h-20 " />
-              <h1 className="text-xl font-mono font-bold  mb-4">
+              <h1 className="text-4xl font-mono font-bold mb-4 text-center">
                 Oouuppsss it looks like you <br /> are out of internet
                 connection!
               </h1>
               <p
-                className={`text-sm font-mono ${
+                className={`text-xl font-mono text-center ${
                   isDarkMode ? "text-gray-300" : "text-gray-700"
                 }`}
               >
                 Try to explore the page to maybe find something
               </p>
+
+              {/* Dev Tools Console (shows when 3-dot menu is clicked) */}
+              {showConsole && (
+                <div className="bg-black text-green-400 font-mono mt-8 p-4 rounded-lg w-96 mx-auto border-2 border-yellow-400 shadow-lg absolute bottom-0 right-0">
+                  <div className="mb-2 text-yellow-300">Dev Console</div>
+                  <div>
+                    <span className="text-green-500">&gt; </span>
+                    Hint: Try clicking the yellow star in the top right corner!
+                  </div>
+                </div>
+              )}
             </div>
           </div>
 
