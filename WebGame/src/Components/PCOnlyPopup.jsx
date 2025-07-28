@@ -15,7 +15,6 @@ function PCOnlyPopup() {
         "ipad",
         "ipod",
         "blackberry",
-        "windows phone",
       ];
       const isMobileDevice = mobileKeywords.some((keyword) =>
         userAgent.includes(keyword)
@@ -24,7 +23,7 @@ function PCOnlyPopup() {
       // Also check screen width as an additional indicator
       const isSmallScreen = window.innerWidth < 768;
 
-      return isMobileDevice || isSmallScreen;
+      return isMobileDevice && isSmallScreen;
     };
 
     const deviceIsMobile = checkDevice();
