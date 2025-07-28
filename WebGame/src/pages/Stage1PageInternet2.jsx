@@ -6,6 +6,7 @@ function Stage1PageInternet2() {
   const [isTypingComplete, setIsTypingComplete] = useState(false);
   const [showButton, setShowButton] = useState(false);
   const [isPeterVisible, setIsPeterVisible] = useState(true);
+  const [copied, setCopied] = useState(false);
 
   const [InternetOnHidden, setInternetOnHidden] = useState(false);
 
@@ -130,18 +131,32 @@ function Stage1PageInternet2() {
           <div
             className={`w-full h-full text-balance border-1 flex items-center flex-col`}
           >
-            <div>
+            <div className="flex items-center  w-full h-full flex-col">
               <img src="/dino.png" alt="Dino" className="mb-4 w-20 h-20 " />
               <h1 className="text-4xl font-mono font-bold mb-4 text-center">
-                Stage 1: Internet Connection
+                Stage 1: Internet Connection Completed ✅
               </h1>
-              <p
-                className={`text-xl font-mono text-center 
-                   
-                  }`}
-              >
-                Try to explore the page to maybe find something to fix it
+              <p className={`text-xl font-mono text-center w-1/2 `}>
+                almost, here you have the code but you need to copy it to
+                continue. You will need it later in stage 2.
               </p>
+              <div className="flex flex-col items-center mt-8">
+                <div className="bg-black text-green-400 font-mono px-6 py-4 rounded-lg border-2 border-yellow-400 shadow-lg text-lg select-all  text-center mb-3">
+                  a3F9kL7mV2X0nB6qW8rT1zY5hC4dE7uJ9sP3oG8xQ6vM2iN1A0
+                </div>
+                <button
+                  onClick={() => {
+                    navigator.clipboard.writeText(
+                      "a3F9kL7mV2X0nB6qW8rT1zY5hC4dE7uJ9sP3oG8xQ6vM2iN1A0"
+                    );
+                    setCopied(true);
+                    setTimeout(() => setCopied(false), 1500);
+                  }}
+                  className="mt-1 bg-yellow-400 hover:bg-yellow-500 border-2 border-yellow-600 text-black font-bold py-2 px-6 rounded font-mono text-sm transition-all duration-200 transform hover:scale-105"
+                >
+                  {copied ? "Code Copied!" : "Copy Code"}
+                </button>
+              </div>
             </div>
           </div>
 
