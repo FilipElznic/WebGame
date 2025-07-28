@@ -4,10 +4,12 @@ import HomeWork from "../Components/HomeWork";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useUserData } from "../Components/UserDataProvider";
+import Peter from "../Components/Peter";
 
 function MainMenu() {
   const { canAccessStage, userXP, getRequiredXPForStage } = useUserData();
   const [showHomework, setShowHomework] = useState(false);
+  const [showPeter, setShowPeter] = useState(true);
   const [homeworkList, setHomeworkList] = useState([
     {
       id: 1,
@@ -30,6 +32,31 @@ function MainMenu() {
       completed: false,
     },
   ]);
+  const peterSlides = [
+    {
+      title: "Hi, again :)",
+      description:
+        "Let me introduce you this main menu, that you will be seen quite often.",
+    },
+    {
+      title: "Introduction",
+      description:
+        "This is the main menu where you can access different stages. You can also find your homework list on the left side.",
+    },
+    {
+      title: "How many stages?",
+      description:
+        "There are a total of 6 stages to complete. Each stage presents a unique challenge, and you'll need to use your skills to overcome them.",
+    },
+    {
+      title: "Ready to Play?",
+      description: "Great! Let's get started.",
+    },
+  ];
+
+  const hidePeter = () => {
+    setShowPeter(false);
+  };
 
   // Component for individual stage links with lock functionality
   const StageLink = ({ stageNumber, to, className }) => {
@@ -89,7 +116,16 @@ function MainMenu() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-yellow-50 via-white to-yellow-100">
-      {/* Homework List Button - Retro Style */}
+      {/* Peter Intro - only show if showPeter is true */}
+
+      {showPeter && (
+        <Peter
+          slides={peterSlides}
+          imageSrc="/peterHi.png"
+          className="bg-white/20 backdrop-blur-sm"
+          onComplete={hidePeter}
+        />
+      )}
       <div
         className="w-[8vw] h-[8vw] bg-white/90 border-4 border-yellow-400 absolute left-7 top-1/2 transform -translate-y-1/2 z-30 text-center flex items-center justify-center cursor-pointer hover:bg-yellow-50 transition-colors duration-200"
         onClick={() => setShowHomework(true)}

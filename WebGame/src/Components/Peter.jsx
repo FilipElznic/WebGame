@@ -20,6 +20,7 @@ function Peter({
   // Refs to store timeout IDs for cleanup
   const titleTimeoutRef = React.useRef(null);
   const descriptionTimeoutRef = React.useRef(null);
+  const completionTimeoutRef = React.useRef(null);
 
   // Default slides if none provided
   const defaultSlides = [
@@ -73,6 +74,9 @@ function Peter({
       if (descriptionTimeoutRef.current) {
         clearTimeout(descriptionTimeoutRef.current);
       }
+      if (completionTimeoutRef.current) {
+        clearTimeout(completionTimeoutRef.current);
+      }
     };
   }, []);
 
@@ -86,6 +90,10 @@ function Peter({
     if (descriptionTimeoutRef.current) {
       clearTimeout(descriptionTimeoutRef.current);
       descriptionTimeoutRef.current = null;
+    }
+    if (completionTimeoutRef.current) {
+      clearTimeout(completionTimeoutRef.current);
+      completionTimeoutRef.current = null;
     }
 
     // Reset states
@@ -142,9 +150,9 @@ function Peter({
           setIsTypingDescription(false);
           descriptionTimeoutRef.current = null;
 
-          // Call onComplete callback if on last slide and typing is done
+          // Call onComplete callback if on last slide and typing is done, with 5 second delay
           if (currentSlide === slidesToUse.length - 1 && onComplete) {
-            setTimeout(() => onComplete(), 500);
+            completionTimeoutRef.current = setTimeout(() => onComplete(), 5000);
           }
         }
       };
@@ -184,21 +192,21 @@ function Peter({
   }
 
   return (
-    <div className={`relative overflow-hidden ${className}`}>
+    <div className={`absolute z-50 overflow-hidden w-full h-full ${className}`}>
       {/* Retro grid background */}
 
-      <div className="flex items-center justify-center px-4 relative z-10">
+      <div className="flex items-center justify-center px-4 relative z-10 h-full">
         <div className="w-full max-w-6xl relative">
           {/* Retro border decorations */}
 
           <div className="flex flex-col md:flex-row items-center p-8 min-h-[60vh]">
-            {/* Image section */}
+            {/* Image section - Fixed width */}
             {imageSrc && (
-              <div className="flex-1 flex justify-center mb-8 md:mb-0">
+              <div className="flex-shrink-0 w-full md:w-1/2 flex justify-center mb-8 md:mb-0">
                 <img
                   src={imageSrc}
                   alt={imageAlt}
-                  className={`max-w-md w-full h-auto transition-all duration-1000 ease-out transform ${
+                  className={`max-w-md w-full border-b-2 h-auto transition-all duration-1000 ease-out transform ${
                     showImage
                       ? "opacity-100 translate-y-0 scale-100"
                       : "opacity-0 translate-y-10 scale-95"
@@ -207,16 +215,18 @@ function Peter({
               </div>
             )}
 
-            {/* Content section */}
+            {/* Content section - Fixed width */}
             <div
-              className={`flex-1 flex flex-col justify-center px-6 transition-all duration-1000 ease-out transform ${
+              className={`flex-shrink-0 w-full ${
+                imageSrc ? "md:w-1/2" : "md:w-full"
+              } flex flex-col justify-center px-6 transition-all duration-1000 ease-out transform ${
                 showContent
                   ? "opacity-100 translate-x-0"
                   : "opacity-0 translate-x-10"
               }`}
             >
-              {/* Title with typing effect */}
-              <div className="mb-6">
+              {/* Title with typing effect - Fixed height container */}
+              <div className="mb-6 min-h-[4rem] flex items-start">
                 <h1 className="text-4xl md:text-5xl font-mono font-bold text-gray-800 text-left">
                   <span className="bg-yellow-100 px-3 py-2 border-2 border-yellow-400 inline-block">
                     {titleText}
@@ -227,8 +237,8 @@ function Peter({
                 </h1>
               </div>
 
-              {/* Description with typing effect */}
-              <div className="bg-yellow-50 border-2 border-yellow-400 p-4 mb-6">
+              {/* Description with typing effect - Fixed height container */}
+              <div className="bg-yellow-50 border-2 border-yellow-400 p-4 mb-6 min-h-[8rem]">
                 <div className="font-mono text-sm mb-2 text-yellow-600">
                   &gt; MISSION_BRIEFING:
                 </div>
@@ -240,9 +250,9 @@ function Peter({
                 </p>
               </div>
 
-              {/* Navigation buttons */}
+              {/* Navigation buttons - Fixed height container */}
               {showNavigation && slidesToUse.length > 1 && (
-                <div className="flex items-center justify-between">
+                <div className="flex items-center justify-between min-h-[3rem]">
                   <button
                     onClick={prevSlide}
                     disabled={currentSlide === 0}
