@@ -50,7 +50,7 @@ function MainMenu() {
     },
     {
       title: "Ready to Play?",
-      description: "Great! Let's get started.",
+      description: "",
     },
   ];
 
@@ -119,12 +119,20 @@ function MainMenu() {
       {/* Peter Intro - only show if showPeter is true */}
 
       {showPeter && (
-        <Peter
-          slides={peterSlides}
-          imageSrc="/peterHi.png"
-          className="bg-white/20 backdrop-blur-sm"
-          onComplete={hidePeter}
-        />
+        <div className="">
+          <Peter
+            slides={peterSlides}
+            imageSrc="/peterHi.png"
+            className="bg-white/20 backdrop-blur-sm"
+            onComplete={hidePeter}
+          />
+          <button
+            onClick={hidePeter}
+            className="absolute top-1/4 right-1/5 bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-3 rounded shadow-lg z-50"
+          >
+            X
+          </button>
+        </div>
       )}
       <div
         className="w-[8vw] h-[8vw] bg-white/90 border-4 border-yellow-400 absolute left-7 top-1/2 transform -translate-y-1/2 z-30 text-center flex items-center justify-center cursor-pointer hover:bg-yellow-50 transition-colors duration-200"
