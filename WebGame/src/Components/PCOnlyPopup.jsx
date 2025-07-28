@@ -57,81 +57,103 @@ function PCOnlyPopup() {
   }
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg max-w-md w-full mx-4 p-6 relative shadow-2xl">
-        {/* Close button */}
+    <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
+      <div className="bg-white/90 backdrop-blur-sm border-4 border-yellow-400 shadow-2xl relative max-w-2xl w-full mx-4 p-8">
+        {/* Retro border decorations */}
+        <div className="absolute -top-2 -left-2 w-6 h-6 border-t-4 border-l-4 border-yellow-500"></div>
+        <div className="absolute -top-2 -right-2 w-6 h-6 border-t-4 border-r-4 border-yellow-500"></div>
+        <div className="absolute -bottom-2 -left-2 w-6 h-6 border-b-4 border-l-4 border-yellow-500"></div>
+        <div className="absolute -bottom-2 -right-2 w-6 h-6 border-b-4 border-r-4 border-yellow-500"></div>
+
+        {/* Close button - retro style */}
         <button
           onClick={closePopup}
-          className="absolute top-4 right-4 text-gray-500 hover:text-gray-700 text-2xl font-bold"
+          className="absolute top-4 right-4 bg-red-500 hover:bg-red-600 text-white font-mono text-lg px-3 py-1 border-2 border-red-700 transition-colors duration-200"
           aria-label="Close popup"
         >
-          ×
+          ✕
         </button>
 
-        {/* Icon */}
-        <div className="text-center mb-4">
-          <div className="mx-auto w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-4">
-            <svg
-              className="w-8 h-8 text-blue-600"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-              />
-            </svg>
+        {/* PC Icon - retro style */}
+        <div className="text-center mb-6">
+          <div className="mx-auto w-20 h-20 bg-yellow-100 border-4 border-yellow-400 flex items-center justify-center mb-4">
+            <div className="font-mono text-3xl">🖥️</div>
           </div>
         </div>
 
-        {/* Title */}
-        <h2 className="text-2xl font-bold text-gray-800 text-center mb-4">
-          PC Gaming Experience Required
+        {/* Title - retro style */}
+        <h2 className="text-4xl font-mono font-bold text-gray-800 text-center mb-6 relative">
+          <span className="bg-yellow-100 px-4 py-2 border-2 border-yellow-400 inline-block">
+            [PC REQUIRED]
+          </span>
         </h2>
 
-        {/* Message */}
-        <div className="text-gray-600 text-center mb-6 space-y-3">
-          <p className="text-lg">
-            This web game is optimized for PC and requires:
-          </p>
-          <ul className="text-left space-y-2 bg-gray-50 p-4 rounded-lg">
-            <li className="flex items-center">
-              <span className="text-green-500 mr-2">✓</span>
-              Desktop or laptop computer
-            </li>
-            <li className="flex items-center">
-              <span className="text-green-500 mr-2">✓</span>
-              Keyboard and mouse controls
-            </li>
-            <li className="flex items-center">
-              <span className="text-green-500 mr-2">✓</span>
-              Larger screen for optimal gameplay
-            </li>
-          </ul>
-          <p className="text-sm text-gray-500 mt-4">
-            For the best gaming experience, please access this game from a PC or
-            laptop.
-          </p>
+        {/* Message - retro info box style */}
+        <div className="bg-yellow-50 border-2 border-yellow-400 p-6 mb-8 relative">
+          <div className="absolute top-2 left-2 w-3 h-3 bg-yellow-400 rotate-45"></div>
+          <div className="absolute top-2 right-2 w-3 h-3 bg-yellow-400 rotate-45"></div>
+
+          <div className="font-mono text-gray-800 space-y-4">
+            <p className="text-lg">
+              <span className="text-yellow-700 font-bold">
+                &gt; SYSTEM ALERT:
+              </span>
+              <br />
+              This retro gaming experience requires:
+            </p>
+
+            <div className="bg-white border-2 border-yellow-300 p-4 space-y-2">
+              <div className="flex items-center">
+                <span className="text-green-600 mr-3 font-bold">✓</span>
+                <span>Desktop or laptop computer</span>
+              </div>
+              <div className="flex items-center">
+                <span className="text-green-600 mr-3 font-bold">✓</span>
+                <span>Keyboard and mouse controls</span>
+              </div>
+              <div className="flex items-center">
+                <span className="text-green-600 mr-3 font-bold">✓</span>
+                <span>Larger screen for optimal gameplay</span>
+              </div>
+              <div className="flex items-center">
+                <span className="text-green-600 mr-3 font-bold">✓</span>
+                <span>True retro gaming experience</span>
+              </div>
+            </div>
+
+            <p className="text-sm text-gray-600">
+              <span className="text-yellow-700 font-bold">&gt; NOTE:</span>
+              For the authentic Peter's Quest experience, please access from a
+              PC.
+            </p>
+          </div>
         </div>
 
-        {/* Buttons */}
-        <div className="flex flex-col space-y-3">
+        {/* Buttons - retro style */}
+        <div className="flex flex-col lg:flex-row gap-4 justify-center">
           <button
             onClick={closePopup}
-            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition duration-200"
+            className="group relative font-mono text-gray-700 hover:text-gray-900 px-6 py-3 text-lg font-bold uppercase tracking-wider transition-all duration-200 hover:scale-105"
           >
-            I'll play on PC later
+            <span className="relative z-10 bg-blue-100 hover:bg-blue-200 px-4 py-2 border-2 border-blue-400 transition-colors duration-200">
+              [PLAY ON PC LATER]
+            </span>
+            <div className="absolute inset-0 bg-blue-200 opacity-0 group-hover:opacity-20 transition-all duration-200"></div>
           </button>
+
           <button
             onClick={closePopup}
-            className="w-full bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-3 px-4 rounded-lg transition duration-200"
+            className="group relative font-mono text-gray-700 hover:text-gray-900 px-6 py-3 text-lg font-bold uppercase tracking-wider transition-all duration-200 hover:scale-105"
           >
-            Continue anyway
+            <span className="relative z-10 bg-red-100 hover:bg-red-200 px-4 py-2 border-2 border-red-400 transition-colors duration-200">
+              [CONTINUE ANYWAY]
+            </span>
+            <div className="absolute inset-0 bg-red-200 opacity-0 group-hover:opacity-20 transition-all duration-200"></div>
           </button>
         </div>
+
+        {/* Bottom retro accent */}
+        <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-yellow-400"></div>
       </div>
     </div>
   );

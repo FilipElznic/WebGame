@@ -6,47 +6,124 @@ import RegisterPage from "./pages/RegisterPage";
 import GamePage from "./pages/GamePage";
 import GameStartPage from "./pages/GameStartPage";
 import { AuthProtectedRoute, RequireAuth } from "./Components/ProtectedRoute";
+import { XPProtectedRoute } from "./Components/XPProtectedRoute";
+import { UserDataProvider } from "./Components/UserDataProvider";
 import MainMenu from "./pages/Main-menu";
+import PCOnlyPopup from "./Components/PCOnlyPopup";
+import Stage1Page from "./pages/Stage1Page";
+import Stage2Page from "./pages/Stage2Page";
+import Stage3Page from "./pages/Stage3Page";
+import Stage4Page from "./pages/Stage4Page";
+import Stage5Page from "./pages/Stage5Page";
+import Stage6Page from "./pages/Stage6Page";
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<MainPage />} />
-      <Route path="/shipwrecked" element={<ShipwreckedPage />} />
-      <Route
-        path="/login"
-        element={
-          <AuthProtectedRoute>
-            <LoginPage />
-          </AuthProtectedRoute>
-        }
-      />
-      <Route
-        path="/register"
-        element={
-          <AuthProtectedRoute>
-            <RegisterPage />
-          </AuthProtectedRoute>
-        }
-      />
-      <Route
-        path="/game"
-        element={
-          <RequireAuth>
-            <GamePage />
-          </RequireAuth>
-        }
-      />
-      <Route
-        path="/main-menu"
-        element={
-          <RequireAuth>
-            <MainMenu />
-          </RequireAuth>
-        }
-      />
-      <Route path="/start" element={<GameStartPage />} />
-    </Routes>
+    <>
+      <PCOnlyPopup />
+      <UserDataProvider>
+        <Routes>
+          <Route path="/" element={<MainPage />} />
+          <Route path="/shipwrecked" element={<ShipwreckedPage />} />
+
+          <Route
+            path="/login"
+            element={
+              <AuthProtectedRoute>
+                <LoginPage />
+              </AuthProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/stage1"
+            element={
+              <RequireAuth>
+                <XPProtectedRoute requiredStage={1}>
+                  <Stage1Page />
+                </XPProtectedRoute>
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/stage2"
+            element={
+              <RequireAuth>
+                <XPProtectedRoute requiredStage={2}>
+                  <Stage2Page />
+                </XPProtectedRoute>
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/stage3"
+            element={
+              <RequireAuth>
+                <XPProtectedRoute requiredStage={3}>
+                  <Stage3Page />
+                </XPProtectedRoute>
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/stage4"
+            element={
+              <RequireAuth>
+                <XPProtectedRoute requiredStage={4}>
+                  <Stage4Page />
+                </XPProtectedRoute>
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/stage5"
+            element={
+              <RequireAuth>
+                <XPProtectedRoute requiredStage={5}>
+                  <Stage5Page />
+                </XPProtectedRoute>
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/stage6"
+            element={
+              <RequireAuth>
+                <XPProtectedRoute requiredStage={6}>
+                  <Stage6Page />
+                </XPProtectedRoute>
+              </RequireAuth>
+            }
+          />
+
+          <Route
+            path="/register"
+            element={
+              <AuthProtectedRoute>
+                <RegisterPage />
+              </AuthProtectedRoute>
+            }
+          />
+          <Route
+            path="/game"
+            element={
+              <RequireAuth>
+                <GamePage />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/main-menu"
+            element={
+              <RequireAuth>
+                <MainMenu />
+              </RequireAuth>
+            }
+          />
+          <Route path="/start" element={<GameStartPage />} />
+        </Routes>
+      </UserDataProvider>
+    </>
   );
 }
 

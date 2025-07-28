@@ -21,7 +21,7 @@ function Footer() {
           <div className="col-span-1 md:col-span-2">
             <h3 className="text-3xl font-bold font-mono text-gray-800 mb-4 relative">
               <span className="relative z-10 bg-yellow-100 px-3 py-2 border-2 border-yellow-400">
-                &gt; ARCADE_HUB
+                &gt; PETER'S_QUEST_V1.0
               </span>
               <div className="absolute inset-0 bg-yellow-300 opacity-20 blur-lg"></div>
             </h3>
@@ -36,7 +36,7 @@ function Footer() {
               </p>
               <p className="text-gray-800">
                 <span className="text-yellow-600 font-bold">&gt;</span> MODE:
-                ARCADE_EXPERIENCE
+                ADE_EXPERIENCEARC
               </p>
             </div>
 

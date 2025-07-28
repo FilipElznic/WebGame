@@ -36,3 +36,19 @@ please crete an account or login into already existing one.
 
 Project will have 5 stages the stages will be devided by users xp and will unlock by time, there wont be inventory, only mabye if the user has enought xp 
 It can be used like that, but owning one item per stage
+
+
+
+Texts 
+
+Welcome again, let me give you a quick knowhow on this
+
+As you will see in a second, there are 6 stages, 1 stage is unlocked and the other 5 are locked for now 
+each stage will provide you with unique expirience, by completing stages you will complete tasks.
+
+The tasks are on the left side of the page, you have to do them gradually, the goal of the game is simple
+complete everytask and get Peter out of trouble. I wish you good luck and I hope you won't fail my trust
+
+
+1. stage
+On the fist stage you will expirience this 

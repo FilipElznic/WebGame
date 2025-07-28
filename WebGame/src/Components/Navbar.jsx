@@ -68,7 +68,7 @@ function Navbar() {
           <div className="flex-shrink-0">
             <h1 className="text-2xl font-bold font-mono text-gray-800 hover:text-yellow-600 transition-all duration-300 hover:scale-110 cursor-pointer relative">
               <span className="relative z-10 bg-yellow-100 px-3 py-1 border-2 border-yellow-400">
-                &gt; ARCADE_HUB
+                &gt; PETER'S_QUEST_V1.0
               </span>
               <div className="absolute inset-0 bg-yellow-300 opacity-0 hover:opacity-20 blur-lg transition-opacity duration-300"></div>
             </h1>
@@ -79,7 +79,7 @@ function Navbar() {
             <ul className="flex space-x-1">
               <li>
                 <a
-                  href="#home"
+                  href="/"
                   className="group relative font-mono text-gray-700 hover:text-gray-900 px-4 py-2 text-sm font-bold uppercase tracking-wider transition-all duration-200 hover:scale-105"
                 >
                   <span className="relative z-10 bg-yellow-50 hover:bg-yellow-200 px-2 py-1 border border-yellow-400 transition-colors duration-200">
@@ -91,7 +91,7 @@ function Navbar() {
               </li>
               <li>
                 <a
-                  href="#about"
+                  href="/#about"
                   className="group relative font-mono text-gray-700 hover:text-gray-900 px-4 py-2 text-sm font-bold uppercase tracking-wider transition-all duration-200 hover:scale-105"
                 >
                   <span className="relative z-10 bg-yellow-50 hover:bg-yellow-200 px-2 py-1 border border-yellow-400 transition-colors duration-200">
@@ -194,19 +194,19 @@ function Navbar() {
       >
         <div className="px-4 pt-2 pb-3 space-y-1">
           <a
-            href="#home"
+            href="/"
             className="text-gray-700 hover:text-gray-900 hover:bg-yellow-200 block px-3 py-2 font-mono text-base font-bold uppercase tracking-wider transition-colors duration-200 border-l-4 border-transparent hover:border-yellow-400"
           >
             [HOME]
           </a>
           <a
-            href="#about"
+            href="/#about"
             className="text-gray-700 hover:text-gray-900 hover:bg-yellow-200 block px-3 py-2 font-mono text-base font-bold uppercase tracking-wider transition-colors duration-200 border-l-4 border-transparent hover:border-yellow-400"
           >
             [ABOUT]
           </a>
           <a
-            href="#contact"
+            href="/#contact"
             className="text-gray-700 hover:text-gray-900 hover:bg-yellow-200 block px-3 py-2 font-mono text-base font-bold uppercase tracking-wider transition-colors duration-200 border-l-4 border-transparent hover:border-yellow-400"
           >
             [CONTACT]

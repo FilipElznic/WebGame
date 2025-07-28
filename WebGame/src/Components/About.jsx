@@ -1,6 +1,6 @@
 function About() {
   return (
-    <div className="min-h-screen relative py-16">
+    <div className="min-h-screen relative py-16" id="about">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Main About Section */}
         <div className="bg-white/90 backdrop-blur-sm p-8 border-4 border-yellow-400 shadow-2xl mb-8">

@@ -119,10 +119,11 @@ function GamePage() {
               <h1 className="text-4xl font-mono font-bold text-gray-800 relative">
                 <span className="relative z-10">
                   <span className="text-yellow-600 bg-yellow-100 px-4 py-3 border-2 border-yellow-400 inline-block">
-                    &gt; PETER'S QUEST INITIALIZED
+                    &gt; PETER'S QUEST
                   </span>
                 </span>
               </h1>
+              INITIALIZED
             </div>
 
             {/* Game Status */}
@@ -204,22 +205,12 @@ function GamePage() {
             </div>
 
             {/* Game Actions */}
-            <div className="grid md:grid-cols-3 gap-4">
+            <div className="grid md:grid-cols-1 gap-4">
               <button
                 onClick={handleStartQuest}
                 className="bg-yellow-400 hover:bg-yellow-500 border-4 border-gray-800 px-6 py-4 font-mono font-bold text-gray-800 text-lg uppercase tracking-wider transition-all duration-200 hover:scale-105 relative overflow-hidden"
               >
                 <span className="relative z-10">[START QUEST]</span>
-                <div className="absolute inset-0 bg-white opacity-0 hover:opacity-20 transition-opacity duration-200"></div>
-              </button>
-
-              <button className="bg-blue-400 hover:bg-blue-500 border-4 border-gray-800 px-6 py-4 font-mono font-bold text-gray-800 text-lg uppercase tracking-wider transition-all duration-200 hover:scale-105 relative overflow-hidden">
-                <span className="relative z-10">[INVENTORY]</span>
-                <div className="absolute inset-0 bg-white opacity-0 hover:opacity-20 transition-opacity duration-200"></div>
-              </button>
-
-              <button className="bg-green-400 hover:bg-green-500 border-4 border-gray-800 px-6 py-4 font-mono font-bold text-gray-800 text-lg uppercase tracking-wider transition-all duration-200 hover:scale-105 relative overflow-hidden">
-                <span className="relative z-10">[SETTINGS]</span>
                 <div className="absolute inset-0 bg-white opacity-0 hover:opacity-20 transition-opacity duration-200"></div>
               </button>
             </div>
