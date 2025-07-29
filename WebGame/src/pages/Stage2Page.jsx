@@ -1,18 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+
 import peterIdea from "/peterIdea.png";
 import { Link } from "react-router-dom";
 import RetroPc from "../Components/RetroPc";
 
 function Stage2Page() {
-  const navigate = useNavigate();
   const [displayText, setDisplayText] = useState("");
   const [isTypingComplete, setIsTypingComplete] = useState(false);
   const [showButton, setShowButton] = useState(false);
   const [showDialogue, setShowDialogue] = useState(true);
 
   // New states for the bike challenge
-  const [showChallenge, setShowChallenge] = useState(false);
 
   const fullText =
     "Welcome to Stage 2 of my todo list! This stage will be easier. You need to take the password and use it to log into computer. Then you need to explore the pc and play available game and score at least 500 points. After that you will be able to continue to the next stage.";
@@ -42,7 +40,6 @@ function Stage2Page() {
     // Hide the image and text div
     setShowDialogue(false);
     // Start the challenge
-    setShowChallenge(true);
   };
 
   return (

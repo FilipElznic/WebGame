@@ -214,3 +214,49 @@ export const addXPIfEligible2 = async (userId, xpToAdd = 100) => {
     };
   }
 };
+
+export const addXPIfEligible3 = async (userId, xpToAdd = 100) => {
+  try {
+    if (!userId) {
+      return { success: false, newXP: 0, error: "User ID is required" };
+    }
+
+    // Reference to the user document
+    const userDocRef = doc(db, "users", userId);
+
+    // Get current user data
+    const userDoc = await getDoc(userDocRef);
+
+    if (!userDoc.exists()) {
+      return { success: false, newXP: 0, error: "User document not found" };
+    }
+
+    const userData = userDoc.data();
+    const currentXP = userData.xp || 0;
+
+    // Check if user has 0 XP
+    if (currentXP !== 300) {
+      return {
+        success: false,
+        newXP: currentXP,
+        error: "User already has XP, cannot add more",
+      };
+    }
+
+    // Update user's XP
+    const newXP = currentXP + xpToAdd;
+    await updateDoc(userDocRef, {
+      xp: newXP,
+      lastXPUpdate: new Date().toISOString(),
+    });
+
+    return { success: true, newXP: newXP };
+  } catch (error) {
+    console.error("Error adding XP:", error);
+    return {
+      success: false,
+      newXP: 0,
+      error: error.message || "Failed to add XP",
+    };
+  }
+};

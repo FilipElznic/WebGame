@@ -63,3 +63,14 @@ to get to the next stage or use the key to find a file that will be encrypted an
 things to do: turn on wifi button different design
 
 I need to create a layout to other stages and keep track of the users xp, the worst thing will be optimalization and vercel hostin
+
+
+stage 3.
+
+I have no idea what to do in stage 3. and I have other 4 to do
+
+we can do lock, with jumping game, so I basicly need to open lets say locked treasure and I need to find a key, it will be jumping game and at the end I will pick
+up the key, then I will be able to open it up and that will be phase 3.
+
+
+stage 4 I will find something in the locked chest then there will something and i will use it next

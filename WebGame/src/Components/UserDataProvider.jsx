@@ -3,6 +3,7 @@ import {
   getCurrentUserData,
   addXPIfEligible,
   addXPIfEligible2,
+  addXPIfEligible3,
 } from "../firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../firebase/config";
@@ -145,6 +146,33 @@ export const UserDataProvider = ({ children }) => {
 
     try {
       const result = await addXPIfEligible2(user.uid, xpAmount);
+
+      if (result.success) {
+        // Update local state immediately for better UX
+        setUserData((prevData) => ({
+          ...prevData,
+          xp: result.newXP,
+        }));
+
+        // Optionally refresh from server to ensure consistency
+        setTimeout(() => {
+          refreshUserData();
+        }, 1000);
+      }
+
+      return result;
+    } catch (error) {
+      console.error("Error adding XP:", error);
+      return { success: false, error: error.message };
+    }
+  };
+  const addXPForTask3 = async (xpAmount = 200) => {
+    if (!user || !userData) {
+      return { success: false, error: "User not authenticated" };
+    }
+
+    try {
+      const result = await addXPIfEligible3(user.uid, xpAmount);
 
       if (result.success) {
         // Update local state immediately for better UX
