@@ -118,11 +118,11 @@ function Navbar() {
               </li>
               <li>
                 <a
-                  href="/contact"
+                  href="/feedback"
                   className="group relative font-mono text-gray-700 hover:text-gray-900 px-4 py-2 text-sm font-bold uppercase tracking-wider transition-all duration-200 hover:scale-105"
                 >
                   <span className="relative z-10 bg-yellow-50 hover:bg-yellow-200 px-2 py-1 border border-yellow-400 transition-colors duration-200">
-                    [CONTACT]
+                    [FEEDBACK]
                   </span>
                   <div className="absolute inset-0 bg-yellow-200 opacity-0 group-hover:opacity-20 transition-all duration-200"></div>
                   <div className="absolute -inset-1 bg-yellow-300 opacity-0 group-hover:opacity-20 blur-sm transition-opacity duration-200"></div>
