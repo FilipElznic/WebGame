@@ -52,3 +52,14 @@ complete everytask and get Peter out of trouble. I wish you good luck and I hope
 
 1. stage
 On the fist stage you will expirience this 
+
+2. stage 
+
+
+on this stage I would like to intruduce some games - like he uses the password to play games on his moms computer and he will have to score some 
+to get to the next stage or use the key to find a file that will be encrypted and something will be there
+
+
+things to do: turn on wifi button different design
+
+I need to create a layout to other stages and keep track of the users xp, the worst thing will be optimalization and vercel hostin

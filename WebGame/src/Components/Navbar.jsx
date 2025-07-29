@@ -62,11 +62,14 @@ function Navbar() {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="flex justify-between items-center h-16">
           {/* Retro Logo */}
           <div className="flex-shrink-0">
-            <h1 className="text-2xl font-bold font-mono text-gray-800 hover:text-yellow-600 transition-all duration-300 hover:scale-110 cursor-pointer relative">
+            <h1
+              onClick={() => (window.location.href = "/")}
+              className="text-2xl font-bold font-mono text-gray-800 hover:text-yellow-600 transition-all duration-300 hover:scale-110 cursor-pointer relative"
+            >
               <span className="relative z-10 bg-yellow-100 px-3 py-1 border-2 border-yellow-400">
                 &gt; PETER'S_QUEST_V1.0
               </span>
@@ -84,6 +87,18 @@ function Navbar() {
                 >
                   <span className="relative z-10 bg-yellow-50 hover:bg-yellow-200 px-2 py-1 border border-yellow-400 transition-colors duration-200">
                     [HOME]
+                  </span>
+                  <div className="absolute inset-0 bg-yellow-200 opacity-0 group-hover:opacity-20 transition-all duration-200"></div>
+                  <div className="absolute -inset-1 bg-yellow-300 opacity-0 group-hover:opacity-20 blur-sm transition-opacity duration-200"></div>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/shipwrecked"
+                  className="group relative font-mono text-gray-700 hover:text-gray-900 px-4 py-2 text-sm font-bold uppercase tracking-wider transition-all duration-200 hover:scale-105"
+                >
+                  <span className="relative z-10 bg-yellow-50 hover:bg-yellow-200 px-2 py-1 border border-yellow-400 transition-colors duration-200">
+                    [SHIPWRECKED]
                   </span>
                   <div className="absolute inset-0 bg-yellow-200 opacity-0 group-hover:opacity-20 transition-all duration-200"></div>
                   <div className="absolute -inset-1 bg-yellow-300 opacity-0 group-hover:opacity-20 blur-sm transition-opacity duration-200"></div>

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import peterIdea from "/peterIdea.png";
+import { Link } from "react-router-dom";
 
 function Stage1Page() {
   const navigate = useNavigate();
@@ -89,7 +90,7 @@ function Stage1Page() {
     const newAttempts = hoverAttempts + 1;
     setHoverAttempts(newAttempts);
 
-    if (newAttempts >= 10) {
+    if (newAttempts >= 6) {
       setShowHint(true);
     }
   };
@@ -124,7 +125,7 @@ function Stage1Page() {
       // Navigate to stage1internet after a short delay
       setTimeout(() => {
         navigate("/stage1internet");
-      }, 1000);
+      }, 0);
     } else if (!userInput.toLowerCase().includes("please")) {
       alert("Don't forget to say please!");
     } else {
@@ -206,6 +207,12 @@ function Stage1Page() {
           </div>
         </div>
       )}
+
+      <Link to="/main-menu" className="z-50 relative">
+        <span className="bg-yellow-500 hover:bg-yellow-500 border-2 border-yellow-600 text-black font-bold py-2 px-6 font-mono text-sm transition-all duration-200 transform hover:scale-105 relative group">
+          HOME ▶
+        </span>
+      </Link>
 
       {/* Challenge Section - Inline (no popup) */}
       {showChallenge && !challengeCompleted && (

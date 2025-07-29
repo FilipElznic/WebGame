@@ -150,6 +150,11 @@ function MainMenu() {
           LIST]
         </span>
       </div>
+      <Link to="/game" className="z-50 relative">
+        <span className="bg-yellow-500 hover:bg-yellow-500 border-2 border-yellow-600 text-black font-bold py-2 px-6 font-mono text-sm transition-all duration-200 transform hover:scale-105 relative group">
+          HOME ▶
+        </span>
+      </Link>
 
       <div className="container mx-auto px-4 py-8">
         <div className="flex flex-col lg:flex-row gap-8">

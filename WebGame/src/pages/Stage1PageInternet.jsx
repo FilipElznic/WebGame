@@ -47,8 +47,11 @@ function Stage1PageInternet() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-yellow-50 via-white to-yellow-100 relative overflow-hidden">
-      {/* 3-dot menu in the top right corner */}
-      {/* 3-dot menu in the top right corner */}
+      <Link to="/main-menu" className="z-50 relative">
+        <span className="bg-yellow-500 hover:bg-yellow-500 border-2 border-yellow-600 text-black font-bold py-2 px-6 font-mono text-sm transition-all duration-200 transform hover:scale-105 relative group">
+          TASK MAP ▶
+        </span>
+      </Link>
       <div
         className="absolute top-6 right-8 z-50 flex flex-col items-center cursor-pointer group select-none"
         onClick={() => setShowDevMenu(true)}
@@ -220,11 +223,22 @@ function Stage1PageInternet() {
       <div className="container mx-auto px-4 py-8 relative z-10">
         <div
           className={`${
-            InternetOnHidden ? "bg-black " : "hidden bg-transparent"
-          } absolute h-20 w-44 bg-black z-50 bottom-9 left-5 text-center rounded-lg shadow-lg flex items-center justify-center`}
+            InternetOnHidden
+              ? "bg-zinc-300 border-1 shadow-[inset_0_2px_4px_rgba(148,163,184,0.3),0_4px_8px_rgba(0,0,0,0.6)]"
+              : "hidden bg-transparent"
+          } absolute h-20 w-44 z-50 bottom-9 left-5 text-center rounded-lg flex items-center justify-center 
+ 
+        }`}
         >
-          <Link to="/stage1internet2" className="text-white">
-            Turn on Wifi 🛜{" "}
+          <Link
+            to="/stage1internet2"
+            className="text-green-200 font-bold text-sm tracking-wider uppercase 
+    drop-shadow-[0_0_6px_rgba(34,197,94,0.6)] 
+    hover:text-green-300 hover:drop-shadow-[0_0_8px_rgba(34,197,94,0.8)]
+    transition-all duration-200 z-10 relative
+    text-shadow-[0_0_4px_rgba(34,197,94,0.5)]"
+          >
+            Turn on Wifi 🛜
           </Link>
         </div>
         <div

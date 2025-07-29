@@ -97,6 +97,11 @@ function Stage1PageInternet2() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-yellow-50 via-white to-yellow-100 relative overflow-hidden">
+      <Link to="/main-menu" className="z-50 relative">
+        <span className="bg-yellow-500 hover:bg-yellow-500 border-2 border-yellow-600 text-black font-bold py-2 px-6 font-mono text-sm transition-all duration-200 transform hover:scale-105 relative group">
+          TASK MAP ▶
+        </span>
+      </Link>
       {isPeterVisible && (
         <div className="z-50">
           <img
