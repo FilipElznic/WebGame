@@ -145,15 +145,7 @@ function Footer() {
                     PRIVACY.TXT
                   </a>
                 </li>
-                <li>
-                  <a
-                    href="#terms"
-                    className="text-gray-700 hover:text-yellow-600 transition-colors duration-200 block hover:bg-yellow-100 px-2 py-1 rounded"
-                  >
-                    <span className="text-yellow-600 font-bold">&gt;</span>{" "}
-                    TERMS.CFG
-                  </a>
-                </li>
+
                 <li>
                   <a
                     href="#feedback"

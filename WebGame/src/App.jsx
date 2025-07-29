@@ -20,6 +20,9 @@ import Stage1PageInternet from "./pages/Stage1PageInternet";
 import ContactPage from "./pages/ContactPage";
 import Peter from "./Components/Peter";
 import Stage1PageInternet2 from "./pages/Stage1PageInternet2";
+import HelpPage from "./pages/HelpPage";
+import PrivacyPage from "./pages/PrivacyPage";
+import FeedbackPage from "./pages/FeedbackPage";
 
 function App() {
   return (
@@ -147,6 +150,9 @@ function App() {
           />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/start" element={<GameStartPage />} />
+          <Route path="/help" element={<HelpPage />} />
+          <Route path="/privacy" element={<PrivacyPage />} />
+          <Route path="/feedback" element={<FeedbackPage />} />
         </Routes>
       </UserDataProvider>
     </>

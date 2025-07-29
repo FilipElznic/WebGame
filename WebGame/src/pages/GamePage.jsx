@@ -82,7 +82,12 @@ function GamePage() {
         {/* Header */}
         <div className="relative z-10 p-4">
           <div className="flex justify-between items-center">
-            <div className="bg-yellow-400 px-4 py-2 border-2 border-gray-800 font-mono text-gray-800 text-sm font-bold uppercase tracking-wider">
+            <div
+              onClick={() => {
+                window.location.href = "/";
+              }}
+              className="bg-yellow-400 px-4 py-2 border-2 border-gray-800 font-mono text-gray-800 text-sm font-bold uppercase tracking-wider"
+            >
               PETER'S_QUEST_V1.0
             </div>
             <div className="flex items-center space-x-4">

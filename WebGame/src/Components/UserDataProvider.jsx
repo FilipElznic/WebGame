@@ -1,5 +1,9 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
-import { getCurrentUserData, addXPIfEligible } from "../firebase/auth";
+import {
+  getCurrentUserData,
+  addXPIfEligible,
+  addXPIfEligible2,
+} from "../firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../firebase/config";
 
@@ -133,6 +137,34 @@ export const UserDataProvider = ({ children }) => {
       return { success: false, error: error.message };
     }
   };
+  // Function to add XP for a specific task (using the second method)
+  const addXPForTask2 = async (xpAmount = 200) => {
+    if (!user || !userData) {
+      return { success: false, error: "User not authenticated" };
+    }
+
+    try {
+      const result = await addXPIfEligible2(user.uid, xpAmount);
+
+      if (result.success) {
+        // Update local state immediately for better UX
+        setUserData((prevData) => ({
+          ...prevData,
+          xp: result.newXP,
+        }));
+
+        // Optionally refresh from server to ensure consistency
+        setTimeout(() => {
+          refreshUserData();
+        }, 1000);
+      }
+
+      return result;
+    } catch (error) {
+      console.error("Error adding XP:", error);
+      return { success: false, error: error.message };
+    }
+  };
 
   // Helper functions for XP-based features
   const getRequiredXPForStage = (stageNumber) => {
@@ -155,7 +187,8 @@ export const UserDataProvider = ({ children }) => {
     loading,
     error,
     refreshUserData,
-    addXPForTask, // This was missing from your original provider
+    addXPForTask,
+    addXPForTask2,
     getRequiredXPForStage,
     canAccessStage,
     isTaskCompleted,
