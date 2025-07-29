@@ -129,7 +129,7 @@ function Footer() {
               <ul className="space-y-2 font-mono text-sm">
                 <li>
                   <a
-                    href="#help"
+                    href="/help"
                     className="text-gray-700 hover:text-yellow-600 transition-colors duration-200 block hover:bg-yellow-100 px-2 py-1 rounded"
                   >
                     <span className="text-yellow-600 font-bold">&gt;</span>{" "}
@@ -138,7 +138,7 @@ function Footer() {
                 </li>
                 <li>
                   <a
-                    href="#privacy"
+                    href="/privacy"
                     className="text-gray-700 hover:text-yellow-600 transition-colors duration-200 block hover:bg-yellow-100 px-2 py-1 rounded"
                   >
                     <span className="text-yellow-600 font-bold">&gt;</span>{" "}
@@ -148,7 +148,7 @@ function Footer() {
 
                 <li>
                   <a
-                    href="#feedback"
+                    href="/feedback"
                     className="text-gray-700 hover:text-yellow-600 transition-colors duration-200 block hover:bg-yellow-100 px-2 py-1 rounded"
                   >
                     <span className="text-yellow-600 font-bold">&gt;</span>{" "}
@@ -168,7 +168,7 @@ function Footer() {
                 <p className="mb-1">
                   <span className="text-yellow-600 font-bold">
                     Filip Elznic
-                  </span>{" "}
+                  </span>
                   copyright {new Date().getFullYear()}
                 </p>
                 <p>

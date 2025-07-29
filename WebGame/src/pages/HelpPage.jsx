@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+
 import peterIdea from "/peterIdea.png";
 
 import RetroPc from "../Components/RetroPc";
@@ -13,7 +13,6 @@ function HelpPage() {
   const [showDialogue, setShowDialogue] = useState(true);
 
   // New states for the bike challenge
-  const [showChallenge, setShowChallenge] = useState(false);
 
   const fullText =
     "Welcome to the Help Page! You can find most of your questions answered here. But if you need more help, you can always contact me through the social media links.";
