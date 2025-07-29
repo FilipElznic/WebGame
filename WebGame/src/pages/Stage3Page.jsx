@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import peterIdea from "/peterIdea.png";
 import { Link } from "react-router-dom";
-import RetroPc from "../Components/RetroPc";
+
 import JumpingGame from "../Components/JumpingGame";
 
 function Stage3Page() {
@@ -135,7 +135,7 @@ function Stage3Page() {
         </div>
       </div>
       <div className="container mx-auto px-4 py-8 relative w-full h-full z-10">
-        <div className="bg-white/90 backdrop-blur-sm p-8 border-4 border-yellow-400 shadow-2xl  relative overflow-hidden flex h-screen flex-col items-center justify-center">
+        <div className=" backdrop-blur-sm p-8 border-4 border-yellow-400 shadow-2xl  relative overflow-hidden flex h-screen flex-col items-center justify-center">
           <JumpingGame />
         </div>
       </div>

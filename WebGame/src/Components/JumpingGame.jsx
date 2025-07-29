@@ -8,10 +8,10 @@ function JumpingGame() {
   const [isGrounded, setIsGrounded] = useState(false);
   const [gameFinished, setGameFinished] = useState(false);
   const [cameraY, setCameraY] = useState(1700);
-  const [isAddingXP, setIsAddingXP] = useState(false);
+
   const [peterHide, setPeterHide] = useState(false);
 
-  const { userData, addXPForTask, userXP } = useUserData();
+  const { addXPForTask, userXP } = useUserData();
 
   const keysRef = useRef({});
   const playerPosRef = useRef({ x: 400, y: 2000 });
@@ -411,20 +411,20 @@ function JumpingGame() {
       {/* Victory Message */}
       {gameFinished && (
         <>
-          {peterHide && (
-            <>
+          {!peterHide && (
+            <div className="absolute bottom-0 left-0 w-full h-full z-50">
               <Peter
                 slides={peterSlides}
                 imageSrc="/peterHi.png"
-                className="bg-white/20 absolute top-0 left-0 w-full h-full z-50"
+                className="bg-white/20 absolute  w-full h-full z-50"
               />
               <button
                 onClick={() => setPeterHide(true)}
-                className="absolute top-1/4 right-1/5 bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-3 rounded shadow-lg z-50"
+                className="absolute top-1/4 right-1/6 bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-3 rounded shadow-lg z-50"
               >
                 X
               </button>
-            </>
+            </div>
           )}
           <div className="mt-4 p-6 bg-yellow-400 border-4 border-yellow-600 text-black rounded font-bold text-center relative">
             <div className="absolute -top-1 -left-1 w-4 h-4 border-t-4 border-l-4 border-yellow-800"></div>
