@@ -15,11 +15,11 @@ function Stage2Page() {
   const [showChallenge, setShowChallenge] = useState(false);
 
   const fullText =
-    "Welcome to Stage 1 of my todo list! I've got some tasks for you. Are you ready to help me search for some info?";
+    "Welcome to Stage 2 of my todo list! This stage will be easier. You need to take the password and use it to log into computer. Then you need to explore the pc and play available game and score at least 500 points. After that you will be able to continue to the next stage.";
 
   useEffect(() => {
     let currentIndex = 0;
-    const typingSpeed = 50; // milliseconds per character
+    const typingSpeed = 30; // milliseconds per character
 
     const typeText = () => {
       if (currentIndex < fullText.length) {

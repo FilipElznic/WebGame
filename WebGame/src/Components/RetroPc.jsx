@@ -32,7 +32,7 @@ const RetroComputerLogin = () => {
   // Function to handle XP award when snake score exceeds 500
   const handleSnakeXPAward = async (newScore) => {
     // Check if score is above 500 and XP hasn't been awarded yet
-    if (newScore >= 10 && !xpAwarded) {
+    if (newScore >= 500 && !xpAwarded) {
       setIsAddingXP(true);
 
       try {
@@ -196,7 +196,7 @@ const RetroComputerLogin = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    if (password === "test") {
+    if (password === "a3F9kL7mV2X0nB6qW8rT1zY5hC4dE7uJ9sP3oG8xQ6vM2iN1A0") {
       setIsLoggedIn(true);
       setShowError(false);
     } else {
@@ -369,7 +369,7 @@ const RetroComputerLogin = () => {
           <div className="absolute -bottom-2 -right-2 w-6 h-6 border-b-4 border-r-4 border-yellow-500"></div>
 
           {/* Challenge text */}
-          <div className="w-full  p-6 flex flex-col h-full">
+          <div className="w-full  p-6 flex flex-col h-full ">
             <div className="text-center mb-8">
               <h2 className="text-xl font-mono font-bold text-yellow-400 mb-2">
                 [CHALLENGE 02]
@@ -378,416 +378,433 @@ const RetroComputerLogin = () => {
                 Lets use the computer.
               </p>
             </div>
-
-            {!isLoggedIn ? (
-              /* Login Screen */
-              <div className="flex-1 flex flex-col justify-center max-w-xl h-full mx-auto w-full">
-                {/* Computer Header */}
-                <div className="bg-zinc-800 text-green-400 p-4 mb-6 border border-green-500">
-                  <div className="text-center">
-                    <div className="text-xs mb-1">RETRO-COMP OS v2.1</div>
-                    <div className="text-xs">
-                      System Ready - {formatDate(currentTime)}{" "}
-                      {formatTime(currentTime)}
-                    </div>
-                  </div>
-                </div>
-
-                {/* Login Form */}
-                <div className="bg-gray-900 border border-gray-600 p-6">
-                  <div className="text-green-400 text-sm mb-4">
-                    === SYSTEM LOGIN ===
-                  </div>
-
-                  <div className="space-y-4">
-                    <div>
-                      <div className="text-green-400 text-sm mb-2">
-                        Username: <span className="text-white">MOM</span>
-                        {blinkCursor && (
-                          <span className="text-green-400">_</span>
-                        )}
-                      </div>
-                    </div>
-
-                    <div>
-                      <div className="text-green-400 text-sm block mb-2">
-                        Password:
-                      </div>
-                      <input
-                        type="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        onKeyPress={(e) => e.key === "Enter" && handleLogin(e)}
-                        className="bg-black border border-green-500 text-green-400 px-3 py-2 w-full font-mono text-sm focus:outline-none focus:border-green-300"
-                        placeholder="Enter password..."
-                        autoFocus
-                      />
-                    </div>
-
-                    <button
-                      onClick={handleLogin}
-                      className="bg-green-700 hover:bg-green-600 text-black font-bold py-2 px-6 border border-green-500 transition-colors"
-                    >
-                      [ENTER]
-                    </button>
-                  </div>
-
-                  {showError && (
-                    <div className="mt-4 text-red-400 text-sm animate-pulse">
-                      ACCESS DENIED - Invalid Password
-                    </div>
-                  )}
-                </div>
-              </div>
-            ) : (
-              /* Desktop Environment */
-              <div className="flex-1 flex flex-col">
-                {/* Desktop Header */}
-                <div className="bg-blue-800 text-white p-2 flex justify-between items-center border-b border-blue-600">
-                  <div className="text-sm">Welcome, mom</div>
-                  <div className="text-sm">{formatTime(currentTime)}</div>
-                  <button
-                    onClick={handleLogout}
-                    className="bg-red-600 hover:bg-red-500 px-3 py-1 text-xs border border-red-400"
-                  >
-                    LOGOUT
-                  </button>
-                </div>
-
-                {/* Desktop Content */}
-                <div className="flex-1 bg-zinc-800 p-6 relative">
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-                    {/* Desktop Icons */}
-                    <div
-                      className="text-center cursor-pointer hover:bg-blue-800/50 p-3 rounded"
-                      onClick={openFilesWindow}
-                    >
-                      <div className="text-3xl mb-2">📁</div>
-                      <div className="text-xs text-green-300">Files</div>
-                    </div>
-                    <div className="text-center cursor-pointer hover:bg-blue-800/50 p-3 rounded">
-                      <div className="text-3xl mb-2">🖥️</div>
-                      <div className="text-xs text-green-300">Terminal</div>
-                    </div>
-                    <div
-                      className="text-center cursor-pointer hover:bg-blue-800/50 p-3 rounded"
-                      onClick={openGamesWindow}
-                    >
-                      <div className="text-3xl mb-2">🎮</div>
-                      <div className="text-xs text-green-300">Games</div>
-                    </div>
-                    <div
-                      className="text-center cursor-pointer hover:bg-blue-800/50 p-3 rounded"
-                      onClick={openSettingsWindow}
-                    >
-                      <div className="text-3xl mb-2">⚙️</div>
-                      <div className="text-xs text-green-300">Settings</div>
-                    </div>
-                  </div>
-
-                  {/* Snake Game Window */}
-                  {activeWindow === "snake" && (
-                    <div className="absolute inset-4 bg-gray-800 border-2 border-gray-600 flex flex-col z-10">
-                      {/* Window Title Bar */}
-                      <div className="bg-green-700 text-white p-2 flex justify-between items-center border-b border-gray-600">
-                        <div className="text-sm font-bold">
-                          🐍 Snake Classic - Arcade Mode
-                        </div>
-                        <button
-                          onClick={closeWindow}
-                          className="bg-red-600 hover:bg-red-500 px-2 py-1 text-xs border border-red-400"
-                        >
-                          ✕
-                        </button>
-                      </div>
-
-                      {/* Game Stats */}
-                      <div className="bg-gray-700 text-green-300 p-2 text-sm border-b border-gray-600 flex justify-between">
-                        <div>Score: {score}</div>
-                        <div>High Score: {highScore}</div>
-                        <div className="flex items-center space-x-4">
-                          <div className="text-yellow-300">
-                            {gameOver
-                              ? "GAME OVER"
-                              : gameRunning
-                              ? "PLAYING"
-                              : "PAUSED"}
-                          </div>
-                          {score >= 500 && xpAwarded && (
-                            <div className="text-green-400 font-bold animate-pulse">
-                              🎉 XP EARNED!
-                            </div>
-                          )}
-                          {isAddingXP && (
-                            <div className="text-yellow-400">Adding XP...</div>
-                          )}
-                        </div>
-                      </div>
-
-                      {/* Game Board */}
-                      <div className="flex-1 bg-black p-4 flex items-center justify-center">
-                        <div
-                          className="grid grid-cols-20 gap-0 border border-green-500"
-                          style={{
-                            gridTemplateColumns: `repeat(${BOARD_SIZE}, 1fr)`,
-                            width: "400px",
-                            height: "400px",
-                          }}
-                        >
-                          {Array.from({ length: BOARD_SIZE * BOARD_SIZE }).map(
-                            (_, index) => {
-                              const x = index % BOARD_SIZE;
-                              const y = Math.floor(index / BOARD_SIZE);
-                              const isSnake = snake.some(
-                                (segment) => segment.x === x && segment.y === y
-                              );
-                              const isFood = food.x === x && food.y === y;
-                              const isHead =
-                                snake.length > 0 &&
-                                snake[0].x === x &&
-                                snake[0].y === y;
-
-                              return (
-                                <div
-                                  key={index}
-                                  className={`border border-gray-800 ${
-                                    isSnake
-                                      ? isHead
-                                        ? "bg-green-400"
-                                        : "bg-green-600"
-                                      : isFood
-                                      ? "bg-red-500"
-                                      : "bg-gray-900"
-                                  }`}
-                                  style={{ aspectRatio: "1" }}
-                                />
-                              );
-                            }
-                          )}
-                        </div>
-                      </div>
-
-                      {/* Controls */}
-                      <div className="bg-gray-700 text-green-300 p-3 text-xs border-t border-gray-600">
-                        <div className="text-center mb-2">
-                          Use ARROW KEYS to move • SPACEBAR to{" "}
-                          {gameOver
-                            ? "restart"
-                            : gameRunning
-                            ? "pause"
-                            : "resume"}
-                          {score < 500 && (
-                            <span className="text-yellow-300 ml-4">
-                              • Reach 500 points for bonus XP!
-                            </span>
-                          )}
-                        </div>
-                        <div className="flex justify-center space-x-4">
-                          <button
-                            onClick={() =>
-                              !gameOver && setGameRunning(!gameRunning)
-                            }
-                            className="bg-blue-600 hover:bg-blue-500 px-3 py-1 text-white border border-blue-400"
-                            disabled={gameOver}
-                          >
-                            {gameRunning ? "PAUSE" : "PLAY"}
-                          </button>
-                          <button
-                            onClick={resetGame}
-                            className="bg-green-600 hover:bg-green-500 px-3 py-1 text-white border border-green-400"
-                          >
-                            RESTART
-                          </button>
+            <div className="bg-white h-full border-20 border-b-40 border-zinc-900 ">
+              <p className="text-white text-center bg-zinc-800 text-sm">
+                Computer
+              </p>
+              <div
+                id="pc"
+                className="bg-black h-full border-20 border-zinc-800 before:absolute "
+              >
+                {!isLoggedIn ? (
+                  /* Login Screen */
+                  <div className="flex-1 flex flex-col justify-center max-w-xl h-full mx-auto w-full ">
+                    {/* Computer Header */}
+                    <div className="bg-zinc-800 text-green-400 p-4 mb-6 border border-green-500">
+                      <div className="text-center">
+                        <div className="text-xs mb-1">RETRO-COMP OS v2.1</div>
+                        <div className="text-xs">
+                          System Ready - {formatDate(currentTime)}{" "}
+                          {formatTime(currentTime)}
                         </div>
                       </div>
                     </div>
-                  )}
 
-                  {/* Files Window */}
-                  {activeWindow === "files" && (
-                    <div className="absolute inset-4 bg-gray-800 border-2 border-gray-600 flex flex-col z-10">
-                      {/* Window Title Bar */}
-                      <div className="bg-blue-700 text-white p-2 flex justify-between items-center border-b border-gray-600">
-                        <div className="text-sm font-bold">
-                          📁 File Manager - C:\
-                        </div>
-                        <button
-                          onClick={closeWindow}
-                          className="bg-red-600 hover:bg-red-500 px-2 py-1 text-xs border border-red-400"
-                        >
-                          ✕
-                        </button>
+                    {/* Login Form */}
+                    <div className="bg-gray-900 border border-gray-600 p-6">
+                      <div className="text-green-400 text-sm mb-4">
+                        === SYSTEM LOGIN ===
                       </div>
 
-                      {/* File List Header */}
-                      <div className="bg-zinc-800 text-green-300 p-2 text-xs border-b border-gray-600 flex">
-                        <div className="w-1/2">NAME</div>
-                        <div className="w-1/4">SIZE</div>
-                        <div className="w-1/4">TYPE</div>
-                      </div>
-
-                      {/* File List */}
-                      <div className="flex-1 bg-black p-2 overflow-y-auto">
-                        {dummyFiles.map((file, index) => (
-                          <div
-                            key={index}
-                            className="flex items-center py-1 px-2 hover:bg-blue-900/50 cursor-pointer text-green-400 text-sm"
-                            onClick={() => handleFileClick(file.name)}
-                          >
-                            <div className="w-1/2 flex items-center">
-                              <span className="mr-2">{file.icon}</span>
-                              {file.name}
-                            </div>
-                            <div className="w-1/4">{file.size}</div>
-                            <div className="w-1/4">{file.type}</div>
-                          </div>
-                        ))}
-                      </div>
-
-                      {/* Status Bar */}
-                      <div className="bg-zinc-800 text-green-300 p-2 text-xs border-t border-gray-600">
-                        {dummyFiles.length} files | Read-only access
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Games Window */}
-                  {activeWindow === "games" && (
-                    <div className="absolute inset-4 bg-gray-800 border-2 border-gray-600 flex flex-col z-10">
-                      {/* Window Title Bar */}
-                      <div className="bg-purple-700 text-white p-2 flex justify-between items-center border-b border-gray-600">
-                        <div className="text-sm font-bold">
-                          🎮 Game Center - Arcade Collection
-                        </div>
-                        <button
-                          onClick={closeWindow}
-                          className="bg-red-600 hover:bg-red-500 px-2 py-1 text-xs border border-red-400"
-                        >
-                          ✕
-                        </button>
-                      </div>
-
-                      {/* Games List Header */}
-                      <div className="bg-zinc-800 text-green-300 p-2 text-xs border-b border-gray-600 flex">
-                        <div className="w-1/2">GAME TITLE</div>
-                        <div className="w-1/4">CATEGORY</div>
-                        <div className="w-1/4">STATUS</div>
-                      </div>
-
-                      {/* Games List */}
-                      <div className="flex-1 bg-black p-2 overflow-y-auto">
-                        {dummyGames.map((game, index) => (
-                          <div
-                            key={index}
-                            className={`flex items-center py-2 px-2 hover:bg-purple-900/50 cursor-pointer text-green-400 text-sm ${
-                              game.playable ? "hover:bg-green-900/50" : ""
-                            }`}
-                            onClick={() => handleGameClick(game.name)}
-                          >
-                            <div className="w-1/2 flex items-center">
-                              <span className="mr-2">{game.icon}</span>
-                              {game.name}
-                            </div>
-                            <div className="w-1/4">{game.category}</div>
-                            <div
-                              className={`w-1/4 ${
-                                game.playable
-                                  ? "text-green-400"
-                                  : "text-red-400"
-                              }`}
-                            >
-                              {game.status}
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-
-                      {/* Status Bar */}
-                      <div className="bg-zinc-800 text-green-300 p-2 text-xs border-t border-gray-600">
-                        {dummyGames.filter((g) => g.playable).length} of{" "}
-                        {dummyGames.length} games available
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Settings Window */}
-                  {activeWindow === "settings" && (
-                    <div className="absolute inset-4 bg-gray-800 border-2 border-gray-600 flex flex-col z-10">
-                      {/* Window Title Bar */}
-                      <div className="bg-orange-700 text-white p-2 flex justify-between items-center border-b border-gray-600">
-                        <div className="text-sm font-bold">
-                          ⚙️ System Settings - Control Panel
-                        </div>
-                        <button
-                          onClick={closeWindow}
-                          className="bg-red-600 hover:bg-red-500 px-2 py-1 text-xs border border-red-400"
-                        >
-                          ✕
-                        </button>
-                      </div>
-
-                      {/* Settings List Header */}
-                      <div className="bg-zinc-800 text-green-300 p-2 text-xs border-b border-gray-600 flex">
-                        <div className="w-1/2">SETTING NAME</div>
-                        <div className="w-1/4">CATEGORY</div>
-                        <div className="w-1/4">ACCESS LEVEL</div>
-                      </div>
-
-                      {/* Settings List */}
-                      <div className="flex-1 bg-black p-2 overflow-y-auto">
-                        {systemSettings.map((setting, index) => (
-                          <div
-                            key={index}
-                            className="flex items-center py-2 px-2 hover:bg-orange-900/50 cursor-pointer text-green-400 text-sm"
-                            onClick={() => handleSettingClick(setting.name)}
-                          >
-                            <div className="w-1/2 flex items-center">
-                              <span className="mr-2">{setting.icon}</span>
-                              {setting.name}
-                            </div>
-                            <div className="w-1/4">{setting.category}</div>
-                            <div className="w-1/4 text-yellow-400">
-                              {setting.access}
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-
-                      {/* Status Bar */}
-                      <div className="bg-gray-700 text-yellow-300 p-2 text-xs border-t border-gray-600">
-                        {systemSettings.length} settings | Administrative access
-                        required
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Terminal Window (only show when no other window is open) */}
-                  {!activeWindow && (
-                    <div className="bg-black border border-gray-500 p-4 max-w-2xl mx-auto">
-                      <div className="bg-gray-700 text-white text-xs py-1 px-3 mb-3 border-b border-gray-500">
-                        Terminal - mom@retro-comp
-                      </div>
-                      <div className="text-green-400 text-sm">
-                        <div>$ whoami</div>
-                        <div>mom</div>
-                        <div>$ echo "Challenge completed successfully!"</div>
-                        <div>Challenge completed successfully!</div>
-                        <div>$ date</div>
+                      <div className="space-y-4">
                         <div>
-                          {formatDate(currentTime)} {formatTime(currentTime)}
+                          <div className="text-green-400 text-sm mb-2">
+                            Username: <span className="text-white">MOM</span>
+                            {blinkCursor && (
+                              <span className="text-green-400">_</span>
+                            )}
+                          </div>
                         </div>
-                        <div className="mt-2">
-                          $ █
-                          {blinkCursor && (
-                            <span className="animate-pulse">_</span>
-                          )}
+
+                        <div>
+                          <div className="text-green-400 text-sm block mb-2">
+                            Password:
+                          </div>
+                          <input
+                            type="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            onKeyPress={(e) =>
+                              e.key === "Enter" && handleLogin(e)
+                            }
+                            className="bg-black border border-green-500 text-green-400 px-3 py-2 w-full font-mono text-sm focus:outline-none focus:border-green-300"
+                            placeholder="Enter password..."
+                            autoFocus
+                          />
+                        </div>
+
+                        <button
+                          onClick={handleLogin}
+                          className="bg-green-700 hover:bg-green-600 text-black font-bold py-2 px-6 border border-green-500 transition-colors"
+                        >
+                          [ENTER]
+                        </button>
+                      </div>
+
+                      {showError && (
+                        <div className="mt-4 text-red-400 text-sm animate-pulse">
+                          ACCESS DENIED - Invalid Password
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                ) : (
+                  /* Desktop Environment */
+                  <div className="flex-1 flex flex-col">
+                    {/* Desktop Header */}
+                    <div className="bg-blue-800 text-white p-2 flex justify-between items-center border-b border-blue-600">
+                      <div className="text-sm">Welcome, mom</div>
+                      <div className="text-sm">{formatTime(currentTime)}</div>
+                      <button
+                        onClick={handleLogout}
+                        className="bg-red-600 hover:bg-red-500 px-3 py-1 text-xs border border-red-400"
+                      >
+                        LOGOUT
+                      </button>
+                    </div>
+
+                    {/* Desktop Content */}
+                    <div className="flex-1 bg-zinc-800 p-6 relative">
+                      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+                        {/* Desktop Icons */}
+                        <div
+                          className="text-center cursor-pointer hover:bg-blue-800/50 p-3 rounded"
+                          onClick={openFilesWindow}
+                        >
+                          <div className="text-3xl mb-2">📁</div>
+                          <div className="text-xs text-green-300">Files</div>
+                        </div>
+                        <div className="text-center cursor-pointer hover:bg-blue-800/50 p-3 rounded">
+                          <div className="text-3xl mb-2">🖥️</div>
+                          <div className="text-xs text-green-300">Terminal</div>
+                        </div>
+                        <div
+                          className="text-center cursor-pointer hover:bg-blue-800/50 p-3 rounded"
+                          onClick={openGamesWindow}
+                        >
+                          <div className="text-3xl mb-2">🎮</div>
+                          <div className="text-xs text-green-300">Games</div>
+                        </div>
+                        <div
+                          className="text-center cursor-pointer hover:bg-blue-800/50 p-3 rounded"
+                          onClick={openSettingsWindow}
+                        >
+                          <div className="text-3xl mb-2">⚙️</div>
+                          <div className="text-xs text-green-300">Settings</div>
                         </div>
                       </div>
+
+                      {/* Snake Game Window */}
+                      {activeWindow === "snake" && (
+                        <div className="absolute inset-4 bg-gray-800 border-2 border-gray-600 flex flex-col z-10">
+                          {/* Window Title Bar */}
+                          <div className="bg-green-700 text-white p-2 flex justify-between items-center border-b border-gray-600">
+                            <div className="text-sm font-bold">
+                              🐍 Snake Classic - Arcade Mode
+                            </div>
+                            <button
+                              onClick={closeWindow}
+                              className="bg-red-600 hover:bg-red-500 px-2 py-1 text-xs border border-red-400"
+                            >
+                              ✕
+                            </button>
+                          </div>
+
+                          {/* Game Stats */}
+                          <div className="bg-gray-700 text-green-300 p-2 text-sm border-b border-gray-600 flex justify-between">
+                            <div>Score: {score}</div>
+                            <div>High Score: {highScore}</div>
+                            <div className="flex items-center space-x-4">
+                              <div className="text-yellow-300">
+                                {gameOver
+                                  ? "GAME OVER"
+                                  : gameRunning
+                                  ? "PLAYING"
+                                  : "PAUSED"}
+                              </div>
+                              {score >= 500 && xpAwarded && (
+                                <div className="text-green-400 font-bold animate-pulse">
+                                  🎉 XP EARNED!
+                                </div>
+                              )}
+                              {isAddingXP && (
+                                <div className="text-yellow-400">
+                                  Adding XP...
+                                </div>
+                              )}
+                            </div>
+                          </div>
+
+                          {/* Game Board */}
+                          <div className="flex-1 bg-black p-4 flex items-center justify-center">
+                            <div
+                              className="grid grid-cols-20 gap-0 border border-green-500"
+                              style={{
+                                gridTemplateColumns: `repeat(${BOARD_SIZE}, 1fr)`,
+                                width: "400px",
+                                height: "400px",
+                              }}
+                            >
+                              {Array.from({
+                                length: BOARD_SIZE * BOARD_SIZE,
+                              }).map((_, index) => {
+                                const x = index % BOARD_SIZE;
+                                const y = Math.floor(index / BOARD_SIZE);
+                                const isSnake = snake.some(
+                                  (segment) =>
+                                    segment.x === x && segment.y === y
+                                );
+                                const isFood = food.x === x && food.y === y;
+                                const isHead =
+                                  snake.length > 0 &&
+                                  snake[0].x === x &&
+                                  snake[0].y === y;
+
+                                return (
+                                  <div
+                                    key={index}
+                                    className={`border border-gray-800 ${
+                                      isSnake
+                                        ? isHead
+                                          ? "bg-green-400"
+                                          : "bg-green-600"
+                                        : isFood
+                                        ? "bg-red-500"
+                                        : "bg-gray-900"
+                                    }`}
+                                    style={{ aspectRatio: "1" }}
+                                  />
+                                );
+                              })}
+                            </div>
+                          </div>
+
+                          {/* Controls */}
+                          <div className="bg-gray-700 text-green-300 p-3 text-xs border-t border-gray-600">
+                            <div className="text-center mb-2">
+                              Use ARROW KEYS to move • SPACEBAR to{" "}
+                              {gameOver
+                                ? "restart"
+                                : gameRunning
+                                ? "pause"
+                                : "resume"}
+                              {score < 500 && (
+                                <span className="text-yellow-300 ml-4">
+                                  • Reach 500 points for bonus XP!
+                                </span>
+                              )}
+                            </div>
+                            <div className="flex justify-center space-x-4">
+                              <button
+                                onClick={() =>
+                                  !gameOver && setGameRunning(!gameRunning)
+                                }
+                                className="bg-blue-600 hover:bg-blue-500 px-3 py-1 text-white border border-blue-400"
+                                disabled={gameOver}
+                              >
+                                {gameRunning ? "PAUSE" : "PLAY"}
+                              </button>
+                              <button
+                                onClick={resetGame}
+                                className="bg-green-600 hover:bg-green-500 px-3 py-1 text-white border border-green-400"
+                              >
+                                RESTART
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Files Window */}
+                      {activeWindow === "files" && (
+                        <div className="absolute inset-4 bg-gray-800 border-2 border-gray-600 flex flex-col z-10">
+                          {/* Window Title Bar */}
+                          <div className="bg-blue-700 text-white p-2 flex justify-between items-center border-b border-gray-600">
+                            <div className="text-sm font-bold">
+                              📁 File Manager - C:\
+                            </div>
+                            <button
+                              onClick={closeWindow}
+                              className="bg-red-600 hover:bg-red-500 px-2 py-1 text-xs border border-red-400"
+                            >
+                              ✕
+                            </button>
+                          </div>
+
+                          {/* File List Header */}
+                          <div className="bg-zinc-800 text-green-300 p-2 text-xs border-b border-gray-600 flex">
+                            <div className="w-1/2">NAME</div>
+                            <div className="w-1/4">SIZE</div>
+                            <div className="w-1/4">TYPE</div>
+                          </div>
+
+                          {/* File List */}
+                          <div className="flex-1 bg-black p-2 overflow-y-auto">
+                            {dummyFiles.map((file, index) => (
+                              <div
+                                key={index}
+                                className="flex items-center py-1 px-2 hover:bg-blue-900/50 cursor-pointer text-green-400 text-sm"
+                                onClick={() => handleFileClick(file.name)}
+                              >
+                                <div className="w-1/2 flex items-center">
+                                  <span className="mr-2">{file.icon}</span>
+                                  {file.name}
+                                </div>
+                                <div className="w-1/4">{file.size}</div>
+                                <div className="w-1/4">{file.type}</div>
+                              </div>
+                            ))}
+                          </div>
+
+                          {/* Status Bar */}
+                          <div className="bg-zinc-800 text-green-300 p-2 text-xs border-t border-gray-600">
+                            {dummyFiles.length} files | Read-only access
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Games Window */}
+                      {activeWindow === "games" && (
+                        <div className="absolute inset-4 bg-gray-800 border-2 border-gray-600 flex flex-col z-10">
+                          {/* Window Title Bar */}
+                          <div className="bg-purple-700 text-white p-2 flex justify-between items-center border-b border-gray-600">
+                            <div className="text-sm font-bold">
+                              🎮 Game Center - Arcade Collection
+                            </div>
+                            <button
+                              onClick={closeWindow}
+                              className="bg-red-600 hover:bg-red-500 px-2 py-1 text-xs border border-red-400"
+                            >
+                              ✕
+                            </button>
+                          </div>
+
+                          {/* Games List Header */}
+                          <div className="bg-zinc-800 text-green-300 p-2 text-xs border-b border-gray-600 flex">
+                            <div className="w-1/2">GAME TITLE</div>
+                            <div className="w-1/4">CATEGORY</div>
+                            <div className="w-1/4">STATUS</div>
+                          </div>
+
+                          {/* Games List */}
+                          <div className="flex-1 bg-black p-2 overflow-y-auto">
+                            {dummyGames.map((game, index) => (
+                              <div
+                                key={index}
+                                className={`flex items-center py-2 px-2 hover:bg-purple-900/50 cursor-pointer text-green-400 text-sm ${
+                                  game.playable ? "hover:bg-green-900/50" : ""
+                                }`}
+                                onClick={() => handleGameClick(game.name)}
+                              >
+                                <div className="w-1/2 flex items-center">
+                                  <span className="mr-2">{game.icon}</span>
+                                  {game.name}
+                                </div>
+                                <div className="w-1/4">{game.category}</div>
+                                <div
+                                  className={`w-1/4 ${
+                                    game.playable
+                                      ? "text-green-400"
+                                      : "text-red-400"
+                                  }`}
+                                >
+                                  {game.status}
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+
+                          {/* Status Bar */}
+                          <div className="bg-zinc-800 text-green-300 p-2 text-xs border-t border-gray-600">
+                            {dummyGames.filter((g) => g.playable).length} of{" "}
+                            {dummyGames.length} games available
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Settings Window */}
+                      {activeWindow === "settings" && (
+                        <div className="absolute inset-4 bg-gray-800 border-2 border-gray-600 flex flex-col z-10">
+                          {/* Window Title Bar */}
+                          <div className="bg-orange-700 text-white p-2 flex justify-between items-center border-b border-gray-600">
+                            <div className="text-sm font-bold">
+                              ⚙️ System Settings - Control Panel
+                            </div>
+                            <button
+                              onClick={closeWindow}
+                              className="bg-red-600 hover:bg-red-500 px-2 py-1 text-xs border border-red-400"
+                            >
+                              ✕
+                            </button>
+                          </div>
+
+                          {/* Settings List Header */}
+                          <div className="bg-zinc-800 text-green-300 p-2 text-xs border-b border-gray-600 flex">
+                            <div className="w-1/2">SETTING NAME</div>
+                            <div className="w-1/4">CATEGORY</div>
+                            <div className="w-1/4">ACCESS LEVEL</div>
+                          </div>
+
+                          {/* Settings List */}
+                          <div className="flex-1 bg-black p-2 overflow-y-auto">
+                            {systemSettings.map((setting, index) => (
+                              <div
+                                key={index}
+                                className="flex items-center py-2 px-2 hover:bg-orange-900/50 cursor-pointer text-green-400 text-sm"
+                                onClick={() => handleSettingClick(setting.name)}
+                              >
+                                <div className="w-1/2 flex items-center">
+                                  <span className="mr-2">{setting.icon}</span>
+                                  {setting.name}
+                                </div>
+                                <div className="w-1/4">{setting.category}</div>
+                                <div className="w-1/4 text-yellow-400">
+                                  {setting.access}
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+
+                          {/* Status Bar */}
+                          <div className="bg-gray-700 text-yellow-300 p-2 text-xs border-t border-gray-600">
+                            {systemSettings.length} settings | Administrative
+                            access required
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Terminal Window (only show when no other window is open) */}
+                      {!activeWindow && (
+                        <div className="bg-black border border-gray-500 p-4 max-w-2xl mx-auto">
+                          <div className="bg-gray-700 text-white text-xs py-1 px-3 mb-3 border-b border-gray-500">
+                            Terminal - mom@retro-comp
+                          </div>
+                          <div className="text-green-400 text-sm">
+                            <div>$ whoami</div>
+                            <div>mom</div>
+                            <div>
+                              $ echo "Challenge completed successfully!"
+                            </div>
+                            <div>Challenge completed successfully!</div>
+                            <div>$ date</div>
+                            <div>
+                              {formatDate(currentTime)}{" "}
+                              {formatTime(currentTime)}
+                            </div>
+                            <div className="mt-2">
+                              $ █
+                              {blinkCursor && (
+                                <span className="animate-pulse">_</span>
+                              )}
+                            </div>
+                          </div>
+                        </div>
+                      )}
                     </div>
-                  )}
-                </div>
+                  </div>
+                )}
               </div>
-            )}
+            </div>
           </div>
         </div>
       </div>

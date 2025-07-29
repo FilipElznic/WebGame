@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { loginUser } from "../firebase/auth";
+import Navbar from "../Components/Navbar";
+import Footer from "../Components/Footer";
 
 function LoginPage() {
   const [formData, setFormData] = useState({
@@ -65,7 +67,7 @@ function LoginPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-yellow-50 via-white to-yellow-100 relative overflow-hidden">
-      {/* Retro grid background */}
+      <Navbar />
       <div className="absolute inset-0 opacity-10">
         <div className="grid grid-cols-16 h-full">
           {Array.from({ length: 16 }).map((_, i) => (
@@ -232,6 +234,7 @@ function LoginPage() {
           }}
         ></div>
       </div>
+      <Footer />
     </div>
   );
 }
