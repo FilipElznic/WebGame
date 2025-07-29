@@ -1,10 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
-import {
-  getCurrentUserData,
-  addXPIfEligible,
-  addXPIfEligible2,
-  addXPIfEligible3,
-} from "../firebase/auth";
+import { getCurrentUserData, addXPIfEligible } from "../firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../firebase/config";
 
@@ -145,7 +140,7 @@ export const UserDataProvider = ({ children }) => {
     }
 
     try {
-      const result = await addXPIfEligible2(user.uid, xpAmount);
+      const result = await (user.uid, xpAmount);
 
       if (result.success) {
         // Update local state immediately for better UX

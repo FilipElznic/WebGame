@@ -12,11 +12,11 @@ function Stage3Page() {
   const [showDialogue, setShowDialogue] = useState(true);
 
   const fullText =
-    "The game was kindy fun, but now I need to do the 3. thing, which is more serious. Let me give you some backstory. When we moved house to this one we are currently living in, I have found an old locked chest, which I was not able to open. I have tried everything, but nothing worked. I have asked my parents, but they don't know anything about it. So I need to open it up, your mission is to find the key and help me open it. I wish you a good luck!";
+    "The game was kindy fun, but now I need to do the 3. thing, which is more serious. Let me give you some backstory. When we moved house to this one we are currently living in, I have found an old locked chest, which I was not able to open. I have tried everything, but nothing worked. I have asked my parents, but they don't know anything about it. So I need to open it up, your mission is to go to the top take key from there and help me open it. I wish you a good luck!";
 
   useEffect(() => {
     let currentIndex = 0;
-    const typingSpeed = 30; // milliseconds per character
+    const typingSpeed = 20; // milliseconds per character
 
     const typeText = () => {
       if (currentIndex < fullText.length) {

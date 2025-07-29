@@ -1,4 +1,6 @@
 import { useState, useEffect, useCallback, useRef } from "react";
+import { useUserData } from "./UserDataProvider";
+import Peter from "./Peter";
 
 function JumpingGame() {
   const [playerPos, setPlayerPos] = useState({ x: 400, y: 2000 });
@@ -6,6 +8,10 @@ function JumpingGame() {
   const [isGrounded, setIsGrounded] = useState(false);
   const [gameFinished, setGameFinished] = useState(false);
   const [cameraY, setCameraY] = useState(1700);
+  const [isAddingXP, setIsAddingXP] = useState(false);
+  const [peterHide, setPeterHide] = useState(false);
+
+  const { userData, addXPForTask, userXP } = useUserData();
 
   const keysRef = useRef({});
   const playerPosRef = useRef({ x: 400, y: 2000 });
@@ -14,10 +20,48 @@ function JumpingGame() {
 
   const GRAVITY = 0.8;
   const JUMP_FORCE = -15;
-  const MOVE_SPEED = 5;
+  const MOVE_SPEED = 10;
   const PLAYER_SIZE = 30;
   const VIEWPORT_HEIGHT = 600;
   const MAP_HEIGHT = 3600;
+
+  const peterSlides = [
+    {
+      title: "Great job!",
+      description:
+        "You have successfully completed the Jumping Game! Now, we have the key to the chest, but we need to find out what's inside!",
+    },
+    {
+      title: "The key ",
+      description:
+        "I have stored the key in my pocket and let's go continue our journey.",
+    },
+  ];
+
+  const handleXP = async () => {
+    try {
+      if (userXP === 200) {
+        const result = await addXPForTask(100); // Add 100 XP
+        console.log("here");
+        if (result.success) {
+          console.log("XP added successfully:", result.newXP);
+        } else {
+          console.error("Failed to add XP:", result.error);
+          if (result.error.includes("already has XP")) {
+            alert("Code copied! (XP already earned)");
+          } else {
+            alert("Code copied! (XP update failed)");
+          }
+        }
+
+        setIsAddingXP(false);
+      } else if (gameFinished && userXP == 300) {
+        alert("Game finished! (XP already earned)");
+      }
+    } catch (error) {
+      console.error("Failed to copy code:", error);
+    }
+  };
 
   const platforms = [
     { x: 0, y: 2080, width: 800, height: 15 },
@@ -134,6 +178,7 @@ function JumpingGame() {
             collision.x === finalPlatform.x
           ) {
             setGameFinished(true);
+            handleXP();
           }
         } else if (
           currentVel.y < 0 &&
@@ -365,14 +410,31 @@ function JumpingGame() {
 
       {/* Victory Message */}
       {gameFinished && (
-        <div className="mt-4 p-6 bg-yellow-400 border-4 border-yellow-600 text-black rounded font-bold text-center relative">
-          <div className="absolute -top-1 -left-1 w-4 h-4 border-t-4 border-l-4 border-yellow-800"></div>
-          <div className="absolute -top-1 -right-1 w-4 h-4 border-t-4 border-r-4 border-yellow-800"></div>
-          <div className="absolute -bottom-1 -left-1 w-4 h-4 border-b-4 border-l-4 border-yellow-800"></div>
-          <div className="absolute -bottom-1 -right-1 w-4 h-4 border-b-4 border-r-4 border-yellow-800"></div>
-          <div className="text-2xl mb-2">🎉 █ TOWER CONQUERED █ 🎉</div>
-          <div className="text-lg">You reached the summit!</div>
-        </div>
+        <>
+          {peterHide && (
+            <>
+              <Peter
+                slides={peterSlides}
+                imageSrc="/peterHi.png"
+                className="bg-white/20 absolute top-0 left-0 w-full h-full z-50"
+              />
+              <button
+                onClick={() => setPeterHide(true)}
+                className="absolute top-1/4 right-1/5 bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-3 rounded shadow-lg z-50"
+              >
+                X
+              </button>
+            </>
+          )}
+          <div className="mt-4 p-6 bg-yellow-400 border-4 border-yellow-600 text-black rounded font-bold text-center relative">
+            <div className="absolute -top-1 -left-1 w-4 h-4 border-t-4 border-l-4 border-yellow-800"></div>
+            <div className="absolute -top-1 -right-1 w-4 h-4 border-t-4 border-r-4 border-yellow-800"></div>
+            <div className="absolute -bottom-1 -left-1 w-4 h-4 border-b-4 border-l-4 border-yellow-800"></div>
+            <div className="absolute -bottom-1 -right-1 w-4 h-4 border-b-4 border-r-4 border-yellow-800"></div>
+            <div className="text-2xl mb-2">🎉 █ TOWER CONQUERED █ 🎉</div>
+            <div className="text-lg">You have reached the top!</div>
+          </div>
+        </>
       )}
     </div>
   );
