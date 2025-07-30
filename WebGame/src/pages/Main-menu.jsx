@@ -52,22 +52,22 @@ function MainMenu() {
     {
       title: "Hey! Wait... Who are you two... ",
       description:
-        "I thought I would see my developer here, but it seems like I was mistaken. You are just some kids so...interesting.",
+        "I thought I would see my developer here, but it seems like I was mistaken. You are not my developer. Hmmm...interesting.",
     },
     {
       title: "Introduction",
       description:
-        "Whoa, its year 2025, I haven't seen a human in years! More then 20 years. Why did you turn me on? Do you know my secrets?",
+        "Whoa, its year 2025, I haven't seen a human in years! More then 20 years. Why did you turn me on? Do you wanna know my secrets?",
     },
     {
       title: "I have a lot of things to say...",
       description:
-        "But now for free... I will have to complete 6 stages, if you complete them, I will give you some secrets about me and my developer.",
+        "But not for free... I will have to complete 6 stages, if you complete them, I will give you some secrets about me and my developer.",
     },
     {
       title: "But if you fail...",
       description:
-        "I might lock the computer, or even worse, delete everything! Start with the first stage, and lets see how it goes.",
+        "I might lock myself, or even worse, delete everything that I know! Start with the first stage, and lets see how it goes.",
     },
   ];
 

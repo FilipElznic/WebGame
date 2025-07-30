@@ -3,11 +3,13 @@ import AILaughtE from "/AILaughtE.png";
 import peterThink from "/peterThink.png";
 import { Link } from "react-router-dom";
 import LetsPlayGame from "../Components/LetsPlayGame";
+import Peter from "../Components/Peter";
 
 function Stage4Page() {
   // AI text states
   const [aiDisplayText, setAiDisplayText] = useState("");
   const [aiIsTypingComplete, setAiIsTypingComplete] = useState(false);
+  const [PeterHide, setPeterHide] = useState(true);
 
   // Peter text states
   const [peterDisplayText, setPeterDisplayText] = useState("");
@@ -17,12 +19,24 @@ function Stage4Page() {
   const [showButton, setShowButton] = useState(false);
   const [showDialogue, setShowDialogue] = useState(true);
   const [showPeter, setShowPeter] = useState(false);
+  const peterSlides = [
+    {
+      title: "Well, well, well...",
+      description:
+        "This looks like a bit complicated. I think best way to go through is go via all applications!",
+    },
+    {
+      title: "Little bit of help",
+      description:
+        "Don't forget to read hints, know basic terminal commands and try to remember primary school math jokes!",
+    },
+  ];
 
   const aiText =
-    "Welcome to Stage 5! This stage is a bit different and the hardest, as you will see, there is a desktop behind me, You will need to find the missing numbers to unlock the next stage. The numbers are hidden somewhere in the desktop, Good Luck!";
+    "Welcome to Stage 5! This stage is a bit different and the hardest stage, as you will see, there is a desktop behind me, You will need to find the missing numbers to unlock the next stage. The numbers are hidden somewhere in the desktop, Good Luck!";
 
   const peterText =
-    "Dont be scared, I know this looks hard, but I believe in you! You can do it!";
+    "Dont be scared, we will do this together, I can't be that bad right?!";
 
   // AI typing effect
   useEffect(() => {
@@ -79,19 +93,73 @@ function Stage4Page() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-yellow-50 via-white to-yellow-100 relative overflow-hidden">
+    <div className="min-h-screen bg-black relative overflow-hidden ">
       {showDialogue && (
         <>
-          {/* AI Character */}
-          <div className="">
+          {/* Overlay background while dialogue is active */}
+          <div className="fixed inset-0 bg-yellow-100 bg-opacity-80 z-20 pointer-events-none transition-all duration-500 flex items-center justify-center w-full">
+            <div className="container  border-4 border-yellow-500 h-[90vh] relative">
+              <div className="absolute -top-3 -left-3 w-5 h-5 border-t-5 border-l-5 border-yellow-600"></div>
+              <div className="absolute -top-3 -right-3 w-5 h-5 border-t-5 border-r-5 border-yellow-600"></div>
+              <div className="absolute -bottom-3 -left-3 w-5 h-5 border-b-5 border-l-5 border-yellow-600"></div>
+              <div className="absolute -bottom-3 -right-3 w-5 h-5 border-b-5 border-r-5 border-yellow-600"></div>
+              <div className="absolute inset-0 opacity-10 ">
+                <div className="grid grid-cols-16 h-full">
+                  {Array.from({ length: 16 }).map((_, i) => (
+                    <div key={i} className="border-r border-yellow-300"></div>
+                  ))}
+                </div>
+                <div className="absolute inset-0 grid grid-rows-12">
+                  {Array.from({ length: 12 }).map((_, i) => (
+                    <div
+                      key={i}
+                      className="border-b border-yellow-300 w-full"
+                    ></div>
+                  ))}
+                </div>
+              </div>
+              <div className="absolute inset-0 pointer-events-none">
+                <div className="absolute top-10 left-10 text-4xl text-yellow-400 opacity-20 animate-pulse font-mono">
+                  ◆
+                </div>
+                <div className="absolute top-20 right-20 text-3xl text-yellow-500 opacity-30 animate-bounce font-mono">
+                  ★
+                </div>
+                <div className="absolute bottom-32 left-20 text-4xl text-yellow-400 opacity-25 animate-pulse font-mono">
+                  ◇
+                </div>
+                <div className="absolute bottom-20 right-32 text-3xl text-yellow-500 opacity-20 animate-bounce font-mono">
+                  ♦
+                </div>
+                <div className="absolute top-1/3 left-1/4 text-2xl text-yellow-400 opacity-20 animate-bounce font-mono">
+                  ▲
+                </div>
+                <div className="absolute top-2/3 right-1/4 text-3xl text-yellow-500 opacity-30 animate-pulse font-mono">
+                  ●
+                </div>
+
+                {/* Scan lines effect */}
+                <div className="absolute inset-0 pointer-events-none">
+                  <div
+                    className="h-full w-full opacity-5"
+                    style={{
+                      background:
+                        "repeating-linear-gradient(0deg, transparent, transparent 3px, #fbbf24 3px, #fbbf24 6px)",
+                    }}
+                  ></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className=" z-40">
             <img
               src={AILaughtE}
               alt="AI"
-              className="absolute max-w-2xl bottom-0 z-40"
+              className="absolute max-w-2xl bottom-0 z-40  "
             />
 
             {/* AI Speech bubble */}
-            <div className="absolute bottom-80 left-96 z-40 max-w-md">
+            <div className="absolute bottom-80 left-96 z-50 max-w-md">
               <div className="bg-white border-4 border-yellow-400 rounded-lg p-4 relative shadow-xl">
                 {/* Speech bubble tail */}
                 <div className="absolute -bottom-3 left-8 w-0 h-0 border-l-4 border-r-4 border-t-8 border-l-transparent border-r-transparent border-t-white"></div>
@@ -140,15 +208,15 @@ function Stage4Page() {
 
           {/* Peter Character - only show after AI finishes */}
           {showPeter && (
-            <div className="">
+            <div className=" z-40">
               <img
                 src={peterThink}
                 alt="Peter Thinking"
-                className="absolute max-w-2xl bottom-0 right-0 z-40"
+                className="absolute max-w-2xl bottom-0 right-0 z-40 "
               />
 
               {/* Peter Speech bubble */}
-              <div className="absolute bottom-80 right-96 z-40 max-w-md">
+              <div className="absolute bottom-80 right-96 z-50 max-w-md ">
                 <div className="bg-white border-4 border-blue-400 rounded-lg p-4 relative shadow-xl">
                   {/* Speech bubble tail */}
                   <div className="absolute -bottom-3 right-8 w-0 h-0 border-l-4 border-r-4 border-t-8 border-l-transparent border-r-transparent border-t-white"></div>
@@ -236,7 +304,54 @@ function Stage4Page() {
         </div>
       </div>
       <div className="container mx-auto  relative w-full h-full z-10">
-        <div className=" backdrop-blur-sm rounded-xl h-[90vh] border-4 border-yellow-400 shadow-2xl  relative overflow-hidden flex  flex-col items-center justify-center">
+        <div className=" backdrop-blur-sm rounded-xl h-[90vh] border-4 border-zinc-400 shadow-2xl  relative overflow-hidden flex  flex-col items-center justify-center">
+          <div className="absolute inset-0 pointer-events-none">
+            <div className="absolute top-10 left-10 text-4xl text-yellow-400 opacity-20 animate-pulse font-mono">
+              ◆
+            </div>
+            <div className="absolute top-20 right-20 text-3xl text-yellow-500 opacity-30 animate-bounce font-mono">
+              ★
+            </div>
+            <div className="absolute bottom-32 left-20 text-4xl text-yellow-400 opacity-25 animate-pulse font-mono">
+              ◇
+            </div>
+            <div className="absolute bottom-20 right-32 text-3xl text-yellow-500 opacity-20 animate-bounce font-mono">
+              ♦
+            </div>
+            <div className="absolute top-1/3 left-1/4 text-2xl text-yellow-400 opacity-20 animate-bounce font-mono">
+              ▲
+            </div>
+            <div className="absolute top-2/3 right-1/4 text-3xl text-yellow-500 opacity-30 animate-pulse font-mono">
+              ●
+            </div>
+
+            {/* Scan lines effect */}
+            <div className="absolute inset-0 pointer-events-none">
+              <div
+                className="h-full w-full opacity-5"
+                style={{
+                  background:
+                    "repeating-linear-gradient(0deg, transparent, transparent 3px, #fbbf24 3px, #fbbf24 6px)",
+                }}
+              ></div>
+            </div>
+          </div>
+          {PeterHide && (
+            <div className="absolute -bottom-1/4 left-1/12 w-full h-full z-50">
+              <Peter
+                slides={peterSlides}
+                imageSrc="/peterIdea.png"
+                className=" absolute  z-50"
+              />
+              <button
+                onClick={() => setPeterHide(false)}
+                className="absolute top-1/4 right-1/6 bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-3 rounded shadow-lg z-50"
+              >
+                X
+              </button>
+            </div>
+          )}
+
           <LetsPlayGame />
         </div>
       </div>

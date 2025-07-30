@@ -27,11 +27,14 @@ import {
   Database,
   Code,
 } from "lucide-react";
+import { Link } from "react-router-dom";
+import { useUserData } from "./UserDataProvider";
 
 const DesktopMinigames = () => {
   const [discoveredNumbers, setDiscoveredNumbers] = useState([]);
   const [openWindows, setOpenWindows] = useState([]);
   const [gameCompleted, setGameCompleted] = useState(false);
+  const { addXPForTask, userXP } = useUserData();
 
   // Mini-game states
   const [trashOpened, setTrashOpened] = useState(false);
@@ -46,9 +49,33 @@ const DesktopMinigames = () => {
 
   const hiddenNumbers = [2, 7, 4]; // The three numbers to discover
 
+  const handleXP = async () => {
+    try {
+      if (userXP === 400) {
+        const result = await addXPForTask(100); // Add 100 XP
+
+        if (result.success) {
+          console.log("XP added successfully:", result.newXP);
+        } else {
+          console.error("Failed to add XP:", result.error);
+          if (result.error.includes("already has XP")) {
+            console.log("(XP already earned)");
+          } else {
+            console.log("(XP update failed)");
+          }
+        }
+      } else if (userXP == 500) {
+        console.log("(XP already earned)");
+      }
+    } catch (error) {
+      console.error("Failed:", error);
+    }
+  };
+
   useEffect(() => {
     if (discoveredNumbers.length === 3) {
       setGameCompleted(true);
+      handleXP();
     }
   }, [discoveredNumbers]);
 
@@ -298,7 +325,7 @@ const DesktopMinigames = () => {
                             "diary.txt": {
                               type: "file",
                               content:
-                                "Dear Diary,\nToday I hid some numbers around the system.\nOne in the trash, one in the calculator, and one in the terminal.\nI hope nobody finds them! 😈",
+                                "Dear Diary,\nToday I hid some numbers around the system.\nOne in the tr**h, one in the cal****tor, and one in the t*r***al.\nI hope nobody finds them! 😈",
                             },
                             "TODO.txt": {
                               type: "file",
@@ -406,7 +433,7 @@ const DesktopMinigames = () => {
                         "mysterious.log": {
                           type: "file",
                           content:
-                            "LOG: User attempted calculator input: 80085\nLOG: User attempted calculator input: 1134\nLOG: User attempted calculator input: 5318008\nLOG: Hint - try something more... mature? 😏\nLOG: Calculator easter egg discovered by 12 users\nLOG: Some users are getting closer to the truth...",
+                            "LOG: User attempted calculator input: 80085\nLOG: User attempted calculator input: 1134\nLOG: User attempted calculator input: 5318008\nLOG: \nLOG: Calculator easter egg discovered by 12 users\nLOG: Some users are getting closer to the truth...",
                         },
                         "debug.log": {
                           type: "file",
@@ -848,12 +875,12 @@ const DesktopMinigames = () => {
         <div className="p-2 bg-gray-900 border border-green-500 cursor-pointer hover:bg-gray-800">
           <div className="text-xs text-green-400">📝 shopping_list.txt</div>
           <div className="text-xs text-gray-500">
-            2 apples, 7 bananas, 4 oranges
+            1 apples, 6 bananas, 0 oranges
           </div>
         </div>
         <div className="p-2 bg-gray-900 border border-green-500 cursor-pointer hover:bg-gray-800">
           <div className="text-xs text-green-400">📁 old_photos_2019</div>
-          <div className="text-xs text-gray-500">247 items</div>
+          <div className="text-xs text-gray-500">248 items</div>
         </div>
         <div
           className="p-2 bg-red-900 border border-red-400 cursor-pointer hover:bg-red-800"
@@ -1600,12 +1627,15 @@ const DesktopMinigames = () => {
               `}</pre>
             </div>
             <p className="text-green-500 text-sm mb-4">
-              You've successfully navigated the retro desktop and uncovered all
-              hidden secrets!
+              You've successfully beated the system and uncovered the secret
+              numbers!
             </p>
-            <div className="text-green-600 text-xs">
-              Welcome to the elite club of digital archaeologists! 🏆
-            </div>
+            <Link
+              to="/main-menu"
+              className="text-green-600 border-2 border-green-600 p-4 text-xs"
+            >
+              Continue now to the final stage! 🏆
+            </Link>
           </div>
         </div>
       )}
