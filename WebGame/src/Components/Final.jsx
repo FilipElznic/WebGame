@@ -7,7 +7,7 @@ const Final = () => {
   const navigate = useNavigate();
   const [gameState, setGameState] = useState("code-entry");
   const [code, setCode] = useState("");
-  const [lives, setLives] = useState(3);
+  const [lives, setLives] = useState(10);
   const [dodgeCount, setDodgeCount] = useState(0);
   const [hitCount, setHitCount] = useState(0);
   const [memorySequence, setMemorySequence] = useState([]);
@@ -46,7 +46,7 @@ const Final = () => {
   };
 
   const CORRECT_CODE = "822794";
-  const GRID_SIZE = 50;
+  const GRID_SIZE = 10;
 
   // Memory game mechanics
   const generateSequence = useCallback((level) => {
@@ -104,8 +104,7 @@ const Final = () => {
         const newLevel = memoryLevel + 1;
         const newProgress = memoryProgress + 1;
 
-        if (newProgress >= 3) {
-          // Reduced from 10 to 3 for testing
+        if (newProgress >= 10) {
           setGameState("finale");
           return;
         }
@@ -147,7 +146,7 @@ const Final = () => {
       id: Date.now() + Math.random(),
       x: Math.random() * 85 + 7.5,
       y: 0,
-      speed: 4 + Math.random() * 4,
+      speed: 1 + Math.random() * 4,
     };
     setProjectiles((prev) => [...prev, newProjectile]);
   }, []);
@@ -257,7 +256,7 @@ const Final = () => {
   useEffect(() => {
     const handleKeyPress = (e) => {
       if (gameState === "dodge-game") {
-        const speed = 2;
+        const speed = 5;
         setPlayerPos((prev) => {
           let newX = prev.x;
           let newY = prev.y;
@@ -277,8 +276,7 @@ const Final = () => {
         if (projectiles.length > 0) {
           setDodgeCount((prev) => {
             const newCount = prev + 1;
-            if (newCount >= 20) {
-              // Reduced from 50 for testing
+            if (newCount >= 30) {
               setGameState("phase-transition");
               setTimeout(() => setGameState("shoot-game"), 2000);
             }
@@ -317,7 +315,7 @@ const Final = () => {
     } else {
       setHitCount((prev) => {
         const newCount = prev + 1;
-        if (newCount >= 10) {
+        if (newCount >= 30) {
           // Reduced from 30 for testing - THIS WAS THE KEY CHANGE
           setGameState("phase-transition-2"); // Go to phase 2 transition instead of finale
           setTimeout(() => setGameState("memory-game"), 2000); // Then to memory game
@@ -349,7 +347,7 @@ const Final = () => {
   const resetGame = () => {
     setGameState("code-entry");
     setCode("");
-    setLives(3);
+    setLives(10);
     setDodgeCount(0);
     setHitCount(0);
     setMemorySequence([]);
@@ -446,7 +444,7 @@ const Final = () => {
           <div className="absolute top-4 left-4 text-green-400">
             <div>PHASE 1: DODGE</div>
             {Array(Math.max(0, lives)).fill("♥").join(" ")}
-            <div>Dodged: {dodgeCount}/20</div>
+            <div>Dodged: {dodgeCount}/50</div>
           </div>
 
           <div className="absolute top-4 right-4 text-yellow-400 text-sm">
@@ -503,7 +501,7 @@ const Final = () => {
           <div className="absolute top-4 left-4 text-green-400">
             <div>PHASE 2: STRIKE</div>
             <div>Lives: {Array(lives).fill("♥").join(" ")}</div>
-            <div>Hits: {hitCount}/10</div>
+            <div>Hits: {hitCount}/30</div>
           </div>
 
           <div className="absolute top-4 right-4 text-yellow-400 text-sm">
@@ -561,7 +559,7 @@ const Final = () => {
             <div>PHASE 3: MEMORY</div>
             <div>Lives: {Array(lives).fill("♥").join(" ")}</div>
             <div>Level: {memoryLevel}</div>
-            <div>Progress: {memoryProgress}/3</div>
+            <div>Progress: {memoryProgress}/5</div>
           </div>
 
           <div className="absolute top-4 right-4 text-yellow-400 text-sm max-w-xs">

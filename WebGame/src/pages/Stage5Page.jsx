@@ -23,7 +23,7 @@ function Stage4Page() {
     {
       title: "Well, well, well...",
       description:
-        "This looks like a bit complicated. I think best way to go through is go via all applications!",
+        "This looks like a bit complicated. I think the best way to go through is to go via all applications!",
     },
     {
       title: "Little bit of help",
@@ -33,7 +33,7 @@ function Stage4Page() {
   ];
 
   const aiText =
-    "Welcome to Stage 5! This stage is a bit different and the hardest stage, as you will see, there is a desktop behind me, You will need to find the missing numbers to unlock the next stage. The numbers are hidden somewhere in the desktop, Good Luck!";
+    "Welcome to Stage 5! This stage is a bit different and hard stage, as you will see, there is a desktop behind me, You will need to find the missing numbers to unlock the next stage. The numbers are hidden somewhere in the desktop, Good Luck!";
 
   const peterText =
     "Dont be scared, we will do this together, I can't be that bad right?!";

@@ -19,7 +19,7 @@ function Stage4Page() {
   const [showPeter, setShowPeter] = useState(false);
 
   const aiText =
-    "Nice seeing you again! You are making great progress! Now we need to unlock the chest and see what is inside. Unlock it carefully, the key may be fragile.";
+    "Nice seeing you again! You are making great progress! Now You need to unlock the chest and see what is inside. Unlock it carefully, the key may be fragile.";
 
   const peterText =
     "Let me try! (Unlocking chest noises) ... (struggling noises) ... (key breaking noises) ... ... Oh no! The key broke too! I am so sorry, dont tell the AI. I guess we need to find another way to open it. Look around and try to find something that can help us. Maybe there is a hidden key somewhere else?";
