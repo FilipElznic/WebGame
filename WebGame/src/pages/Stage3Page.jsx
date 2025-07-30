@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import peterIdea from "/peterIdea.png";
+import AILaughtE from "/AILaughtE.png";
 import { Link } from "react-router-dom";
 
 import JumpingGame from "../Components/JumpingGame";
@@ -12,7 +12,7 @@ function Stage3Page() {
   const [showDialogue, setShowDialogue] = useState(true);
 
   const fullText =
-    "The game was kindy fun, but now I need to do the 3. thing, which is more serious. Let me give you some backstory. When we moved house to this one we are currently living in, I have found an old locked chest, which I was not able to open. I have tried everything, but nothing worked. I have asked my parents, but they don't know anything about it. So I need to open it up, your mission is to go to the top take key from there and help me open it. I wish you a good luck!";
+    "The game was kindy easy, but now I need to do the 3. thing, which is more serious. On top of this level is key that we need for the end. To get into the 4th stage, I couldn't get there by myself, try your luck and see what you two got!";
 
   useEffect(() => {
     let currentIndex = 0;
@@ -46,7 +46,7 @@ function Stage3Page() {
       {showDialogue && (
         <div className="">
           <img
-            src={peterIdea}
+            src={AILaughtE}
             alt="Peter's Idea"
             className="absolute max-w-2xl bottom-0 z-40"
           />
@@ -66,7 +66,7 @@ function Stage3Page() {
 
               {/* Dialogue text */}
               <div className="text-black font-mono">
-                <p className="text-lg font-bold text-yellow-700 mb-2">Peter:</p>
+                <p className="text-lg font-bold text-yellow-700 mb-2">AI:</p>
                 <p className="text-sm leading-relaxed">
                   "{displayText}
                   {!isTypingComplete && (
@@ -106,7 +106,7 @@ function Stage3Page() {
                       <div className="absolute -top-1 -right-1 w-2 h-2 border-t-2 border-r-2 border-yellow-700"></div>
                       <div className="absolute -bottom-1 -left-1 w-2 h-2 border-b-2 border-l-2 border-yellow-700"></div>
                       <div className="absolute -bottom-1 -right-1 w-2 h-2 border-b-2 border-r-2 border-yellow-700"></div>
-                      [HIDE PETER] ▶
+                      [HIDE AI] ▶
                     </button>
                   </div>
                 )}

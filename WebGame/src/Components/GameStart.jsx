@@ -23,17 +23,17 @@ function GameStart() {
     {
       title: "What's the Problem?",
       description:
-        "I have found myself alone home with this to do list that I need to complete.",
+        "I have found an old computer in the basement that seems a little bit forgotten. I have turned it on, and it seems to have a weird OS on it.",
     },
     {
-      title: "Will you Help Me?",
+      title: "Will you help me?",
       description:
-        " I have no idea how to do it, and I need your help to solve it. Are you sure you want to try to do it with me ? It will be a lot of fun, I promise!",
+        "I am too scared to explore the OS by myself, it seems like it would see me too, but there is no web camera, which the device would see me!",
     },
     {
       title: "Ready to Play?",
       description:
-        "Let's embark on this adventure together! There are total of 6 stages to complete. Click the button below to start.",
+        "Lets explore this pc and see what we can find! Mabye some background story, or some hidden secrets. (starting the pc noises...)",
     },
   ];
 

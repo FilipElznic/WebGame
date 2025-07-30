@@ -17,7 +17,7 @@ function Stage1PageInternet2() {
   const [InternetOnHidden, setInternetOnHidden] = useState(false);
 
   const fullText =
-    "Great job, I knew you would find the solution! Now click copy text to earn XP.";
+    "Great job, I knew you would find the solution! Now let's click copy text to get to the 2.stage and find the AI secret.";
 
   useEffect(() => {
     let currentIndex = 0;

@@ -11,7 +11,7 @@ function HomeWork({ showHomework, setShowHomework, homeworkList }) {
       <div className="fixed inset-0 backdrop-blur bg-black/60 flex items-center justify-center z-50">
         <div className="bg-white border-4 border-black shadow-2xl p-8 max-w-md w-full mx-4">
           <div className="text-center font-mono text-xl text-black">
-            Loading to do data...
+            Loading data...
           </div>
         </div>
       </div>
@@ -58,13 +58,13 @@ function HomeWork({ showHomework, setShowHomework, homeworkList }) {
               className="font-mono text-4xl font-bold text-black mb-2"
               style={{ lineHeight: "40px" }}
             >
-              To Do LIST
+              Stages
             </h1>
             <div
               className="font-mono text-xl text-gray-600"
               style={{ lineHeight: "40px" }}
             >
-              Peter's Tasks
+              Computer's secret
             </div>
           </div>
 

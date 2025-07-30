@@ -13,44 +13,61 @@ function MainMenu() {
   const [homeworkList, setHomeworkList] = useState([
     {
       id: 1,
-      task: "Math Assignment Ch. 5",
-      dueDate: "Tomorrow",
+      task: "Stage 1 - Computer's search",
+      dueDate: "As soon as possible",
       completed: false,
     },
-    { id: 2, task: "History Essay - WWII", dueDate: "Friday", completed: true },
-    { id: 3, task: "Science Lab Report", dueDate: "Monday", completed: false },
+    {
+      id: 2,
+      task: "Stage 2 - Snake Game",
+      dueDate: "As soon as possible",
+      completed: true,
+    },
+    {
+      id: 3,
+      task: "Stage 3 - Jumping Game",
+      dueDate: "As soon as possible",
+      completed: false,
+    },
     {
       id: 4,
-      task: "English Reading Ch. 1-3",
-      dueDate: "Wednesday",
+      task: "Stage 4 - Misterious Chest",
+      dueDate: "As soon as possible",
       completed: false,
     },
     {
       id: 5,
-      task: "Chemistry Experiment Report",
-      dueDate: "Next Tuesday",
+      task: "Stage 5 - AI's Secret almost there",
+      dueDate: "As soon as possible",
+      completed: false,
+    },
+    {
+      id: 6,
+      task: "Stage 6 - Is this the end?",
+      dueDate: "As soon as possible",
       completed: false,
     },
   ]);
   const peterSlides = [
     {
-      title: "Hi, again :)",
+      title: "Hey! Wait... Who are you two... ",
       description:
-        "Let me introduce you this main menu, that you will be seen quite often.",
+        "I thought I would see my developer here, but it seems like I was mistaken. You are just some kids so...interesting.",
     },
     {
       title: "Introduction",
       description:
-        "This is the main menu where you can access different stages. You can also find your homework list on the left side.",
+        "Whoa, its year 2025, I haven't seen a human in years! More then 20 years. Why did you turn me on? Do you know my secrets?",
     },
     {
-      title: "How many stages?",
+      title: "I have a lot of things to say...",
       description:
-        "There are a total of 6 stages to complete. Each stage presents a unique challenge, and you'll need to use your skills to overcome them.",
+        "But now for free... I will have to complete 6 stages, if you complete them, I will give you some secrets about me and my developer.",
     },
     {
-      title: "Ready to Play?",
-      description: "",
+      title: "But if you fail...",
+      description:
+        "I might lock the computer, or even worse, delete everything! Start with the first stage, and lets see how it goes.",
     },
   ];
 
@@ -122,7 +139,7 @@ function MainMenu() {
         <div className="">
           <Peter
             slides={peterSlides}
-            imageSrc="/peterHi.png"
+            imageSrc="/AI.png"
             className="bg-white/20 backdrop-blur-sm"
             onComplete={hidePeter}
           />
@@ -145,7 +162,7 @@ function MainMenu() {
         <div className="absolute -bottom-1 -right-1 w-4 h-4 border-b-2 border-r-2 border-yellow-500"></div>
 
         <span className="text-black font-mono text-xs font-bold text-center px-2">
-          [HOMEWORK
+          [STAGES
           <br />
           LIST]
         </span>
@@ -173,12 +190,10 @@ function MainMenu() {
                   <div className="absolute top-1 left-1 w-2 h-2 bg-yellow-400 rotate-45"></div>
                   <div className="absolute top-1 right-1 w-2 h-2 bg-yellow-400 rotate-45"></div>
                   <h1 className="text-5xl font-mono font-bold text-black">
-                    [TASK MAP]
+                    [STAGES MAP]
                   </h1>
                 </div>
               </div>
-
-              {/* Retro task indicators with enhanced styling */}
 
               <StageLink
                 stageNumber={1}

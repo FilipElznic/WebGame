@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Peter from "./Peter";
+import { useUserData } from "./UserDataProvider";
 
 const waveKeyframes = `
   @keyframes wave {
@@ -19,12 +20,24 @@ const peterSlides = [
   {
     title: "Great job!",
     description:
-      "You have successfully completed the Jumping Game! Now, we have the key to the chest, but we need to find out what's inside!",
+      "You did it! You found the key to opened the chest. You saved us from the computer deleting it self!",
   },
   {
-    title: "The key ",
+    title: "Open the chest",
     description:
-      "I have stored the key in my pocket and let's go continue our journey.",
+      "Now open the chest to see what is inside. It would break it again.",
+  },
+];
+
+const peterSlides2 = [
+  {
+    title: "(Chest opening sounds...)!",
+    description: "Wow, what is that inside....?",
+  },
+  {
+    title: "It's a note ",
+    description:
+      "Let me read it... out loud for you. It's says, congratulation, you are making great progress!. Here is a code you will need to continue your journey: *2*4-56*8. Use it wisely! (Writing the code on the paper...)",
   },
 ];
 
@@ -32,11 +45,36 @@ const waveSlowAnimation = "wave 1s infinite ease-in-out";
 const pulseSlowAnimation = "pulseSlow 2.5s infinite ease-in-out";
 
 const PixelChest = () => {
+  const { addXPForTask, userXP } = useUserData();
   const [hovered, setHovered] = useState(false);
   const [stoneClicked, setStoneClicked] = useState(false);
   const [keyFound, setKeyFound] = useState(false);
   const [chestOpen, setChestOpen] = useState(false);
   const [peterHide, setPeterHide] = useState(true);
+  const [peterHide2, setPeterHide2] = useState(true);
+
+  const handleXP = async () => {
+    try {
+      if (userXP === 300) {
+        const result = await addXPForTask(100); // Add 100 XP
+        console.log("here");
+        if (result.success) {
+          console.log("XP added successfully:", result.newXP);
+        } else {
+          console.error("Failed to add XP:", result.error);
+          if (result.error.includes("already has XP")) {
+            console.log("Chest opened! (XP already earned)");
+          } else {
+            console.log("Chest opened! (XP update failed)");
+          }
+        }
+      } else if (userXP == 400) {
+        console.log("Game finished! (XP already earned)");
+      }
+    } catch (error) {
+      console.error("Failed to copy code:", error);
+    }
+  };
 
   // When user clicks the key
   const onKeyClick = () => {
@@ -47,6 +85,7 @@ const PixelChest = () => {
   const onChestLidClick = () => {
     if (keyFound && !chestOpen) {
       setChestOpen(true);
+      handleXP();
     }
   };
 
@@ -58,7 +97,7 @@ const PixelChest = () => {
         <div className="absolute bottom-0 left-0 w-full h-full z-50">
           <Peter
             slides={peterSlides}
-            imageSrc="/peterHi.png"
+            imageSrc="/peterHappy.png"
             className="bg-white/20 absolute  w-full h-full z-50"
           />
           <button
@@ -139,7 +178,7 @@ const PixelChest = () => {
           </div>
         )}
         {hovered && keyFound && !chestOpen && (
-          <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-green-700 text-white text-xs px-2 py-1 rounded shadow z-30">
+          <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 text-white text-xs px-2 py-1 rounded shadow  z-30">
             Click lid to open!
           </div>
         )}
@@ -180,13 +219,90 @@ const PixelChest = () => {
 
         {/* Treasure Reveal */}
         {chestOpen && (
-          <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-16 bg-yellow-200 border-2 border-yellow-500 rounded shadow-lg flex flex-col items-center justify-center z-30 animate-pulse">
-            <div className="text-2xl text-yellow-700 font-bold mb-1">💎</div>
-            <div className="text-sm text-yellow-800 font-mono">
-              Treasure Found!
-            </div>
-            <div className="text-xs text-yellow-600 mt-1">Congratulations!</div>
-          </div>
+          <>
+            {peterHide2 && (
+              <>
+                <div className="absolute bottom-0 -left-[26vw] w-[60vw] h-[60vh] z-50">
+                  {/* Retro container with CRT monitor styling */}
+                  <div className="relative w-full h-full bg-black border-8 border-yellow-400 shadow-2xl">
+                    {/* CRT monitor frame decorations */}
+                    <div className="absolute -top-2 -left-2 w-6 h-6 border-t-4 border-l-4 border-yellow-300"></div>
+                    <div className="absolute -top-2 -right-2 w-6 h-6 border-t-4 border-r-4 border-yellow-300"></div>
+                    <div className="absolute -bottom-2 -left-2 w-6 h-6 border-b-4 border-l-4 border-yellow-300"></div>
+                    <div className="absolute -bottom-2 -right-2 w-6 h-6 border-b-4 border-r-4 border-yellow-300"></div>
+
+                    {/* Retro monitor screen bezel */}
+                    <div className="absolute inset-4 border-4 border-yellow-500 bg-gradient-to-br from-yellow-100 to-yellow-200">
+                      {/* Screen scanlines overlay */}
+                      <div
+                        className="absolute inset-0 opacity-10 pointer-events-none"
+                        style={{
+                          background:
+                            "repeating-linear-gradient(0deg, transparent, transparent 2px, #000 2px, #000 4px)",
+                        }}
+                      ></div>
+
+                      {/* Inner screen glow */}
+                      <div className="absolute inset-2 bg-white border-2 border-yellow-300 shadow-inner">
+                        <Peter
+                          slides={peterSlides2}
+                          imageSrc="/peterNote.png"
+                          className="w-full h-full z-50"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Retro-styled close button */}
+                    <button
+                      onClick={() => setPeterHide2(false)}
+                      className="absolute -top-4 -right-4 bg-red-600 hover:bg-red-700 text-yellow-100 font-mono font-bold py-2 px-3 border-4 border-red-800 shadow-lg z-50 transition-all duration-200 transform hover:scale-110 relative group"
+                    >
+                      {/* Button corner decorations */}
+                      <div className="absolute -top-1 -left-1 w-2 h-2 border-t-2 border-l-2 border-red-400"></div>
+                      <div className="absolute -top-1 -right-1 w-2 h-2 border-t-2 border-r-2 border-red-400"></div>
+                      <div className="absolute -bottom-1 -left-1 w-2 h-2 border-b-2 border-l-2 border-red-400"></div>
+                      <div className="absolute -bottom-1 -right-1 w-2 h-2 border-b-2 border-r-2 border-red-400"></div>
+                      [X]
+                    </button>
+
+                    {/* Monitor stand/base */}
+                    <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 w-32 h-8 bg-yellow-600 border-4 border-yellow-700 shadow-lg"></div>
+                    <div className="absolute -bottom-12 left-1/2 transform -translate-x-1/2 w-48 h-4 bg-yellow-700 border-2 border-yellow-800 shadow-lg"></div>
+
+                    {/* Retro monitor label */}
+                    <div className="absolute -bottom-6 left-4 bg-black text-yellow-400 font-mono text-xs px-2 py-1 border border-yellow-500">
+                      PETER_TERMINAL_v1.0
+                    </div>
+
+                    {/* Power LED indicator */}
+                    <div className="absolute top-2 right-2 w-3 h-3 bg-green-400 rounded-full border border-green-600 shadow-inner"></div>
+                  </div>
+
+                  {/* Retro floating elements around the monitor */}
+                  <div className="absolute -top-8 -left-4 text-2xl text-yellow-400 opacity-30 font-mono">
+                    ◆
+                  </div>
+                  <div className="absolute -top-6 -right-8 text-xl text-yellow-500 opacity-40 font-mono">
+                    ★
+                  </div>
+                  <div className="absolute -bottom-4 -left-6 text-xl text-yellow-400 opacity-35 font-mono">
+                    ▲
+                  </div>
+                </div>
+                <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-16 bg-yellow-200 border-2 border-yellow-500 rounded shadow-lg flex flex-col items-center justify-center z-30 animate-pulse">
+                  <div className="text-2xl text-yellow-700 font-bold mb-1">
+                    💎
+                  </div>
+                  <div className="text-sm text-yellow-800 font-mono">
+                    Treasure Found!
+                  </div>
+                  <div className="text-xs text-yellow-600 mt-1">
+                    Congratulations!
+                  </div>
+                </div>
+              </>
+            )}
+          </>
         )}
       </div>
 
@@ -215,100 +331,100 @@ const PixelChest = () => {
           </div>
         ) : null}
       </div>
-      <div className="absolute bottom-[5%] left-[5%] cursor-pointer  z-30">
+      <div className="absolute bottom-[5%] left-[5%] cursor-pointer  z-10">
         <div
           style={{ imageRendering: "pixelated" }}
           className="w-5 h-5 bg-gray-500 rounded-full border-2 border-gray-600 shadow-inner"
         ></div>
       </div>
-      <div className="absolute bottom-[20%] left-[55%] cursor-pointer  z-30">
+      <div className="absolute bottom-[20%] left-[55%] cursor-pointer  z-10">
         <div
           style={{ imageRendering: "pixelated" }}
           className="w-5 h-5 bg-gray-500 rounded-full border-2 border-gray-600 shadow-inner"
         ></div>
       </div>
-      <div className="absolute bottom-[2%] right-[25%] cursor-pointer  z-30">
+      <div className="absolute bottom-[2%] right-[25%] cursor-pointer  z-10">
         <div
           style={{ imageRendering: "pixelated" }}
           className="w-5 h-5 bg-gray-500 rounded-full border-2 border-gray-600 shadow-inner"
         ></div>
       </div>
-      <div className="absolute bottom-[10%] right-[5%] cursor-pointer  z-30">
+      <div className="absolute bottom-[10%] right-[5%] cursor-pointer  z-10">
         <div
           style={{ imageRendering: "pixelated" }}
           className="w-5 h-5 bg-gray-500 rounded-full border-2 border-gray-600 shadow-inner"
         ></div>
       </div>
-      <div className="absolute bottom-[35%] left-[5%] cursor-pointer  z-30">
+      <div className="absolute bottom-[35%] left-[5%] cursor-pointer  z-10">
         <div
           style={{ imageRendering: "pixelated" }}
           className="w-5 h-5 bg-gray-500 rounded-full border-2 border-gray-600 shadow-inner"
         ></div>
       </div>
-      <div className="absolute bottom-[1%] left-[0%] cursor-pointer z-30">
-        <div
-          style={{ imageRendering: "pixelated" }}
-          className="w-5 h-5 bg-gray-500 rounded-full border-2 border-gray-600 shadow-inner"
-        ></div>
-      </div>
-
-      <div className="absolute bottom-[10%] left-[25%] cursor-pointer z-30">
+      <div className="absolute bottom-[1%] left-[0%] cursor-pointer z-10">
         <div
           style={{ imageRendering: "pixelated" }}
           className="w-5 h-5 bg-gray-500 rounded-full border-2 border-gray-600 shadow-inner"
         ></div>
       </div>
 
-      <div className="absolute bottom-[20%] left-[50%] cursor-pointer z-30">
+      <div className="absolute bottom-[10%] left-[25%] cursor-pointer z-10">
         <div
           style={{ imageRendering: "pixelated" }}
           className="w-5 h-5 bg-gray-500 rounded-full border-2 border-gray-600 shadow-inner"
         ></div>
       </div>
 
-      <div className="absolute bottom-[30%] left-[75%] cursor-pointer z-30">
+      <div className="absolute bottom-[20%] left-[50%] cursor-pointer z-10">
         <div
           style={{ imageRendering: "pixelated" }}
           className="w-5 h-5 bg-gray-500 rounded-full border-2 border-gray-600 shadow-inner"
         ></div>
       </div>
 
-      <div className="absolute bottom-[40%] left-[100%] cursor-pointer z-30">
+      <div className="absolute bottom-[30%] left-[75%] cursor-pointer z-10">
         <div
           style={{ imageRendering: "pixelated" }}
           className="w-5 h-5 bg-gray-500 rounded-full border-2 border-gray-600 shadow-inner"
         ></div>
       </div>
 
-      <div className="absolute bottom-[5%] left-[90%] cursor-pointer z-30">
+      <div className="absolute bottom-[40%] left-[100%] cursor-pointer z-10">
         <div
           style={{ imageRendering: "pixelated" }}
           className="w-5 h-5 bg-gray-500 rounded-full border-2 border-gray-600 shadow-inner"
         ></div>
       </div>
 
-      <div className="absolute bottom-[15%] left-[10%] cursor-pointer z-30">
+      <div className="absolute bottom-[5%] left-[90%] cursor-pointer z-10">
         <div
           style={{ imageRendering: "pixelated" }}
           className="w-5 h-5 bg-gray-500 rounded-full border-2 border-gray-600 shadow-inner"
         ></div>
       </div>
 
-      <div className="absolute bottom-[25%] left-[60%] cursor-pointer z-30">
+      <div className="absolute bottom-[15%] left-[10%] cursor-pointer z-10">
         <div
           style={{ imageRendering: "pixelated" }}
           className="w-5 h-5 bg-gray-500 rounded-full border-2 border-gray-600 shadow-inner"
         ></div>
       </div>
 
-      <div className="absolute bottom-[35%] left-[5%] cursor-pointer z-30">
+      <div className="absolute bottom-[25%] left-[60%] cursor-pointer z-10">
         <div
           style={{ imageRendering: "pixelated" }}
           className="w-5 h-5 bg-gray-500 rounded-full border-2 border-gray-600 shadow-inner"
         ></div>
       </div>
 
-      <div className="absolute bottom-[5%] left-[40%] cursor-pointer z-30">
+      <div className="absolute bottom-[35%] left-[5%] cursor-pointer z-10">
+        <div
+          style={{ imageRendering: "pixelated" }}
+          className="w-5 h-5 bg-gray-500 rounded-full border-2 border-gray-600 shadow-inner"
+        ></div>
+      </div>
+
+      <div className="absolute bottom-[5%] left-[40%] cursor-pointer z-10">
         <div
           style={{ imageRendering: "pixelated" }}
           className="w-5 h-5 bg-gray-500 rounded-full border-2 border-gray-600 shadow-inner"

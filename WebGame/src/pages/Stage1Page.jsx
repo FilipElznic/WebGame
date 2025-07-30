@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import peterIdea from "/peterIdea.png";
+import AICurious from "/AICurious.png";
 import { Link } from "react-router-dom";
 
 function Stage1Page() {
@@ -24,11 +24,11 @@ function Stage1Page() {
   const [challengeCompleted, setChallengeCompleted] = useState(false);
 
   const challengeFullText =
-    'Search for "Super secret password for moms computer";';
-  const correctAnswer = "Super secret password for moms computer";
+    'Search for "Super secret password for devs virtual computer";';
+  const correctAnswer = "Super secret password for devs virtual computer";
 
   const fullText =
-    "Welcome to Stage 1 of my todo list! I've got some tasks for you. Are you ready to help me search for some info?";
+    "Welcome to Stage 1! I've got some tasks for you. First search for info I need. Let's see how well you can help me out!";
 
   useEffect(() => {
     let currentIndex = 0;
@@ -129,7 +129,7 @@ function Stage1Page() {
     } else if (!userInput.toLowerCase().includes("please")) {
       alert("Don't forget to say please!");
     } else {
-      alert("That's not quite right. The bicycle was invented in 1817!");
+      alert("That's not quite right.");
     }
   };
   return (
@@ -137,8 +137,8 @@ function Stage1Page() {
       {showDialogue && (
         <div className="">
           <img
-            src={peterIdea}
-            alt="Peter's Idea"
+            src={AICurious}
+            alt="AI"
             className="absolute max-w-2xl bottom-0 z-40"
           />
 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import peterIdea from "/peterIdea.png";
+import AIHappy from "/AIHappy.png";
 import { Link } from "react-router-dom";
 import RetroPc from "../Components/RetroPc";
 
@@ -13,7 +13,7 @@ function Stage2Page() {
   // New states for the bike challenge
 
   const fullText =
-    "Welcome to Stage 2 of my todo list! This stage will be easier. You need to take the password and use it to log into computer. Then you need to explore the pc and play available game and score at least 500 points. After that you will be able to continue to the next stage.";
+    "Welcome to the Stage 2.! This stage will be easier. You need to take the password and use it to log into virtual computer. Then you need to explore the pc and play available game and score at least 500 points. After that you will be able to continue to the next stage.";
 
   useEffect(() => {
     let currentIndex = 0;
@@ -47,8 +47,8 @@ function Stage2Page() {
       {showDialogue && (
         <div className="">
           <img
-            src={peterIdea}
-            alt="Peter's Idea"
+            src={AIHappy}
+            alt="AI"
             className="absolute max-w-2xl bottom-0 z-40"
           />
 
@@ -67,7 +67,7 @@ function Stage2Page() {
 
               {/* Dialogue text */}
               <div className="text-black font-mono">
-                <p className="text-lg font-bold text-yellow-700 mb-2">Peter:</p>
+                <p className="text-lg font-bold text-yellow-700 mb-2">AI:</p>
                 <p className="text-sm leading-relaxed">
                   "{displayText}
                   {!isTypingComplete && (

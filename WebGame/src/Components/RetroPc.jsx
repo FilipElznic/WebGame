@@ -617,7 +617,7 @@ const RetroComputerLogin = () => {
 
                       {/* Files Window */}
                       {activeWindow === "files" && (
-                        <div className="absolute inset-4 bg-gray-800 border-2 border-gray-600 flex flex-col z-10">
+                        <div className="absolute inset-4 bg-gray-800 border-2 border-gray-600 flex flex-col z-10 h-[55vh]">
                           {/* Window Title Bar */}
                           <div className="bg-blue-700 text-white p-2 flex justify-between items-center border-b border-gray-600">
                             <div className="text-sm font-bold">
@@ -665,7 +665,7 @@ const RetroComputerLogin = () => {
 
                       {/* Games Window */}
                       {activeWindow === "games" && (
-                        <div className="absolute inset-4 bg-gray-800 border-2 border-gray-600 flex flex-col z-10">
+                        <div className="absolute inset-4 bg-gray-800 border-2 border-gray-600 flex flex-col z-10 h-[55vh]">
                           {/* Window Title Bar */}
                           <div className="bg-purple-700 text-white p-2 flex justify-between items-center border-b border-gray-600">
                             <div className="text-sm font-bold">
@@ -680,7 +680,7 @@ const RetroComputerLogin = () => {
                           </div>
 
                           {/* Games List Header */}
-                          <div className="bg-zinc-800 text-green-300 p-2 text-xs border-b border-gray-600 flex">
+                          <div className="bg-zinc-800 text-green-300 p-2 text-xs border-b border-gray-600 flex ">
                             <div className="w-1/2">GAME TITLE</div>
                             <div className="w-1/4">CATEGORY</div>
                             <div className="w-1/4">STATUS</div>
@@ -724,7 +724,7 @@ const RetroComputerLogin = () => {
 
                       {/* Settings Window */}
                       {activeWindow === "settings" && (
-                        <div className="absolute inset-4 bg-gray-800 border-2 border-gray-600 flex flex-col z-10">
+                        <div className="absolute inset-4 bg-gray-800 border-2 border-gray-600 flex flex-col z-10 h-[55vh]">
                           {/* Window Title Bar */}
                           <div className="bg-orange-700 text-white p-2 flex justify-between items-center border-b border-gray-600">
                             <div className="text-sm font-bold">

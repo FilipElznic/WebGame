@@ -14,7 +14,7 @@ function Stage1PageInternet() {
   const [InternetOnHidden, setInternetOnHidden] = useState(false);
 
   const fullText =
-    "Well it looks like we are out of internet. But you look like you can find the solution!";
+    "Well it looks like we are out of internet. The computer is old and has weird quirks, lets look around and try to fix it!";
 
   useEffect(() => {
     let currentIndex = 0;
@@ -167,7 +167,7 @@ function Stage1PageInternet() {
 
               {/* Dialogue text */}
               <div className="text-black font-mono">
-                <p className="text-lg font-bold text-yellow-700 mb-2">Peter:</p>
+                <p className="text-lg font-bold text-yellow-700 mb-2">AI:</p>
                 <p className="text-sm leading-relaxed">
                   "{displayText}
                   {!isTypingComplete && (

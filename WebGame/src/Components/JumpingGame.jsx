@@ -29,7 +29,7 @@ function JumpingGame() {
     {
       title: "Great job!",
       description:
-        "You have successfully completed the Jumping Game! Now, we have the key to the chest, but we need to find out what's inside!",
+        "You have successfully completed the Jumping Game! Now, we have the key needed for to the next stage, we need to find out what is the secret it is hiding!",
     },
     {
       title: "The key ",
@@ -48,15 +48,13 @@ function JumpingGame() {
         } else {
           console.error("Failed to add XP:", result.error);
           if (result.error.includes("already has XP")) {
-            alert("Code copied! (XP already earned)");
+            console.log("Game finished! (XP already earned)");
           } else {
-            alert("Code copied! (XP update failed)");
+            console.log("Game finished! (XP update failed)");
           }
         }
-
-        setIsAddingXP(false);
       } else if (gameFinished && userXP == 300) {
-        alert("Game finished! (XP already earned)");
+        console.log("Game finished! (XP already earned)");
       }
     } catch (error) {
       console.error("Failed to copy code:", error);
