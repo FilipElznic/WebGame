@@ -22,7 +22,7 @@ function Stage4Page() {
     "Welcome to Stage 5! This stage is a bit different and the hardest, as you will see, there is a desktop behind me, You will need to find the missing numbers to unlock the next stage. The numbers are hidden somewhere in the desktop, Good Luck!";
 
   const peterText =
-    "Let me try! (Unlocking chest noises) ... (struggling noises) ... (key breaking noises) ... ... Oh no! The key broke too! I am so sorry, dont tell the AI. I guess we need to find another way to open it. Look around and try to find something that can help us. Maybe there is a hidden key somewhere else?";
+    "Dont be scared, I know this looks hard, but I believe in you! You can do it!";
 
   // AI typing effect
   useEffect(() => {

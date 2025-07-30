@@ -17,6 +17,7 @@ import {
   Volume2,
   Calendar,
   Clock,
+  GameController2,
   Camera,
   Download,
   Mail,
@@ -73,39 +74,55 @@ const DesktopMinigames = () => {
     setOpenWindows(openWindows.filter((w) => w !== windowType));
   };
 
+  const getWindowPosition = (windowType) => {
+    const positions = {
+      trash: { top: "10%", left: "15%" },
+      calculator: { top: "15%", left: "25%" },
+      terminal: { top: "20%", left: "35%" },
+      explorer: { top: "12%", left: "20%" },
+      settings: { top: "18%", left: "30%" },
+      clock: { top: "25%", left: "40%" },
+      volume: { top: "22%", left: "45%" },
+      default: { top: "16%", left: "28%" },
+    };
+
+    return positions[windowType] || positions.default;
+  };
+
   const WindowFrame = ({
     title,
     onClose,
     children,
     width = "w-96",
     height = "h-80",
-  }) => (
-    <div
-      className={`absolute bg-black border-2 border-green-400 ${width} ${height} shadow-2xl shadow-green-400/30`}
-      style={{
-        top: `${Math.random() * 10 + 15}%`,
-        left: `${Math.random() * 20 + 25}%`,
-        zIndex: 10,
-      }}
-    >
-      <div className="bg-gradient-to-r from-green-900 to-green-800 text-green-100 px-2 py-1 flex justify-between items-center border-b border-green-400">
-        <span className="text-sm font-bold font-mono">{title}</span>
-        <div className="flex gap-1">
-          <button className="w-4 h-4 bg-yellow-500 rounded-sm border border-yellow-600 hover:bg-yellow-400"></button>
-          <button className="w-4 h-4 bg-blue-500 rounded-sm border border-blue-600 hover:bg-blue-400"></button>
-          <button
-            onClick={onClose}
-            className="w-4 h-4 bg-red-600 rounded-sm flex items-center justify-center border border-red-700 hover:bg-red-500"
-          >
-            <X size={8} />
-          </button>
+    windowType = "default",
+  }) => {
+    const position = getWindowPosition(windowType);
+
+    return (
+      <div
+        className={`absolute bg-black border-2 border-green-400 ${width} ${height} shadow-2xl shadow-green-400/30`}
+        style={{ top: position.top, left: position.left, zIndex: 10 }}
+      >
+        <div className="bg-gradient-to-r from-green-900 to-green-800 text-green-100 px-2 py-1 flex justify-between items-center border-b border-green-400">
+          <span className="text-sm font-bold font-mono">{title}</span>
+          <div className="flex gap-1">
+            <button className="w-4 h-4 bg-yellow-500 rounded-sm border border-yellow-600 hover:bg-yellow-400"></button>
+            <button className="w-4 h-4 bg-blue-500 rounded-sm border border-blue-600 hover:bg-blue-400"></button>
+            <button
+              onClick={onClose}
+              className="w-4 h-4 bg-red-600 rounded-sm flex items-center justify-center border border-red-700 hover:bg-red-500"
+            >
+              <X size={8} />
+            </button>
+          </div>
+        </div>
+        <div className="p-4 h-full overflow-auto bg-black text-green-400">
+          {children}
         </div>
       </div>
-      <div className="p-4 h-full overflow-auto bg-black text-green-400">
-        {children}
-      </div>
-    </div>
-  );
+    );
+  };
 
   // Expanded File System Structure
   const fileSystem = {
@@ -1187,7 +1204,7 @@ const DesktopMinigames = () => {
     },
     {
       name: "Games",
-      icon: Terminal,
+      icon: GameController2,
       x: 120,
       y: 220,
       action: () => {
@@ -1430,6 +1447,7 @@ const DesktopMinigames = () => {
         <WindowFrame
           title="[RECYCLE_BIN.EXE]"
           onClose={() => closeWindow("trash")}
+          windowType="trash"
         >
           <JunkFileGame />
         </WindowFrame>
@@ -1439,6 +1457,7 @@ const DesktopMinigames = () => {
         <WindowFrame
           title="[CALC.EXE]"
           onClose={() => closeWindow("calculator")}
+          windowType="calculator"
         >
           <CalculatorGame />
         </WindowFrame>
@@ -1450,6 +1469,7 @@ const DesktopMinigames = () => {
           onClose={() => closeWindow("terminal")}
           width="w-96"
           height="h-96"
+          windowType="terminal"
         >
           <TerminalGame />
         </WindowFrame>
@@ -1461,6 +1481,7 @@ const DesktopMinigames = () => {
           onClose={() => closeWindow("explorer")}
           width="w-[500px]"
           height="h-96"
+          windowType="explorer"
         >
           <FileExplorer />
         </WindowFrame>
@@ -1470,6 +1491,7 @@ const DesktopMinigames = () => {
         <WindowFrame
           title="[CONTROL_PANEL.EXE]"
           onClose={() => closeWindow("settings")}
+          windowType="settings"
         >
           <div className="space-y-4 font-mono">
             <h3 className="text-green-300 font-bold">SYSTEM CONFIGURATION</h3>
@@ -1497,6 +1519,7 @@ const DesktopMinigames = () => {
           onClose={() => closeWindow("clock")}
           width="w-64"
           height="h-48"
+          windowType="clock"
         >
           <div className="text-center font-mono">
             <div className="text-2xl text-green-300 mb-2">
@@ -1523,6 +1546,7 @@ const DesktopMinigames = () => {
           onClose={() => closeWindow("volume")}
           width="w-64"
           height="h-32"
+          windowType="volume"
         >
           <div className="space-y-3 font-mono">
             <div className="text-green-300">🔊 Master Volume</div>
@@ -1545,6 +1569,7 @@ const DesktopMinigames = () => {
               key={window}
               title={`[NOTEPAD.EXE] - ${fileName}`}
               onClose={() => closeWindow(window)}
+              windowType="default"
             >
               <FileViewer fileName={fileName} />
             </WindowFrame>
