@@ -17,7 +17,6 @@ import {
   Volume2,
   Calendar,
   Clock,
-  GameController2,
   Camera,
   Download,
   Mail,
@@ -1204,7 +1203,7 @@ const DesktopMinigames = () => {
     },
     {
       name: "Games",
-      icon: GameController2,
+      icon: Terminal,
       x: 120,
       y: 220,
       action: () => {
