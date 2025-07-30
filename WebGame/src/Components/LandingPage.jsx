@@ -49,9 +49,9 @@ function LandingPage() {
                 &gt; MISSION BRIEFING:
               </span>
               <br />
-              Your mission today is simple: Help Peter with his to do list! To
-              continue this epic adventure, you'll need to sign up to make your
-              progress saveable. Please create an account or login to your
+              Your mission today is simple: Help Peter with his little problem!
+              To continue this epic adventure, you'll need to sign up to make
+              your progress saveable. Please create an account or login to your
               existing one.
             </p>
 

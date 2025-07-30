@@ -6,6 +6,7 @@ import { useUserData } from "./UserDataProvider";
 const RetroComputerLogin = () => {
   const [xpAwarded, setXpAwarded] = useState(false);
   const [isAddingXP, setIsAddingXP] = useState(false);
+  const { addXPForTask, userXP } = useUserData();
 
   const [password, setPassword] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -16,7 +17,6 @@ const RetroComputerLogin = () => {
 
   // Temporary mock implementation if useUserData is not available
   // Replace this with your actual useUserData hook when available
-  const { addXPForTask2 } = useUserData();
 
   // Snake Game State
   const [snake, setSnake] = useState([{ x: 10, y: 10 }]);
@@ -32,22 +32,28 @@ const RetroComputerLogin = () => {
   // Function to handle XP award when snake score exceeds 500
   const handleSnakeXPAward = async (newScore) => {
     // Check if score is above 500 and XP hasn't been awarded yet
-    if (newScore >= 500 && !xpAwarded) {
-      setIsAddingXP(true);
-
+    if (newScore >= 10) {
       try {
-        const result = await addXPForTask2(100); // Add 100 XP
+        if (userXP === 100) {
+          const result = await addXPForTask(100); // Add 100 XP
 
-        if (result.success) {
-          setXpAwarded(true);
-          console.log("XP added successfully for snake game:", result.data);
-        } else {
-          console.error("Failed to add XP:", result.error);
+          if (result.success) {
+            console.log("XP added successfully:", result.newXP);
+            setXpAwarded(true);
+            setIsAddingXP(true);
+          } else {
+            console.error("Failed to add XP:", result.error);
+            if (result.error.includes("already has XP")) {
+              console.log("Chest opened! (XP already earned)");
+            } else {
+              console.log("Chest opened! (XP update failed)");
+            }
+          }
+        } else if (userXP == 200) {
+          console.log("Game finished! (XP already earned)");
         }
       } catch (error) {
-        console.error("Error adding XP:", error);
-      } finally {
-        setIsAddingXP(false);
+        console.error("Failed to copy code:", error);
       }
     }
   };
@@ -450,7 +456,7 @@ const RetroComputerLogin = () => {
                   </div>
                 ) : (
                   /* Desktop Environment */
-                  <div className="flex-1 flex flex-col">
+                  <div className="flex-1 flex flex-col h-full">
                     {/* Desktop Header */}
                     <div className="bg-blue-800 text-white p-2 flex justify-between items-center border-b border-blue-600">
                       <div className="text-sm">Welcome, mom</div>
@@ -464,7 +470,7 @@ const RetroComputerLogin = () => {
                     </div>
 
                     {/* Desktop Content */}
-                    <div className="flex-1 bg-zinc-800 p-6 relative">
+                    <div className="flex-1 bg-zinc-800 p-6 relative ">
                       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
                         {/* Desktop Icons */}
                         <div
@@ -496,7 +502,7 @@ const RetroComputerLogin = () => {
 
                       {/* Snake Game Window */}
                       {activeWindow === "snake" && (
-                        <div className="absolute inset-4 bg-gray-800 border-2 border-gray-600 flex flex-col z-10">
+                        <div className="absolute inset-4 bg-gray-800 border-2 border-gray-600 -top-10 flex flex-col z-10">
                           {/* Window Title Bar */}
                           <div className="bg-green-700 text-white p-2 flex justify-between items-center border-b border-gray-600">
                             <div className="text-sm font-bold">
@@ -522,7 +528,7 @@ const RetroComputerLogin = () => {
                                   ? "PLAYING"
                                   : "PAUSED"}
                               </div>
-                              {score >= 500 && xpAwarded && (
+                              {score >= 20 && xpAwarded && (
                                 <div className="text-green-400 font-bold animate-pulse">
                                   🎉 XP EARNED!
                                 </div>
@@ -590,7 +596,7 @@ const RetroComputerLogin = () => {
                                 : "resume"}
                               {score < 500 && (
                                 <span className="text-yellow-300 ml-4">
-                                  • Reach 500 points for bonus XP!
+                                  • Reach 500 points for XP!
                                 </span>
                               )}
                             </div>

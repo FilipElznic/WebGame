@@ -197,15 +197,12 @@ function GamePage() {
                   &gt; You have successfully authenticated and entered the game
                   world.
                 </p>
-                <p>
-                  &gt; Your mission: Help Peter with his unusual homework
-                  assignment
-                </p>
+                <p>&gt; Your mission: Help Peter with his unusual problem</p>
                 <p>
                   &gt; Use your skills and wit to navigate through challenges.
                 </p>
                 <p>&gt; Game development is in progress...</p>
-                <p>&gt; More features coming soon!</p>
+                <p>&gt; More features coming soon maybe!</p>
               </div>
             </div>
 

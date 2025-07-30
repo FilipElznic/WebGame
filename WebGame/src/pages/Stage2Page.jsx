@@ -107,7 +107,7 @@ function Stage2Page() {
                       <div className="absolute -top-1 -right-1 w-2 h-2 border-t-2 border-r-2 border-yellow-700"></div>
                       <div className="absolute -bottom-1 -left-1 w-2 h-2 border-b-2 border-l-2 border-yellow-700"></div>
                       <div className="absolute -bottom-1 -right-1 w-2 h-2 border-b-2 border-r-2 border-yellow-700"></div>
-                      [HIDE PETER] ▶
+                      [HIDE AI] ▶
                     </button>
                   </div>
                 )}

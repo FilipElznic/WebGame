@@ -57,12 +57,12 @@ function MainMenu() {
     {
       title: "Introduction",
       description:
-        "Whoa, its year 2025, I haven't seen a human in years! More then 20 years. Why did you turn me on? Do you wanna know my secrets?",
+        "Whoa, its year 2025, I haven't seen a human in years! More then 20 years. Why did you turn me on? Do you wanna know my backstory or what...?",
     },
     {
       title: "I have a lot of things to say...",
       description:
-        "But not for free... I will have to complete 6 stages, if you complete them, I will give you some secrets about me and my developer.",
+        "But not for free... You will have to complete 6 stages, if you complete them, I will give you some secrets about me.",
     },
     {
       title: "But if you fail...",

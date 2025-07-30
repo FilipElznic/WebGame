@@ -8,6 +8,7 @@ function JumpingGame() {
   const [isGrounded, setIsGrounded] = useState(false);
   const [gameFinished, setGameFinished] = useState(false);
   const [cameraY, setCameraY] = useState(1700);
+  const [xpAwarded, setXpAwarded] = useState(false);
 
   const [peterHide, setPeterHide] = useState(false);
 
@@ -29,7 +30,7 @@ function JumpingGame() {
     {
       title: "Great job!",
       description:
-        "You have successfully completed the Jumping Game! Now, we have the key needed for to the next stage, we need to find out what is the secret it is hiding!",
+        "You have successfully completed the Jumping Game! Now, we have the key needed for to the next stage, we need to find out what  secret it is hiding!",
     },
     {
       title: "The key ",
@@ -39,27 +40,26 @@ function JumpingGame() {
   ];
 
   const handleXP = async () => {
+    console.log("Attempting to add XP");
     try {
       if (userXP === 200) {
-        const result = await addXPForTask(100); // Add 100 XP
-        console.log("here");
-        if (result.success) {
-          console.log("XP added successfully:", result.newXP);
-        } else {
-          console.error("Failed to add XP:", result.error);
-          if (result.error.includes("already has XP")) {
-            console.log("Game finished! (XP already earned)");
-          } else {
-            console.log("Game finished! (XP update failed)");
-          }
-        }
-      } else if (gameFinished && userXP == 300) {
-        console.log("Game finished! (XP already earned)");
+        const result = await addXPForTask(100);
+        console.log("XP added:", result);
       }
     } catch (error) {
-      console.error("Failed to copy code:", error);
+      console.error("Failed to add XP:", error);
     }
   };
+
+  useEffect(() => {
+    if (gameFinished && !xpAwarded) {
+      const awardXP = async () => {
+        await handleXP();
+        setXpAwarded(true);
+      };
+      awardXP();
+    }
+  }, [gameFinished, xpAwarded, handleXP]);
 
   const platforms = [
     { x: 0, y: 2080, width: 800, height: 15 },
@@ -170,13 +170,12 @@ function JumpingGame() {
           newVelY = 0;
           onGround = true;
 
-          // **NEW:** Check if the platform landed on is the final platform
+          // Check for final platform
           if (
             collision.y === finalPlatform.y &&
             collision.x === finalPlatform.x
           ) {
-            setGameFinished(true);
-            handleXP();
+            setGameFinished(true); // Only set game finished here
           }
         } else if (
           currentVel.y < 0 &&
@@ -233,6 +232,7 @@ function JumpingGame() {
     setVelocity({ x: 0, y: 0 });
     setGameFinished(false);
     setIsGrounded(false);
+    setXpAwarded(false); // Reset this too
     keysRef.current = {};
   };
 

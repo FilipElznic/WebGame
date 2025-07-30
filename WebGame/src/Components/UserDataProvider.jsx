@@ -122,9 +122,6 @@ export const UserDataProvider = ({ children }) => {
         }));
 
         // Optionally refresh from server to ensure consistency
-        setTimeout(() => {
-          refreshUserData();
-        }, 1000);
       }
 
       return result;
@@ -134,60 +131,6 @@ export const UserDataProvider = ({ children }) => {
     }
   };
   // Function to add XP for a specific task (using the second method)
-  const addXPForTask2 = async (xpAmount = 200) => {
-    if (!user || !userData) {
-      return { success: false, error: "User not authenticated" };
-    }
-
-    try {
-      const result = await (user.uid, xpAmount);
-
-      if (result.success) {
-        // Update local state immediately for better UX
-        setUserData((prevData) => ({
-          ...prevData,
-          xp: result.newXP,
-        }));
-
-        // Optionally refresh from server to ensure consistency
-        setTimeout(() => {
-          refreshUserData();
-        }, 1000);
-      }
-
-      return result;
-    } catch (error) {
-      console.error("Error adding XP:", error);
-      return { success: false, error: error.message };
-    }
-  };
-  const addXPForTask3 = async (xpAmount = 200) => {
-    if (!user || !userData) {
-      return { success: false, error: "User not authenticated" };
-    }
-
-    try {
-      const result = await addXPIfEligible3(user.uid, xpAmount);
-
-      if (result.success) {
-        // Update local state immediately for better UX
-        setUserData((prevData) => ({
-          ...prevData,
-          xp: result.newXP,
-        }));
-
-        // Optionally refresh from server to ensure consistency
-        setTimeout(() => {
-          refreshUserData();
-        }, 1000);
-      }
-
-      return result;
-    } catch (error) {
-      console.error("Error adding XP:", error);
-      return { success: false, error: error.message };
-    }
-  };
 
   // Helper functions for XP-based features
   const getRequiredXPForStage = (stageNumber) => {
@@ -211,7 +154,6 @@ export const UserDataProvider = ({ children }) => {
     error,
     refreshUserData,
     addXPForTask,
-    addXPForTask2,
     getRequiredXPForStage,
     canAccessStage,
     isTaskCompleted,

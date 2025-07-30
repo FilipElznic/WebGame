@@ -28,7 +28,7 @@ function GameStart() {
     {
       title: "Will you help me?",
       description:
-        "I am too scared to explore the OS by myself, it seems like it would see me too, but there is no web camera, which the device would see me!",
+        "I am too scared to explore the OS by myself, it seems like it can see me too, but there is no web camera, which is scary!",
     },
     {
       title: "Ready to Play?",

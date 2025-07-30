@@ -202,7 +202,7 @@ function Stage1PageInternet2() {
                 Stage 1: Internet Connection Completed ✅
               </h1>
               <p className={`text-xl font-mono text-center w-1/2 `}>
-                almost, here you have the code but you need to copy it to
+                almost, here you have the code. But you need to copy it to
                 continue. You will need it later in stage 2.
               </p>
               <div className="flex flex-col items-center mt-8">

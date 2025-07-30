@@ -56,7 +56,7 @@ function About() {
                   </p>
                   <p className="text-sm">
                     <span className="text-yellow-600">&gt;</span> STATUS:
-                    DEVELOPING
+                    FINISHED
                   </p>
                 </div>
               </div>
