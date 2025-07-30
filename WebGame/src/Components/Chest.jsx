@@ -25,7 +25,7 @@ const peterSlides = [
   {
     title: "Open the chest",
     description:
-      "Now open the chest to see what is inside. It would break it again.",
+      "Now open the chest, to see what is inside. It would break it again. haahaha",
   },
 ];
 
@@ -37,7 +37,7 @@ const peterSlides2 = [
   {
     title: "It's a note ",
     description:
-      "Let me read it... out loud for you. It's says, congratulation, you are making great progress!. Here is a code you will need to continue your journey: *2*4-56*8. Use it wisely! (Writing the code on the paper...)",
+      "Let me read it... out loud for you. It's says, congratulation!. Here is a code you will need to continue your journey: 8*2*92*. Use it wisely! (Writing the code on the paper...)",
   },
 ];
 

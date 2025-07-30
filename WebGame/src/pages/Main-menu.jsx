@@ -132,7 +132,7 @@ function MainMenu() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-yellow-300 via-white to-zinc-800 to-yellow-100">
+    <div className="min-h-screen bg-gradient-to-br from-yellow-300 via-white to-zinc-800 ">
       {/* Peter Intro - only show if showPeter is true */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-10 left-10 text-4xl text-yellow-400 opacity-20 animate-pulse font-mono">

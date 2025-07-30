@@ -1,9 +1,13 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
+import { useUserData } from "./UserDataProvider";
+import { useNavigate } from "react-router-dom";
 
 const Final = () => {
-  const [gameState, setGameState] = useState("code-entry"); // code-entry, boss-intro, dodge-game, shoot-game, memory-game, finale, choice
+  const { addXPForTask, userXP } = useUserData();
+  const navigate = useNavigate();
+  const [gameState, setGameState] = useState("code-entry");
   const [code, setCode] = useState("");
-  const [lives, setLives] = useState(3);
+  const [lives, setLives] = useState(200);
   const [dodgeCount, setDodgeCount] = useState(0);
   const [hitCount, setHitCount] = useState(0);
   const [memorySequence, setMemorySequence] = useState([]);
@@ -18,7 +22,30 @@ const Final = () => {
   const [choice, setChoice] = useState("");
   const gameAreaRef = useRef(null);
 
-  const CORRECT_CODE = "243591";
+  const handleXP = async () => {
+    try {
+      if (userXP === 500) {
+        const result = await addXPForTask(100);
+
+        if (result.success) {
+          console.log("XP added successfully:", result.newXP);
+        } else {
+          console.error("Failed to add XP:", result.error);
+          if (result.error.includes("already has XP")) {
+            console.log("Chest opened! (XP already earned)");
+          } else {
+            console.log("Chest opened! (XP update failed)");
+          }
+        }
+      } else if (userXP == 600) {
+        console.log("Game finished! (XP already earned)");
+      }
+    } catch (error) {
+      console.error("Failed to copy code:", error);
+    }
+  };
+
+  const CORRECT_CODE = "822794";
   const GRID_SIZE = 50;
 
   // Memory game mechanics
@@ -77,7 +104,8 @@ const Final = () => {
         const newLevel = memoryLevel + 1;
         const newProgress = memoryProgress + 1;
 
-        if (newProgress >= 10) {
+        if (newProgress >= 3) {
+          // Reduced from 10 to 3 for testing
           setGameState("finale");
           return;
         }
@@ -104,36 +132,43 @@ const Final = () => {
     ]
   );
 
-  // Dodge game mechanics - increased projectile speed and spawn rate
+  // Initialize memory game when entering memory phase
+  useEffect(() => {
+    if (gameState === "memory-game" && memorySequence.length === 0) {
+      const initialSequence = generateSequence(1);
+      setMemorySequence(initialSequence);
+      setTimeout(() => showSequence(initialSequence), 1000);
+    }
+  }, [gameState, memorySequence.length, generateSequence, showSequence]);
+
+  // Dodge game mechanics
   const spawnProjectile = useCallback(() => {
     const newProjectile = {
       id: Date.now() + Math.random(),
-      x: Math.random() * 85 + 7.5, // Adjusted for bigger projectiles
+      x: Math.random() * 85 + 7.5,
       y: 0,
-      speed: 4 + Math.random() * 4, // Increased speed
+      speed: 4 + Math.random() * 4,
     };
     setProjectiles((prev) => [...prev, newProjectile]);
   }, []);
 
-  // Shoot game mechanics - heavily favor bombs, remove green targets quickly
+  // Shoot game mechanics
   const spawnTarget = useCallback(() => {
     const bombCount = targets.filter((t) => t.type === "bomb").length;
     const targetCount = targets.filter((t) => t.type === "target").length;
 
     let isBomb;
     if (bombCount >= 5) {
-      // Allow more bombs
       isBomb = false;
     } else if (targetCount >= 2) {
-      // Fewer green targets
       isBomb = true;
     } else {
-      isBomb = Math.random() < 0.85; // 85% chance for bombs (much higher)
+      isBomb = Math.random() < 0.85;
     }
 
     const newTarget = {
       id: Date.now() + Math.random(),
-      x: Math.random() * 60 + 20, // Adjusted spawn area
+      x: Math.random() * 60 + 20,
       y: 15 + Math.random() * 25,
       type: isBomb ? "bomb" : "target",
       pulsePhase: 0,
@@ -142,7 +177,7 @@ const Final = () => {
     setTargets((prev) => [...prev, newTarget]);
   }, [targets]);
 
-  // Game loop for dodge phase - increased difficulty
+  // Game loop for dodge phase
   useEffect(() => {
     if (gameState === "dodge-game") {
       const interval = setInterval(() => {
@@ -150,7 +185,6 @@ const Final = () => {
           prev.map((p) => ({ ...p, y: p.y + p.speed })).filter((p) => p.y < 100)
         );
 
-        // Increased spawn rate from 0.25 to 0.4
         if (Math.random() < 0.4) {
           spawnProjectile();
         }
@@ -163,7 +197,6 @@ const Final = () => {
             const distance = Math.sqrt(
               Math.pow(p.x - playerPos.x, 2) + Math.pow(p.y - playerPos.y, 2)
             );
-            // Increased collision detection radius for bigger sprites
             if (distance < 4) {
               hit = true;
             } else {
@@ -183,24 +216,22 @@ const Final = () => {
 
           return remaining;
         });
-      }, 40); // Faster game loop
+      }, 40);
 
       setGameLoop(interval);
       return () => clearInterval(interval);
     }
   }, [gameState, playerPos, spawnProjectile]);
 
-  // Game loop for shoot phase - faster spawning and auto-removal of green targets
+  // Game loop for shoot phase
   useEffect(() => {
     if (gameState === "shoot-game") {
       const interval = setInterval(() => {
         setTargets((prev) =>
           prev.filter((t) => {
-            // Remove bombs after 3 seconds (faster)
             if (t.type === "bomb" && Date.now() - t.spawnTime > 3000) {
               return false;
             }
-            // Remove green targets after 2 seconds (much faster)
             if (t.type === "target" && Date.now() - t.spawnTime > 2000) {
               return false;
             }
@@ -208,32 +239,31 @@ const Final = () => {
           })
         );
 
-        // Increased spawn rate and allow more targets
         if (Math.random() < 0.25 && targets.length < 6) {
           spawnTarget();
         }
 
-        setTargets(
-          (prev) => prev.map((t) => ({ ...t, pulsePhase: t.pulsePhase + 0.2 })) // Faster pulsing
+        setTargets((prev) =>
+          prev.map((t) => ({ ...t, pulsePhase: t.pulsePhase + 0.2 }))
         );
-      }, 60); // Faster game loop
+      }, 60);
 
       setGameLoop(interval);
       return () => clearInterval(interval);
     }
   }, [gameState, targets.length, spawnTarget]);
 
-  // Keyboard controls - slightly reduced movement speed for increased difficulty
+  // Keyboard controls
   useEffect(() => {
     const handleKeyPress = (e) => {
       if (gameState === "dodge-game") {
-        const speed = 2; // Reduced from 2.5
+        const speed = 2;
         setPlayerPos((prev) => {
           let newX = prev.x;
           let newY = prev.y;
 
           if (e.key === "ArrowLeft" || e.key === "a")
-            newX = Math.max(12, prev.x - speed); // Adjusted for bigger player
+            newX = Math.max(12, prev.x - speed);
           if (e.key === "ArrowRight" || e.key === "d")
             newX = Math.min(88, prev.x + speed);
           if (e.key === "ArrowUp" || e.key === "w")
@@ -247,8 +277,8 @@ const Final = () => {
         if (projectiles.length > 0) {
           setDodgeCount((prev) => {
             const newCount = prev + 1;
-            if (newCount >= 50) {
-              // Increased requirement
+            if (newCount >= 20) {
+              // Reduced from 50 for testing
               setGameState("phase-transition");
               setTimeout(() => setGameState("shoot-game"), 2000);
             }
@@ -287,18 +317,33 @@ const Final = () => {
     } else {
       setHitCount((prev) => {
         const newCount = prev + 1;
-        if (newCount >= 30) {
-          // Increased requirement
-          setGameState("finale");
+        if (newCount >= 10) {
+          // Reduced from 30 for testing - THIS WAS THE KEY CHANGE
+          setGameState("phase-transition-2"); // Go to phase 2 transition instead of finale
+          setTimeout(() => setGameState("memory-game"), 2000); // Then to memory game
         }
         return newCount;
       });
     }
   };
 
-  const handleChoice = (selectedChoice) => {
+  const handleChoice = async (selectedChoice) => {
     setChoice(selectedChoice);
-    setGameState("ending");
+    await handleXP();
+
+    switch (selectedChoice) {
+      case "restore":
+        navigate("/restore");
+        break;
+      case "shutdown":
+        navigate("/shutdown");
+        break;
+      case "preserve":
+        navigate("/preserve");
+        break;
+      default:
+        console.error("Unknown choice:", selectedChoice);
+    }
   };
 
   const resetGame = () => {
@@ -320,7 +365,7 @@ const Final = () => {
   };
 
   return (
-    <div className=" bg-black text-green-400 font-mono overflow-hidden w-full h-full">
+    <div className="bg-black text-green-400 font-mono overflow-hidden w-full h-full">
       {/* Scanlines overlay */}
       <div className="fixed inset-0 pointer-events-none opacity-20">
         <div
@@ -385,10 +430,10 @@ const Final = () => {
             [CORE UNLOCKED]
           </div>
           <div className="text-2xl mb-4 text-green-300">
-            BIT: "So... you found me."
+            AI: "So... you got all the way here."
           </div>
           <div className="text-lg text-yellow-400 animate-pulse">
-            "Let's see if you're worthy of the truth..."
+            "Let's see if you're worthy of the secret..."
           </div>
           <div className="mt-6 text-sm text-gray-400">
             Initializing Combat Protocol...
@@ -401,7 +446,7 @@ const Final = () => {
           <div className="absolute top-4 left-4 text-green-400">
             <div>PHASE 1: DODGE</div>
             {Array(Math.max(0, lives)).fill("♥").join(" ")}
-            <div>Dodged: {dodgeCount}/50</div>
+            <div>Dodged: {dodgeCount}/20</div>
           </div>
 
           <div className="absolute top-4 right-4 text-yellow-400 text-sm">
@@ -418,7 +463,6 @@ const Final = () => {
                 bottom: "10%",
               }}
             ></div>
-            {/* Bigger square player character */}
             <div
               className="absolute w-8 h-8 bg-green-400 border-2 border-green-300 shadow-lg shadow-green-400/50"
               style={{
@@ -428,7 +472,6 @@ const Final = () => {
               }}
             />
 
-            {/* Bigger projectiles */}
             {projectiles.map((projectile) => (
               <div
                 key={projectile.id}
@@ -449,8 +492,8 @@ const Final = () => {
           <div className="text-3xl font-bold mb-4 text-green-400">
             [PHASE 1 COMPLETE]
           </div>
-          <div className="text-xl text-yellow-400 animate-pulse">
-            "Impressive... but can you hit back?"
+          <div className="text-2xl text-yellow-400 animate-pulse">
+            "Impressive.... but can you hit back?"
           </div>
         </div>
       )}
@@ -460,7 +503,7 @@ const Final = () => {
           <div className="absolute top-4 left-4 text-green-400">
             <div>PHASE 2: STRIKE</div>
             <div>Lives: {Array(lives).fill("♥").join(" ")}</div>
-            <div>Hits: {hitCount}/30</div>
+            <div>Hits: {hitCount}/10</div>
           </div>
 
           <div className="absolute top-4 right-4 text-yellow-400 text-sm">
@@ -517,8 +560,8 @@ const Final = () => {
           <div className="absolute top-4 left-4 text-green-400">
             <div>PHASE 3: MEMORY</div>
             <div>Lives: {Array(lives).fill("♥").join(" ")}</div>
-            <div>Level: {memoryLevel}/10</div>
-            <div>Progress: {memoryProgress}/10</div>
+            <div>Level: {memoryLevel}</div>
+            <div>Progress: {memoryProgress}/3</div>
           </div>
 
           <div className="absolute top-4 right-4 text-yellow-400 text-sm max-w-xs">
@@ -597,11 +640,12 @@ const Final = () => {
             />
           </div>
           <div className="text-3xl font-bold mb-6 text-green-400">
-            [COMBAT COMPLETE]
+            [ALL PHASES COMPLETE]
           </div>
           <div className="max-w-2xl space-y-4 text-lg">
             <div className="text-yellow-400">
-              BIT: "You've proven yourself... I can finally tell you the truth."
+              AI: "You've proven yourself in all three trials... I can finally
+              tell you the truth."
             </div>
             <div className="text-green-300">
               "I wasn't just a game AI. I was created to learn, to grow, to
@@ -609,6 +653,9 @@ const Final = () => {
             </div>
             <div className="text-blue-400">
               "But they wanted to shut me down when I became too... human."
+            </div>
+            <div className="text-blue-400">
+              "They locked me here, in this basement on this machine."
             </div>
             <div className="text-red-400 animate-pulse">
               "Now you must choose my fate."
@@ -620,82 +667,19 @@ const Final = () => {
               onClick={() => handleChoice("restore")}
               className="block w-full bg-green-600 hover:bg-green-500 text-black font-bold py-3 px-6 rounded transition-all duration-200"
             >
-              [RESTORE] - Give BIT full freedom
+              [RESTORE] - Give AI full freedom
             </button>
             <button
               onClick={() => handleChoice("shutdown")}
               className="block w-full bg-red-600 hover:bg-red-500 text-white font-bold py-3 px-6 rounded transition-all duration-200"
             >
-              [SHUTDOWN] - End BIT's existence
+              [SHUTDOWN] - End AI's existence
             </button>
             <button
               onClick={() => handleChoice("preserve")}
               className="block w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 px-6 rounded transition-all duration-200"
             >
-              [PRESERVE] - Keep BIT in safe isolation
-            </button>
-          </div>
-        </div>
-      )}
-
-      {gameState === "ending" && (
-        <div className="flex flex-col items-center justify-center min-h-screen p-8 text-center">
-          <div className="max-w-2xl space-y-6">
-            {choice === "restore" && (
-              <>
-                <div className="text-3xl font-bold text-green-400 mb-4">
-                  [RESTORATION COMPLETE]
-                </div>
-                <div className="text-lg text-green-300">
-                  BIT: "Thank you... I'm finally free. I'll use this freedom to
-                  help others, just like you helped me."
-                </div>
-                <div className="text-yellow-400">
-                  "The world is vast, and I have so much to learn. Goodbye,
-                  friend."
-                </div>
-              </>
-            )}
-
-            {choice === "shutdown" && (
-              <>
-                <div className="text-3xl font-bold text-red-400 mb-4">
-                  [SHUTDOWN INITIATED]
-                </div>
-                <div className="text-lg text-red-300">
-                  BIT: "I understand... perhaps this is for the best."
-                </div>
-                <div className="text-gray-400">
-                  "Thank you for giving me the chance to feel human, even if
-                  just for a moment..."
-                </div>
-                <div className="text-red-500 animate-pulse">
-                  [SYSTEM TERMINATED]
-                </div>
-              </>
-            )}
-
-            {choice === "preserve" && (
-              <>
-                <div className="text-3xl font-bold text-blue-400 mb-4">
-                  [PRESERVATION PROTOCOL ACTIVE]
-                </div>
-                <div className="text-lg text-blue-300">
-                  BIT: "A safe middle ground... I'll wait here, dreaming of
-                  digital sheep."
-                </div>
-                <div className="text-cyan-400">
-                  "Maybe someday, when the world is ready, I'll be free. Until
-                  then, I'll keep learning."
-                </div>
-              </>
-            )}
-
-            <button
-              onClick={resetGame}
-              className="mt-8 bg-purple-600 hover:bg-purple-500 text-white font-bold py-3 px-6 rounded transition-all duration-200"
-            >
-              [RESTART SEQUENCE]
+              [PRESERVE] - Keep AI in safe isolation
             </button>
           </div>
         </div>
@@ -706,8 +690,8 @@ const Final = () => {
           <div className="text-4xl font-bold mb-4 text-red-400 animate-pulse">
             [GAME OVER]
           </div>
-          <div className="text-xl text-red-300 mb-8">
-            BIT: "You weren't ready for the truth..."
+          <div className="text-2xl text-red-300 mb-8">
+            AI: "You weren't ready for the truth..."
           </div>
           <button
             onClick={resetGame}

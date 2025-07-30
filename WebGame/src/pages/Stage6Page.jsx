@@ -22,14 +22,14 @@ function Stage4Page() {
   const [showPeter, setShowPeter] = useState(false);
   const peterSlides = [
     {
-      title: "Well, well, well...",
+      title: "It's time my buddy",
       description:
-        "This looks like a bit complicated. I think best way to go through is go via all applications!",
+        "I wish you good luck my friend, You need to do this for both of us.",
     },
     {
-      title: "Little bit of help",
+      title: "Even if you lose",
       description:
-        "Don't forget to read hints, know basic terminal commands and try to remember primary school math jokes!",
+        "If you don't succeed on the first try, just keep going! You have unlimited tries, so don't worry about it.",
     },
   ];
 
@@ -37,7 +37,7 @@ function Stage4Page() {
     "Welcome to the final stage! Unlock the lock that in on your screen with the numbers you have been collecting!";
 
   const peterText =
-    "Don't worry, I have written all the number for us, It's 23492344. You can display the numbers by clicking the button on the left!";
+    "Don't worry, I have written all the number for us, It's 822794. You can display the numbers by clicking the button on the left!";
 
   // AI typing effect
   useEffect(() => {
@@ -125,7 +125,7 @@ function Stage4Page() {
               <div className="absolute -bottom-3 -left-3 w-4 h-4 border-b-2 border-l-2 border-yellow-500"></div>
               <div className="absolute -bottom-3 -right-3 w-4 h-4 border-b-2 border-r-2 border-yellow-500"></div>
               <h2 className="text-lg font-bold mb-2">Secret Numbers</h2>
-              <p className="text-4xl font-semibold tracking-widest">243591</p>
+              <p className="text-4xl font-semibold tracking-widest">822794</p>
 
               <button
                 onClick={() => setShowNumbers(false)}
@@ -315,7 +315,7 @@ function Stage4Page() {
             <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-50">
               <button
                 onClick={handleStartTask}
-                className="bg-gradient-to-r from-blue-700 to-yellow-700 hover:from-blue-500 hover:to-yellow-500 border-2 border-yellow-600 text-black font-bold py-3 px-8 font-mono text-lg transition-all duration-200 transform hover:scale-105 relative group shadow-lg"
+                className="text-white bg-gradient-to-r from-blue-400 to-black hover:from-blue-500 hover:to-yellow-500 border-2 border-yellow-600  font-bold py-3 px-8 font-mono text-lg transition-all duration-200 transform hover:scale-105 relative group shadow-lg"
               >
                 {/* Button corner decorations */}
                 <div className="absolute -top-1 -left-1 w-2 h-2 border-t-2 border-l-2 border-blue-900"></div>
@@ -384,7 +384,7 @@ function Stage4Page() {
             <div className="absolute -bottom-1/4 left-1/12 w-full h-full z-50">
               <Peter
                 slides={peterSlides}
-                imageSrc="/peterIdea.png"
+                imageSrc="/peterNote.png"
                 className=" absolute  z-50"
               />
               <button

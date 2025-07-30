@@ -22,6 +22,10 @@ import Stage1PageInternet2 from "./pages/Stage1PageInternet2";
 import HelpPage from "./pages/HelpPage";
 import PrivacyPage from "./pages/PrivacyPage";
 import FeedbackPage from "./pages/FeedbackPage";
+import EndRestore from "./pages/EndRestore";
+import EndShutdown from "./pages/EndShutdown";
+import EndPreserve from "./pages/EndPreserve";
+import Subtitles from "./Components/Subtitles";
 
 function App() {
   return (
@@ -32,6 +36,47 @@ function App() {
           <Route path="/" element={<MainPage />} />
           <Route path="/shipwrecked" element={<ShipwreckedPage />} />
           <Route path="/peter" element={<Peter />} />
+
+          <Route
+            path="/restore"
+            element={
+              <RequireAuth>
+                <XPProtectedRoute requiredStage={6}>
+                  <EndRestore />
+                </XPProtectedRoute>
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/shutdown"
+            element={
+              <RequireAuth>
+                <XPProtectedRoute requiredStage={6}>
+                  <EndShutdown />
+                </XPProtectedRoute>
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/preserve"
+            element={
+              <RequireAuth>
+                <XPProtectedRoute requiredStage={6}>
+                  <EndPreserve />
+                </XPProtectedRoute>
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/subtitles"
+            element={
+              <RequireAuth>
+                <XPProtectedRoute requiredStage={6}>
+                  <Subtitles />
+                </XPProtectedRoute>
+              </RequireAuth>
+            }
+          />
 
           <Route
             path="/login"
