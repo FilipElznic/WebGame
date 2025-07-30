@@ -42,7 +42,7 @@ function Stage3Page() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-yellow-50 via-white to-yellow-100 relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-zinc-500  via-white to-zinc-300 relative overflow-hidden">
       {showDialogue && (
         <div className="">
           <img
@@ -135,8 +135,23 @@ function Stage3Page() {
         </div>
       </div>
       <div className="container mx-auto px-4 py-8 relative w-full h-full z-10">
-        <div className=" backdrop-blur-sm p-8 border-4 border-yellow-400 shadow-2xl  relative overflow-hidden flex h-screen flex-col items-center justify-center">
-          <JumpingGame />
+        <div className="backdrop-blur-sm p-8 border-4 border-yellow-400 shadow-2xl bg-gradient-to-tr from-zinc-500  via-white/65 to-zinc-300  relative overflow-hidden flex h-screen flex-col items-center justify-center">
+          <div className="absolute inset-0  opacity-100 z-5">
+            <div className="grid grid-cols-16 h-full">
+              {Array.from({ length: 16 }).map((_, i) => (
+                <div key={i} className="border-r border-yellow-300"></div>
+              ))}
+            </div>
+            <div className="absolute inset-0 grid grid-rows-12">
+              {Array.from({ length: 12 }).map((_, i) => (
+                <div
+                  key={i}
+                  className="border-b border-yellow-300 w-full"
+                ></div>
+              ))}
+            </div>
+          </div>
+          <JumpingGame className="z-30" />
         </div>
       </div>
 

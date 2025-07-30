@@ -79,7 +79,7 @@ function Stage4Page() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-yellow-50 via-white to-yellow-100 relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-zinc-800 via-zinc-400 to-zinc-800 relative overflow-hidden">
       {showDialogue && (
         <>
           {/* AI Character */}

@@ -243,7 +243,7 @@ function JumpingGame() {
   );
 
   return (
-    <div className="flex flex-col items-center p-4 bg-yellow-900 min-h-screen font-mono">
+    <div className="flex flex-col items-center p-4 bg-yellow-900 min-h-screen font-mono z-30">
       {/* Retro CRT-style Title */}
       <div className="bg-yellow-400 p-2 border-4 border-yellow-600 mb-4">
         <h1 className="text-3xl font-bold text-black mb-2 text-center">

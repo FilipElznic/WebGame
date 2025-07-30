@@ -97,7 +97,7 @@ function Stage4Page() {
       {showDialogue && (
         <>
           {/* Overlay background while dialogue is active */}
-          <div className="fixed inset-0 bg-yellow-100 bg-opacity-80 z-20 pointer-events-none transition-all duration-500 flex items-center justify-center w-full">
+          <div className="fixed inset-0 bg-gradient-to-br from-zinc-800 via-zinc-700 to-zinc-800 bg-opacity-80 z-20 pointer-events-none transition-all duration-500 flex items-center justify-center w-full">
             <div className="container  border-4 border-yellow-500 h-[90vh] relative">
               <div className="absolute -top-3 -left-3 w-5 h-5 border-t-5 border-l-5 border-yellow-600"></div>
               <div className="absolute -top-3 -right-3 w-5 h-5 border-t-5 border-r-5 border-yellow-600"></div>
@@ -345,7 +345,7 @@ function Stage4Page() {
               />
               <button
                 onClick={() => setPeterHide(false)}
-                className="absolute top-1/4 right-1/6 bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-3 rounded shadow-lg z-50"
+                className="absolute top-1/5 right-1/9 bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-3 rounded shadow-lg z-50"
               >
                 X
               </button>

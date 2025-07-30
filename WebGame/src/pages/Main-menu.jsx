@@ -132,7 +132,7 @@ function MainMenu() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-yellow-50 via-white to-yellow-100">
+    <div className="min-h-screen bg-gradient-to-br from-yellow-300 via-white to-zinc-800 to-yellow-100">
       {/* Peter Intro - only show if showPeter is true */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-10 left-10 text-4xl text-yellow-400 opacity-20 animate-pulse font-mono">
@@ -182,7 +182,7 @@ function MainMenu() {
         </div>
       )}
       <div
-        className="w-[8vw] h-[8vw] bg-white/90 border-4 border-yellow-400 absolute left-7 top-1/2 transform -translate-y-1/2 z-30 text-center flex items-center justify-center cursor-pointer hover:bg-yellow-50 transition-colors duration-200"
+        className="w-[8vw] h-[8vw] bg-gradient-to-br from-yellow-300 via-white to-zinc-500 border-4 border-yellow-400 absolute left-7 top-1/2 transform -translate-y-1/2 z-30 text-center flex items-center justify-center cursor-pointer hover:bg-yellow-50 transition-colors duration-200"
         onClick={() => setShowHomework(true)}
       >
         {/* Corner decorations for homework button */}
@@ -191,7 +191,7 @@ function MainMenu() {
         <div className="absolute -bottom-1 -left-1 w-4 h-4 border-b-2 border-l-2 border-yellow-500"></div>
         <div className="absolute -bottom-1 -right-1 w-4 h-4 border-b-2 border-r-2 border-yellow-500"></div>
 
-        <span className="text-black font-mono text-xs font-bold text-center px-2">
+        <span className="text-black  font-mono text-xs font-bold text-center px-2">
           <div className="absolute -top-3 -left-3 w-4 h-4 border-t-4 border-l-4 border-yellow-500"></div>
           <div className="absolute -top-3 -right-3 w-4 h-4 border-t-4 border-r-4 border-yellow-500"></div>
           <div className="absolute -bottom-3 -left-3 w-4 h-4 border-b-4 border-l-4 border-yellow-500"></div>

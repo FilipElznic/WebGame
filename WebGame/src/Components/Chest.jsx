@@ -235,7 +235,7 @@ const PixelChest = () => {
                     <div className="absolute inset-4 border-4 border-yellow-500 bg-gradient-to-br from-yellow-100 to-yellow-200">
                       {/* Screen scanlines overlay */}
                       <div
-                        className="absolute inset-0 opacity-10 pointer-events-none"
+                        className="absolute inset-0 opacity-10 pointer-events-none "
                         style={{
                           background:
                             "repeating-linear-gradient(0deg, transparent, transparent 2px, #000 2px, #000 4px)",
@@ -243,7 +243,7 @@ const PixelChest = () => {
                       ></div>
 
                       {/* Inner screen glow */}
-                      <div className="absolute inset-2 bg-white border-2 border-yellow-300 shadow-inner">
+                      <div className="absolute inset-2 bg-gradient-to-br from-zinc-800 via-zinc-400 to-zinc-800 border-2 border-yellow-300 shadow-inner">
                         <Peter
                           slides={peterSlides2}
                           imageSrc="/peterNote.png"
@@ -255,7 +255,7 @@ const PixelChest = () => {
                     {/* Retro-styled close button */}
                     <button
                       onClick={() => setPeterHide2(false)}
-                      className="absolute -top-4 -right-4 bg-red-600 hover:bg-red-700 text-yellow-100 font-mono font-bold py-2 px-3 border-4 border-red-800 shadow-lg z-50 transition-all duration-200 transform hover:scale-110 relative group"
+                      className="absolute -top-4 -right-4 bg-red-600 hover:bg-red-700 text-yellow-100 font-mono font-bold py-2 px-3 border-4 border-red-800 shadow-lg z-50 transition-all duration-200 transform hover:scale-110 group"
                     >
                       {/* Button corner decorations */}
                       <div className="absolute -top-1 -left-1 w-2 h-2 border-t-2 border-l-2 border-red-400"></div>
