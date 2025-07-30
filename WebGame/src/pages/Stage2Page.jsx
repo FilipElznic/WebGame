@@ -43,7 +43,7 @@ function Stage2Page() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-yellow-50 via-white to-yellow-100 relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-yellow-200 via-white/50 to-yellow-200 relative overflow-hidden">
       {showDialogue && (
         <div className="">
           <img

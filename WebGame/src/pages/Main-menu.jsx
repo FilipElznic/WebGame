@@ -134,7 +134,37 @@ function MainMenu() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-yellow-50 via-white to-yellow-100">
       {/* Peter Intro - only show if showPeter is true */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-10 left-10 text-4xl text-yellow-400 opacity-20 animate-pulse font-mono">
+          ◆
+        </div>
+        <div className="absolute top-20 right-20 text-3xl text-yellow-500 opacity-30 animate-bounce font-mono">
+          ★
+        </div>
+        <div className="absolute bottom-32 left-20 text-4xl text-yellow-400 opacity-25 animate-pulse font-mono">
+          ◇
+        </div>
+        <div className="absolute bottom-20 right-32 text-3xl text-yellow-500 opacity-20 animate-bounce font-mono">
+          ♦
+        </div>
+        <div className="absolute top-1/3 left-1/4 text-2xl text-yellow-400 opacity-20 animate-bounce font-mono">
+          ▲
+        </div>
+        <div className="absolute top-2/3 right-1/4 text-3xl text-yellow-500 opacity-30 animate-pulse font-mono">
+          ●
+        </div>
 
+        {/* Scan lines effect */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div
+            className="h-full w-full opacity-5"
+            style={{
+              background:
+                "repeating-linear-gradient(0deg, transparent, transparent 3px, #fbbf24 3px, #fbbf24 6px)",
+            }}
+          ></div>
+        </div>
+      </div>
       {showPeter && (
         <div className="">
           <Peter
@@ -162,6 +192,10 @@ function MainMenu() {
         <div className="absolute -bottom-1 -right-1 w-4 h-4 border-b-2 border-r-2 border-yellow-500"></div>
 
         <span className="text-black font-mono text-xs font-bold text-center px-2">
+          <div className="absolute -top-3 -left-3 w-4 h-4 border-t-4 border-l-4 border-yellow-500"></div>
+          <div className="absolute -top-3 -right-3 w-4 h-4 border-t-4 border-r-4 border-yellow-500"></div>
+          <div className="absolute -bottom-3 -left-3 w-4 h-4 border-b-4 border-l-4 border-yellow-500"></div>
+          <div className="absolute -bottom-3 -right-3 w-4 h-4 border-b-4 border-r-4 border-yellow-500"></div>
           [STAGES
           <br />
           LIST]
@@ -225,7 +259,37 @@ function MainMenu() {
                 to="/stage6"
                 className="w-[10vw] h-[10vw] bg-yellow-100 border-4 border-yellow-400 absolute left-1/4 top-1/3 transform -translate-x-1/2 -translate-y-1/2 z-20 flex flex-col items-center justify-center cursor-pointer transition-colors duration-200 group"
               />
+              <div className="absolute inset-0 pointer-events-none">
+                <div className="absolute top-10 left-10 text-4xl text-yellow-400 opacity-20 animate-pulse font-mono">
+                  ◆
+                </div>
+                <div className="absolute top-20 right-20 text-3xl text-yellow-500 opacity-30 animate-bounce font-mono">
+                  ★
+                </div>
+                <div className="absolute bottom-32 left-20 text-4xl text-yellow-400 opacity-25 animate-pulse font-mono">
+                  ◇
+                </div>
+                <div className="absolute bottom-20 right-32 text-3xl text-yellow-500 opacity-20 animate-bounce font-mono">
+                  ♦
+                </div>
+                <div className="absolute top-1/3 left-1/4 text-2xl text-yellow-400 opacity-20 animate-bounce font-mono">
+                  ▲
+                </div>
+                <div className="absolute top-2/3 right-1/4 text-3xl text-yellow-500 opacity-30 animate-pulse font-mono">
+                  ●
+                </div>
 
+                {/* Scan lines effect */}
+                <div className="absolute inset-0 pointer-events-none">
+                  <div
+                    className="h-full w-full opacity-5"
+                    style={{
+                      background:
+                        "repeating-linear-gradient(0deg, transparent, transparent 3px, #fbbf24 3px, #fbbf24 6px)",
+                    }}
+                  ></div>
+                </div>
+              </div>
               {/* Central map decoration */}
               <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10">
                 <div className="w-32 h-32 border-4 border-yellow-300 bg-yellow-50 rotate-45 opacity-50"></div>

@@ -361,7 +361,7 @@ const RetroComputerLogin = () => {
   return (
     <div className="min-h-screen font-mono">
       <div className="container mx-auto px-4 py-8 relative w-full h-full z-10">
-        <div className="bg-white/90 backdrop-blur-sm p-8 border-4 border-yellow-400 shadow-2xl  relative overflow-hidden flex h-screen flex-col items-center justify-center">
+        <div className="bg-zinc-100 backdrop-blur-sm p-8 border-4 border-yellow-400 shadow-2xl  relative overflow-hidden flex h-screen flex-col items-center justify-center">
           {/* Retro border decorations */}
           <div className="absolute -top-2 -left-2 w-6 h-6 border-t-4 border-l-4 border-yellow-500"></div>
           <div className="absolute -top-2 -right-2 w-6 h-6 border-t-4 border-r-4 border-yellow-500"></div>
