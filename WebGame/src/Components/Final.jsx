@@ -7,7 +7,7 @@ const Final = () => {
   const navigate = useNavigate();
   const [gameState, setGameState] = useState("code-entry");
   const [code, setCode] = useState("");
-  const [lives, setLives] = useState(200);
+  const [lives, setLives] = useState(3);
   const [dodgeCount, setDodgeCount] = useState(0);
   const [hitCount, setHitCount] = useState(0);
   const [memorySequence, setMemorySequence] = useState([]);

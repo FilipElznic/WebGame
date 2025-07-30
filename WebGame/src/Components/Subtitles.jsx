@@ -95,7 +95,7 @@ const Subtitles = () => {
             <div className="absolute -bottom-1 -right-1 w-3 h-3 border-b-2 border-r-2 border-yellow-600"></div>
             <button
               onClick={() => {
-                window.location.href = "/subtitles";
+                window.location.href = "/";
               }}
               className=" text-white bg-gray-800 px-4 py-2 rounded hover:bg-gray-700 transition border-2 border-gray-600 font-mono text-xl"
             >
