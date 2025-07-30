@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import AILaughtE from "/AILaughtE.png";
 import peterThink from "/peterThink.png";
 import { Link } from "react-router-dom";
-import LetsPlayGame from "../Components/LetsPlayGame";
+import Final from "../Components/Final";
 import Peter from "../Components/Peter";
 
 function Stage4Page() {
@@ -10,6 +10,7 @@ function Stage4Page() {
   const [aiDisplayText, setAiDisplayText] = useState("");
   const [aiIsTypingComplete, setAiIsTypingComplete] = useState(false);
   const [PeterHide, setPeterHide] = useState(true);
+  const [showNumbers, setShowNumbers] = useState(false);
 
   // Peter text states
   const [peterDisplayText, setPeterDisplayText] = useState("");
@@ -36,7 +37,7 @@ function Stage4Page() {
     "Welcome to the final stage! Unlock the lock that in on your screen with the numbers you have been collecting!";
 
   const peterText =
-    "Don't worry, I have written all the number for us, It's 23492344. You can display the numbers by clicking on the button above!";
+    "Don't worry, I have written all the number for us, It's 23492344. You can display the numbers by clicking the button on the left!";
 
   // AI typing effect
   useEffect(() => {
@@ -94,11 +95,54 @@ function Stage4Page() {
 
   return (
     <div className="min-h-screen bg-black relative overflow-hidden ">
+      <div
+        className="w-[8vw] h-[8vw] bg-gradient-to-br from-zinc-700 via-black to-zinc-500 border-4 text-white border-yellow-400 absolute left-7 top-1/2 transform -translate-y-1/2 z-30 text-center flex items-center justify-center cursor-pointer hover:bg-yellow-50 transition-colors duration-200"
+        onClick={() => setShowNumbers(true)}
+      >
+        {/* Corner decorations for homework button */}
+        <div className="absolute -top-1 -left-1 w-4 h-4 border-t-2 border-l-2 border-yellow-500"></div>
+        <div className="absolute -top-1 -right-1 w-4 h-4 border-t-2 border-r-2 border-yellow-500"></div>
+        <div className="absolute -bottom-1 -left-1 w-4 h-4 border-b-2 border-l-2 border-yellow-500"></div>
+        <div className="absolute -bottom-1 -right-1 w-4 h-4 border-b-2 border-r-2 border-yellow-500"></div>
+
+        <span className="  font-mono text-xs font-bold text-center px-2">
+          <div className="absolute -top-3 -left-3 w-4 h-4 border-t-4 border-l-4 border-yellow-500"></div>
+          <div className="absolute -top-3 -right-3 w-4 h-4 border-t-4 border-r-4 border-yellow-500"></div>
+          <div className="absolute -bottom-3 -left-3 w-4 h-4 border-b-4 border-l-4 border-yellow-500"></div>
+          <div className="absolute -bottom-3 -right-3 w-4 h-4 border-b-4 border-r-4 border-yellow-500"></div>
+          [SHOW SECRET
+          <br />
+          NUMBERS]
+        </span>
+      </div>
+      {showNumbers && (
+        <>
+          <div className="absolute inset-0 flex items-center justify-center z-30 ">
+            <div className="bg-black text-white p-4 rounded shadow-lg text-center relative border-4 border-yellow-500 max-w-md w-full">
+              {/* Corner decorations for homework button */}
+              <div className="absolute -top-3 -left-3 w-4 h-4 border-t-2 border-l-2 border-yellow-500"></div>
+              <div className="absolute -top-3 -right-3 w-4 h-4 border-t-2 border-r-2 border-yellow-500"></div>
+              <div className="absolute -bottom-3 -left-3 w-4 h-4 border-b-2 border-l-2 border-yellow-500"></div>
+              <div className="absolute -bottom-3 -right-3 w-4 h-4 border-b-2 border-r-2 border-yellow-500"></div>
+              <h2 className="text-lg font-bold mb-2">Secret Numbers</h2>
+              <p className="text-4xl font-semibold tracking-widest">243591</p>
+
+              <button
+                onClick={() => setShowNumbers(false)}
+                className="absolute top-0 right-0 bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-3 rounded shadow-lg z-50"
+              >
+                X
+              </button>
+            </div>
+          </div>
+        </>
+      )}
+
       {showDialogue && (
         <>
           {/* Overlay background while dialogue is active */}
           <div className="fixed inset-0 bg-black bg-opacity-80 z-20 pointer-events-none transition-all duration-500 flex items-center justify-center w-full">
-            <div className="container  border-4 border-yellow-500 h-[90vh] relative">
+            <div className="container  border-4 border-yellow-500 h-[100vh] relative">
               <div className="absolute -top-3 -left-3 w-5 h-5 border-t-5 border-l-5 border-yellow-600"></div>
               <div className="absolute -top-3 -right-3 w-5 h-5 border-t-5 border-r-5 border-yellow-600"></div>
               <div className="absolute -bottom-3 -left-3 w-5 h-5 border-b-5 border-l-5 border-yellow-600"></div>
@@ -271,13 +315,13 @@ function Stage4Page() {
             <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-50">
               <button
                 onClick={handleStartTask}
-                className="bg-gradient-to-r from-blue-400 to-yellow-400 hover:from-blue-500 hover:to-yellow-500 border-2 border-yellow-600 text-black font-bold py-3 px-8 font-mono text-lg transition-all duration-200 transform hover:scale-105 relative group shadow-lg"
+                className="bg-gradient-to-r from-blue-700 to-yellow-700 hover:from-blue-500 hover:to-yellow-500 border-2 border-yellow-600 text-black font-bold py-3 px-8 font-mono text-lg transition-all duration-200 transform hover:scale-105 relative group shadow-lg"
               >
                 {/* Button corner decorations */}
-                <div className="absolute -top-1 -left-1 w-2 h-2 border-t-2 border-l-2 border-blue-700"></div>
-                <div className="absolute -top-1 -right-1 w-2 h-2 border-t-2 border-r-2 border-yellow-700"></div>
-                <div className="absolute -bottom-1 -left-1 w-2 h-2 border-b-2 border-l-2 border-blue-700"></div>
-                <div className="absolute -bottom-1 -right-1 w-2 h-2 border-b-2 border-r-2 border-yellow-700"></div>
+                <div className="absolute -top-1 -left-1 w-2 h-2 border-t-2 border-l-2 border-blue-900"></div>
+                <div className="absolute -top-1 -right-1 w-2 h-2 border-t-2 border-r-2 border-yellow-800"></div>
+                <div className="absolute -bottom-1 -left-1 w-2 h-2 border-b-2 border-l-2 border-blue-900"></div>
+                <div className="absolute -bottom-1 -right-1 w-2 h-2 border-b-2 border-r-2 border-yellow-800"></div>
                 [START CHALLENGE] ▶
               </button>
             </div>
@@ -304,7 +348,7 @@ function Stage4Page() {
         </div>
       </div>
       <div className="container mx-auto  relative w-full h-full z-10">
-        <div className=" backdrop-blur-sm rounded-xl h-[90vh] border-4 border-zinc-400 shadow-2xl  relative overflow-hidden flex  flex-col items-center justify-center">
+        <div className=" backdrop-blur-sm rounded-xl h-[95vh] border-4 border-zinc-400 shadow-2xl  relative overflow-hidden flex  flex-col items-center justify-center">
           <div className="absolute inset-0 pointer-events-none">
             <div className="absolute top-10 left-10 text-4xl text-yellow-400 opacity-20 animate-pulse font-mono">
               ◆
@@ -352,7 +396,7 @@ function Stage4Page() {
             </div>
           )}
 
-          <LetsPlayGame />
+          <Final />
         </div>
       </div>
 

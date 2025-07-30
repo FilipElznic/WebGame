@@ -182,7 +182,7 @@ function MainMenu() {
         </div>
       )}
       <div
-        className="w-[8vw] h-[8vw] bg-gradient-to-br from-yellow-300 via-white to-zinc-500 border-4 border-yellow-400 absolute left-7 top-1/2 transform -translate-y-1/2 z-30 text-center flex items-center justify-center cursor-pointer hover:bg-yellow-50 transition-colors duration-200"
+        className="w-[8vw] h-[8vw] bg-gradient-to-b from-yellow-300 via-white to-zinc-500 border-4 border-yellow-400 absolute left-7 top-1/2 transform -translate-y-1/2 z-30 text-center flex items-center justify-center cursor-pointer hover:bg-yellow-50 transition-colors duration-200"
         onClick={() => setShowHomework(true)}
       >
         {/* Corner decorations for homework button */}

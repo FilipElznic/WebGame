@@ -86,7 +86,7 @@ function GamePage() {
               onClick={() => {
                 window.location.href = "/";
               }}
-              className="bg-yellow-400 px-4 py-2 border-2 border-gray-800 font-mono text-gray-800 text-sm font-bold uppercase tracking-wider"
+              className="bg-yellow-400 px-4 py-2 cursor-pointer border-2 border-gray-800 font-mono text-gray-800 text-sm font-bold uppercase tracking-wider"
             >
               PETER'S_QUEST_V1.0
             </div>
