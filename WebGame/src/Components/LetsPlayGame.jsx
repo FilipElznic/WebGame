@@ -93,7 +93,7 @@ const DesktopMinigames = () => {
     onClose,
     children,
     width = "w-96",
-    height = "h-80",
+    height = "h-150",
     windowType = "default",
   }) => {
     const position = getWindowPosition(windowType);
@@ -831,7 +831,7 @@ const DesktopMinigames = () => {
 
   // Mini-Game 1: Enhanced Junk File Reboot
   const JunkFileGame = () => (
-    <div className="space-y-4">
+    <div className="space-y-4 ">
       <h3 className="font-bold text-lg text-green-300 font-mono">
         📁 RECYCLE_BIN.SYS
       </h3>
@@ -840,7 +840,7 @@ const DesktopMinigames = () => {
           ? "Items ready for permanent deletion..."
           : "Click items to examine contents"}
       </div>
-      <div className="grid grid-cols-2 gap-2">
+      <div className="grid grid-cols-2 gap-2 ">
         <div className="p-2 bg-gray-900 border border-green-500 cursor-pointer hover:bg-gray-800">
           <div className="text-xs text-green-400">🐕 doge_meme.exe</div>
           <div className="text-xs text-gray-500">Such delete, much wow</div>
@@ -1447,6 +1447,7 @@ const DesktopMinigames = () => {
           title="[RECYCLE_BIN.EXE]"
           onClose={() => closeWindow("trash")}
           windowType="trash"
+          className="!h-[1000px] w-full"
         >
           <JunkFileGame />
         </WindowFrame>
