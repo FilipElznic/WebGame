@@ -1,4 +1,4 @@
-# WebGame
+# PETER'S GUEST
 
 > A retro-inspired web game built with React, Vite, and Tailwind CSS. Features XP progression, protected stages, mini-games, and a unique retro UI.
 
