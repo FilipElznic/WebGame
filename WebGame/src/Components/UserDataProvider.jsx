@@ -158,6 +158,7 @@ export const UserDataProvider = ({ children }) => {
     canAccessStage,
     isTaskCompleted,
     userXP: userData?.xp || 0,
+    IntroSkipped: userData?.IntroSkipped || false,
   };
 
   return (

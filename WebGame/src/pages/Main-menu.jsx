@@ -1,13 +1,19 @@
 import React from "react";
-import Navbar from "../Components/Navbar";
 import HomeWork from "../Components/HomeWork";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useUserData } from "../Components/UserDataProvider";
 import Peter from "../Components/Peter";
+import { functionIntroSkipped } from "../firebase/auth";
 
 function MainMenu() {
-  const { canAccessStage, userXP, getRequiredXPForStage } = useUserData();
+  const {
+    canAccessStage,
+    userXP,
+    getRequiredXPForStage,
+    IntroSkipped,
+    userData,
+  } = useUserData();
   const [showHomework, setShowHomework] = useState(false);
   const [showPeter, setShowPeter] = useState(true);
   const [homeworkList, setHomeworkList] = useState([
@@ -73,6 +79,9 @@ function MainMenu() {
 
   const hidePeter = () => {
     setShowPeter(false);
+
+    functionIntroSkipped(userData?.uid);
+    console.log("Intro skipped, Peter will not show again.");
   };
 
   // Component for individual stage links with lock functionality
@@ -165,7 +174,7 @@ function MainMenu() {
           ></div>
         </div>
       </div>
-      {showPeter && (
+      {showPeter && !IntroSkipped && (
         <div className="">
           <Peter
             slides={peterSlides}

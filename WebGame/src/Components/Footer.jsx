@@ -82,7 +82,7 @@ function Footer() {
               <ul className="space-y-2 font-mono text-sm">
                 <li>
                   <a
-                    href="#home"
+                    href="/home"
                     className="text-gray-700 hover:text-yellow-600 transition-colors duration-200 block hover:bg-yellow-100 px-2 py-1 rounded"
                   >
                     <span className="text-yellow-600 font-bold">&gt;</span>{" "}
@@ -91,7 +91,7 @@ function Footer() {
                 </li>
                 <li>
                   <a
-                    href="#about"
+                    href="/about"
                     className="text-gray-700 hover:text-yellow-600 transition-colors duration-200 block hover:bg-yellow-100 px-2 py-1 rounded"
                   >
                     <span className="text-yellow-600 font-bold">&gt;</span>{" "}
@@ -100,16 +100,16 @@ function Footer() {
                 </li>
                 <li>
                   <a
-                    href="#games"
+                    href="/game"
                     className="text-gray-700 hover:text-yellow-600 transition-colors duration-200 block hover:bg-yellow-100 px-2 py-1 rounded"
                   >
                     <span className="text-yellow-600 font-bold">&gt;</span>{" "}
-                    GAMES.EXE
+                    GAME.EXE
                   </a>
                 </li>
                 <li>
                   <a
-                    href="#contact"
+                    href="/contact"
                     className="text-gray-700 hover:text-yellow-600 transition-colors duration-200 block hover:bg-yellow-100 px-2 py-1 rounded"
                   >
                     <span className="text-yellow-600 font-bold">&gt;</span>{" "}

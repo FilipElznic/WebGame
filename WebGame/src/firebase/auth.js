@@ -31,6 +31,7 @@ export const registerUser = async (email, password, displayName) => {
       xp: 0, // Start with 0 XP
       level: 1, // Start at level 1
       createdAt: new Date().toISOString(),
+      IntroSkipped: false, // Default to not skipped
     });
 
     return { user, error: null };
@@ -157,5 +158,19 @@ export const addXPIfEligible = async (userId, xpToAdd = 100) => {
       newXP: 0,
       error: error.message || "Failed to add XP",
     };
+  }
+};
+
+export const functionIntroSkipped = async (userId) => {
+  try {
+    if (!userId) {
+      return { success: false, error: "User ID is required" };
+    }
+    const userDocRef = doc(db, "users", userId);
+    await updateDoc(userDocRef, { IntroSkipped: true });
+    console.log("Intro skipped, Peter will not show againgggggg.");
+    return { success: true };
+  } catch (error) {
+    return { success: false, error: error.message };
   }
 };

@@ -26,6 +26,8 @@ import EndRestore from "./pages/EndRestore";
 import EndShutdown from "./pages/EndShutdown";
 import EndPreserve from "./pages/EndPreserve";
 import Subtitles from "./Components/Subtitles";
+import AboutPage from "./pages/AboutPage";
+import ContactPage from "./pages/ContactPage";
 
 function App() {
   return (
@@ -36,6 +38,7 @@ function App() {
           <Route path="/" element={<MainPage />} />
           <Route path="/shipwrecked" element={<ShipwreckedPage />} />
           <Route path="/peter" element={<Peter />} />
+          <Route path="/about" element={<AboutPage />} />
 
           <Route
             path="/restore"
@@ -194,6 +197,7 @@ function App() {
           />
 
           <Route path="/start" element={<GameStartPage />} />
+          <Route path="/contact" element={<ContactPage />} />
           <Route path="/help" element={<HelpPage />} />
           <Route path="/privacy" element={<PrivacyPage />} />
           <Route path="/feedback" element={<FeedbackPage />} />
