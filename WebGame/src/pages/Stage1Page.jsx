@@ -25,7 +25,7 @@ function Stage1Page() {
 
   const challengeFullText =
     'Search for "Super secret password for devs virtual computer";';
-  const correctAnswer = "Super secret password for devs virtual computer";
+  const correctAnswer = "super secret password for devs virtual computer";
 
   const fullText =
     "Welcome to Stage 1! I've got some tasks for you. First search for info I need. Let's see how well you can help me out!";
@@ -118,7 +118,7 @@ function Stage1Page() {
     if (!userInput.trim()) return;
 
     if (
-      userInput.includes(correctAnswer) &&
+      userInput.toLowerCase().includes(correctAnswer) &&
       userInput.toLowerCase().includes("please")
     ) {
       setChallengeCompleted(true);

@@ -32,7 +32,7 @@ const RetroComputerLogin = () => {
   // Function to handle XP award when snake score exceeds 500
   const handleSnakeXPAward = async (newScore) => {
     // Check if score is above 500 and XP hasn't been awarded yet
-    if (newScore >= 10) {
+    if (newScore >= 500) {
       try {
         if (userXP === 100) {
           const result = await addXPForTask(100); // Add 100 XP
@@ -528,7 +528,7 @@ const RetroComputerLogin = () => {
                                   ? "PLAYING"
                                   : "PAUSED"}
                               </div>
-                              {score >= 20 && xpAwarded && (
+                              {score >= 500 && xpAwarded && (
                                 <div className="text-green-400 font-bold animate-pulse">
                                   🎉 XP EARNED!
                                 </div>

@@ -34,7 +34,7 @@ function Stage4Page() {
   ];
 
   const aiText =
-    "Welcome to the final stage! Unlock the lock that in on your screen with the numbers you have been collecting!";
+    "Welcome to the final stage! Unlock the lock that is in on your screen with the numbers you have been collecting!";
 
   const peterText =
     "Don't worry, I have written all the number for us, It's 822794. You can display the numbers by clicking the button on the left!";

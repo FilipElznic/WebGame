@@ -46,7 +46,7 @@ const Final = () => {
   };
 
   const CORRECT_CODE = "822794";
-  const GRID_SIZE = 10;
+  const GRID_SIZE = 100;
 
   // Memory game mechanics
   const generateSequence = useCallback((level) => {
@@ -104,7 +104,8 @@ const Final = () => {
         const newLevel = memoryLevel + 1;
         const newProgress = memoryProgress + 1;
 
-        if (newProgress >= 10) {
+        if (newProgress >= 5) {
+          // Changed from 10 to 5 to match UI
           setGameState("finale");
           return;
         }
@@ -149,6 +150,26 @@ const Final = () => {
       speed: 1 + Math.random() * 4,
     };
     setProjectiles((prev) => [...prev, newProjectile]);
+  }, []);
+
+  // Function to check if player dodged a projectile
+  const checkDodge = useCallback((oldPos, newPos, projectiles) => {
+    let dodged = false;
+    projectiles.forEach((p) => {
+      // Check if projectile was close to old position but not close to new position
+      const oldDistance = Math.sqrt(
+        Math.pow(p.x - oldPos.x, 2) + Math.pow(p.y - oldPos.y, 2)
+      );
+      const newDistance = Math.sqrt(
+        Math.pow(p.x - newPos.x, 2) + Math.pow(p.y - newPos.y, 2)
+      );
+
+      // If projectile was close (danger zone) but player moved away, count as dodge
+      if (oldDistance < 20 && newDistance > oldDistance + 2) {
+        dodged = true;
+      }
+    });
+    return dodged;
   }, []);
 
   // Shoot game mechanics
@@ -226,17 +247,36 @@ const Final = () => {
   useEffect(() => {
     if (gameState === "shoot-game") {
       const interval = setInterval(() => {
-        setTargets((prev) =>
-          prev.filter((t) => {
+        setTargets((prev) => {
+          const remaining = [];
+          let lostLife = false;
+
+          prev.forEach((t) => {
             if (t.type === "bomb" && Date.now() - t.spawnTime > 3000) {
-              return false;
+              // Bomb expired naturally - no penalty
+              return;
             }
             if (t.type === "target" && Date.now() - t.spawnTime > 2000) {
-              return false;
+              // Green target expired without being clicked - lose life
+              lostLife = true;
+              return;
             }
-            return true;
-          })
-        );
+            remaining.push(t);
+          });
+
+          // If any green targets expired, lose a life
+          if (lostLife) {
+            setLives((l) => {
+              const newLives = l - 1;
+              if (newLives <= 0) {
+                setGameState("game-over");
+              }
+              return newLives;
+            });
+          }
+
+          return remaining;
+        });
 
         if (Math.random() < 0.25 && targets.length < 6) {
           spawnTarget();
@@ -270,25 +310,28 @@ const Final = () => {
           if (e.key === "ArrowDown" || e.key === "s")
             newY = Math.min(88, prev.y + speed);
 
-          return { x: newX, y: newY };
-        });
+          const newPos = { x: newX, y: newY };
 
-        if (projectiles.length > 0) {
-          setDodgeCount((prev) => {
-            const newCount = prev + 1;
-            if (newCount >= 30) {
-              setGameState("phase-transition");
-              setTimeout(() => setGameState("shoot-game"), 2000);
-            }
-            return newCount;
-          });
-        }
+          // Check if this movement was actually a dodge
+          if (checkDodge(prev, newPos, projectiles)) {
+            setDodgeCount((prevCount) => {
+              const newCount = prevCount + 1;
+              if (newCount >= 50) {
+                setGameState("phase-transition");
+                setTimeout(() => setGameState("shoot-game"), 2000);
+              }
+              return newCount;
+            });
+          }
+
+          return newPos;
+        });
       }
     };
 
     window.addEventListener("keydown", handleKeyPress);
     return () => window.removeEventListener("keydown", handleKeyPress);
-  }, [gameState, projectiles.length]);
+  }, [gameState, projectiles, checkDodge]);
 
   const handleCodeSubmit = () => {
     if (code === CORRECT_CODE) {
@@ -316,9 +359,8 @@ const Final = () => {
       setHitCount((prev) => {
         const newCount = prev + 1;
         if (newCount >= 30) {
-          // Reduced from 30 for testing - THIS WAS THE KEY CHANGE
-          setGameState("phase-transition-2"); // Go to phase 2 transition instead of finale
-          setTimeout(() => setGameState("memory-game"), 2000); // Then to memory game
+          setGameState("phase-transition-2");
+          setTimeout(() => setGameState("memory-game"), 2000);
         }
         return newCount;
       });
@@ -449,6 +491,10 @@ const Final = () => {
 
           <div className="absolute top-4 right-4 text-yellow-400 text-sm">
             Use WASD or Arrow Keys
+            <br />
+            <span className="text-green-300 text-xs">
+              Move away from projectiles to dodge!
+            </span>
           </div>
 
           <div className="relative w-full h-full border-2 border-green-500">
@@ -508,7 +554,7 @@ const Final = () => {
             Click Targets (Green) - Avoid Bombs (Red)
             <br />
             <span className="text-red-300 text-xs">
-              Green targets disappear quickly!
+              Green targets disappear quickly! Miss them = -1 life
             </span>
           </div>
 
