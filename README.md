@@ -1,24 +1,23 @@
-# WebGame - React + Vite + Tailwind CSS
+# WebGame
 
-A retro-inspired web game built with React, Vite, and Tailwind CSS. The game features XP progression, protected stages, interactive mini-games, and a unique retro UI.
+> A retro-inspired web game built with React, Vite, and Tailwind CSS. Features XP progression, protected stages, mini-games, and a unique retro UI.
+
+---
 
 ## 🚀 Features
 
-- **React 18** - Latest React with functional components and hooks
-- **Vite** - Fast build tool and development server
-- **Tailwind CSS** - Utility-first CSS framework for rapid UI development
-- **JavaScript** - Modern ES6+ syntax
-- **Hot Module Replacement (HMR)** - Instant updates during development
-- **Firebase Authentication & XP** - User login, XP logic, and progression
-- **Protected Routes** - XP-based stage access and authentication
-- **Retro UI** - Pixel borders, scan lines, floating symbols
-- **Responsive Design** - Desktop and mobile support
-- **Mini-games** - Interactive games (e.g., Snake)
-- **Custom Navigation & Feedback** - Navbar, footer, like buttons, etc.
+- **XP Progression & Levels**: Earn XP, level up, and unlock new stages
+- **Protected Routes**: XP-based access and authentication
+- **Mini-games**: Play interactive games (Snake, Jumping, Chest, etc.)
+- **Retro & Futuristic UI**: Pixel borders, scan lines, neon effects, floating symbols
+- **Design**: Works only on desktop
+- **Custom Navigation**: Navbar, footer, popups, feedback forms
+- **Firebase Integration**: Auth, XP, and user data stored in Firestore
+- **User Data & Progress**: Save progress, feedback, and more
 
 ## 🛠️ Tech Stack
 
-- [React](https://reactjs.org/) - UI library
+- [React](https://reactjs.org/) (18+) - UI library
 - [Vite](https://vitejs.dev/) - Build tool
 - [Tailwind CSS](https://tailwindcss.com/) - CSS framework
 - [Firebase](https://firebase.google.com/) - Auth & XP logic
@@ -80,9 +79,17 @@ WebGame/
 └── vercel.json         # Vercel SPA routing config
 ```
 
+## 🎮 Main Pages & Components
+
+- **Home, About, Contact, Privacy, Help**: Core navigation
+- **GamePage, GameStartPage, Stage1-6Page**: Main game stages
+- **Mini-games**: Chest, JumpingGame, LetsPlayGame, Shipwrecked, etc.
+- **Testify**: Manage and track AI tests
+- **FeedbackPage**: Submit feedback, see themed backgrounds
+
 ## 🎨 Styling
 
-This project uses Tailwind CSS for styling. All styles are applied using utility classes directly in the JSX components.
+Tailwind CSS is used for all styling. Utility classes are applied directly in JSX.
 
 ### Example Usage
 
