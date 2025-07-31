@@ -90,6 +90,7 @@ const routeConfig = {
     { path: "/help", component: HelpPage },
     { path: "/privacy", component: PrivacyPage },
     { path: "/feedback", component: FeedbackPage },
+    { path: "/subtitles", component: Subtitles },
   ],
 
   // Auth protected routes (login/register)
@@ -125,7 +126,6 @@ const routeConfig = {
     { path: "/restore", component: EndRestore, requiredStage: 6 },
     { path: "/shutdown", component: EndShutdown, requiredStage: 6 },
     { path: "/preserve", component: EndPreserve, requiredStage: 6 },
-    { path: "/subtitles", component: Subtitles, requiredStage: 6 },
   ],
 };
 

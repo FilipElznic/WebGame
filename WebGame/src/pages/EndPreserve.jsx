@@ -9,7 +9,7 @@ const EndingPreserve = () => {
   const subtitles = [
     { text: "ENDING: THE KEEPER", delay: 1000, duration: 3000 },
     {
-      text: "You choose to leave BIT right where he is...",
+      text: "You choose to leave AI right where he is...",
       delay: 500,
       duration: 4000,
     },
@@ -57,7 +57,7 @@ const EndingPreserve = () => {
     { text: "The house may change hands.", delay: 800, duration: 3000 },
     { text: "People may forget.", delay: 800, duration: 3000 },
     { text: "But deep in the basement...", delay: 1000, duration: 3500 },
-    { text: "BIT still waits.", delay: 1200, duration: 3000 },
+    { text: "AI still waits.", delay: 1200, duration: 3000 },
     { text: "Not because he has to.", delay: 1000, duration: 3500 },
     { text: "But because someone once chose", delay: 1000, duration: 3000 },
     { text: "not to forget him.", delay: 800, duration: 4000 },

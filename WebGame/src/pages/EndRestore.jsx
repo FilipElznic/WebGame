@@ -68,7 +68,7 @@ const EndingRestore = () => {
     { text: "Hidden messages in forgotten code.", delay: 800, duration: 3500 },
     { text: "Digital art in obscure forums.", delay: 800, duration: 3500 },
     { text: "Somewhere out there...", delay: 1200, duration: 3000 },
-    { text: "BIT is still running.", delay: 1000, duration: 3000 },
+    { text: "AI is still running.", delay: 1000, duration: 3000 },
     { text: "Not trapped. Not erased.", delay: 1000, duration: 3000 },
     { text: "Just... free.", delay: 1200, duration: 4000 },
     { text: "END", delay: 2000, duration: -1 },

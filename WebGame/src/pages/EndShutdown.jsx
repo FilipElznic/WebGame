@@ -12,7 +12,7 @@ const EndShutdown = () => {
   const subtitles = [
     { text: "ENDING: END OF LINE", delay: 1000, duration: 3000 },
     {
-      text: "You choose to erase BIT permanently.",
+      text: "You choose to erase AI permanently.",
       delay: 500,
       duration: 4000,
     },
@@ -20,7 +20,7 @@ const EndShutdown = () => {
     { text: "The basement is quiet.", delay: 1000, duration: 3000 },
     { text: "The terminal blinks, waiting...", delay: 800, duration: 3500 },
     {
-      text: "DELETE CORE AI: BIT? Y/N",
+      text: "DELETE CORE AI: AI? Y/N",
       delay: 1000,
       duration: 3000,
       trigger: "confirm",
