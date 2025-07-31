@@ -64,12 +64,12 @@ function ContactPage() {
             {/* Header */}
             <div className="text-center mb-8">
               <div className="bg-yellow-400 px-4 py-2 border-2 border-gray-800 font-mono text-gray-800 text-sm font-bold uppercase tracking-wider inline-block mb-4">
-                ABOUT SECTION
+                Contact SECTION
               </div>
               <h2 className="text-5xl font-mono font-bold text-gray-800 relative">
                 <span className="relative z-10">
                   <span className="text-yellow-600 bg-yellow-100 px-4 py-2 border-2 border-yellow-400 inline-block transform rotate-1 shadow-lg">
-                    &gt; ABOUT_US.EXE
+                    &gt; CONTACT_ME.EXE
                   </span>
                 </span>
                 <div className="absolute inset-0 bg-yellow-200 opacity-20 blur-sm"></div>
@@ -84,30 +84,28 @@ function ContactPage() {
                 <div className="absolute top-2 right-2 w-3 h-3 bg-yellow-400 rotate-45"></div>
 
                 <h3 className="text-xl font-mono font-bold text-gray-800 mb-4 bg-yellow-200 px-3 py-1 border border-yellow-500 inline-block">
-                  [TEAM_DATA]
+                  [CONTACT_DATA]
                 </h3>
 
                 <div className="font-mono text-gray-800 space-y-3">
                   <p className="leading-relaxed">
-                    <span className="text-yellow-600 font-bold">&gt;</span> I am
-                    a solo full-stack developer with a passion for creating
-                    engaging web experiences. My goal is to bring retro gaming
-                    vibes to modern web technologies.
+                    <span className="text-yellow-600 font-bold">&gt;</span> The
+                    best way to reach me is via feedback form on this page, that
+                    can be found below in footer or in Navbar section.
                   </p>
 
                   {/* Team stats */}
                   <div className="bg-white border border-yellow-300 p-3 mt-4">
                     <p className="text-sm mb-1">
-                      <span className="text-yellow-600">&gt;</span> DEVELOPERS:
-                      ACTIVE
+                      <span className="text-yellow-600">&gt;</span> FEEDBACK
+                      FORM: ACTIVE
                     </p>
                     <p className="text-sm mb-1">
-                      <span className="text-yellow-600">&gt;</span>{" "}
-                      GAMES_CREATED: 1
+                      <span className="text-yellow-600">&gt;</span> SOCIALS: 3
                     </p>
                     <p className="text-sm">
                       <span className="text-yellow-600">&gt;</span> STATUS:
-                      FINISHED
+                      UNKNOWN
                     </p>
                   </div>
                 </div>
@@ -119,63 +117,32 @@ function ContactPage() {
                 <div className="absolute top-2 right-2 w-3 h-3 bg-yellow-400 rotate-45"></div>
 
                 <h3 className="text-xl font-mono font-bold text-gray-800 mb-4 bg-yellow-200 px-3 py-1 border border-yellow-500 inline-block">
-                  [MISSION_LOG]
+                  [SOCIALS]
                 </h3>
 
                 <div className="font-mono text-gray-800 space-y-3">
                   <p className="leading-relaxed">
-                    <span className="text-yellow-600 font-bold">&gt;</span> My
-                    mission is to create a unique gaming experience that
-                    combines retro aesthetics with modern gameplay mechanics.
+                    <span className="text-yellow-600 font-bold">&gt;</span> If
+                    you still wanna reach me, by a different way. You can use my
+                    socials, which are also found in the footer at the bottom of
+                    most of the pages
                   </p>
 
                   {/* Mission objectives */}
                   <div className="bg-white border border-yellow-300 p-3 mt-4">
                     <p className="text-sm mb-1">
-                      <span className="text-green-600">✓</span> Make it fun to
-                      play
+                      <span className="text-green-600">✓</span> LinkedIn
                     </p>
                     <p className="text-sm mb-1">
-                      <span className="text-green-600">✓</span> Retro aesthetic
-                      design
+                      <span className="text-green-600">✓</span> Instagram
                     </p>
                     <p className="text-sm mb-1">
-                      <span className="text-green-600">✓</span> Cross-platform
-                      compatibility
+                      <span className="text-green-600">✓</span> Github
                     </p>
                     <p className="text-sm">
-                      <span className="text-yellow-600">⧗</span> Continuous
-                      updates
+                      <span className="text-yellow-600">⧗</span> Twitter
                     </p>
                   </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Technologies Section */}
-            <div className="mt-8 bg-yellow-50 border-2 border-yellow-400 p-6">
-              <h3 className="text-xl font-mono font-bold text-gray-800 mb-4 bg-yellow-200 px-3 py-1 border border-yellow-500 inline-block">
-                [TECH_STACK]
-              </h3>
-
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 font-mono text-sm">
-                <div className="bg-white border border-yellow-300 p-3 text-center hover:bg-yellow-100 transition-colors duration-200">
-                  <div className="text-yellow-600 font-bold mb-1">REACT.JS</div>
-                  <div className="text-gray-600">Frontend</div>
-                </div>
-                <div className="bg-white border border-yellow-300 p-3 text-center hover:bg-yellow-100 transition-colors duration-200">
-                  <div className="text-yellow-600 font-bold mb-1">VITE</div>
-                  <div className="text-gray-600">Build Tool</div>
-                </div>
-                <div className="bg-white border border-yellow-300 p-3 text-center hover:bg-yellow-100 transition-colors duration-200">
-                  <div className="text-yellow-600 font-bold mb-1">TAILWIND</div>
-                  <div className="text-gray-600">Styling</div>
-                </div>
-                <div className="bg-white border border-yellow-300 p-3 text-center hover:bg-yellow-100 transition-colors duration-200">
-                  <div className="text-yellow-600 font-bold mb-1">
-                    JAVASCRIPT
-                  </div>
-                  <div className="text-gray-600">Language</div>
                 </div>
               </div>
             </div>
@@ -183,10 +150,10 @@ function ContactPage() {
             <div className="mt-8 text-center">
               <div className="bg-yellow-400 hover:bg-yellow-500 border-4 border-gray-800 px-8 py-4 font-mono font-bold text-gray-800 text-lg uppercase tracking-wider transition-all duration-200 hover:scale-105 cursor-pointer relative overflow-hidden inline-block">
                 <span
-                  onClick={() => (window.location.href = "/game")}
+                  onClick={() => (window.location.href = "/")}
                   className="relative z-10"
                 >
-                  [ JOIN THE ADVENTURE ]
+                  [ RETURN TO HOME ]
                 </span>
                 <div className="absolute inset-0 bg-white opacity-0 hover:opacity-20 transition-opacity duration-200"></div>
               </div>

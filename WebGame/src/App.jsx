@@ -1,207 +1,188 @@
 import { Routes, Route } from "react-router-dom";
-import MainPage from "./pages/MainPage";
-import ShipwreckedPage from "./pages/ShipwreckedPage";
-import LoginPage from "./pages/LoginPage";
-import RegisterPage from "./pages/RegisterPage";
-import GamePage from "./pages/GamePage";
-import GameStartPage from "./pages/GameStartPage";
+import { lazy, Suspense } from "react";
 import { AuthProtectedRoute, RequireAuth } from "./Components/ProtectedRoute";
 import { XPProtectedRoute } from "./Components/XPProtectedRoute";
 import { UserDataProvider } from "./Components/UserDataProvider";
-import MainMenu from "./pages/Main-menu";
 import PCOnlyPopup from "./Components/PCOnlyPopup";
-import Stage1Page from "./pages/Stage1Page";
-import Stage2Page from "./pages/Stage2Page";
-import Stage3Page from "./pages/Stage3Page";
-import Stage4Page from "./pages/Stage4Page";
-import Stage5Page from "./pages/Stage5Page";
-import Stage6Page from "./pages/Stage6Page";
-import Stage1PageInternet from "./pages/Stage1PageInternet";
-import Peter from "./Components/Peter";
-import Stage1PageInternet2 from "./pages/Stage1PageInternet2";
-import HelpPage from "./pages/HelpPage";
-import PrivacyPage from "./pages/PrivacyPage";
-import FeedbackPage from "./pages/FeedbackPage";
-import EndRestore from "./pages/EndRestore";
-import EndShutdown from "./pages/EndShutdown";
-import EndPreserve from "./pages/EndPreserve";
-import Subtitles from "./Components/Subtitles";
-import AboutPage from "./pages/AboutPage";
-import ContactPage from "./pages/ContactPage";
+
+// Lazy load components for better performance
+const MainPage = lazy(() => import("./pages/MainPage"));
+const ShipwreckedPage = lazy(() => import("./pages/ShipwreckedPage"));
+const LoginPage = lazy(() => import("./pages/LoginPage"));
+const RegisterPage = lazy(() => import("./pages/RegisterPage"));
+const GamePage = lazy(() => import("./pages/GamePage"));
+const GameStartPage = lazy(() => import("./pages/GameStartPage"));
+const MainMenu = lazy(() => import("./pages/Main-menu"));
+const Peter = lazy(() => import("./Components/Peter"));
+const HelpPage = lazy(() => import("./pages/HelpPage"));
+const PrivacyPage = lazy(() => import("./pages/PrivacyPage"));
+const FeedbackPage = lazy(() => import("./pages/FeedbackPage"));
+const AboutPage = lazy(() => import("./pages/AboutPage"));
+const ContactPage = lazy(() => import("./pages/ContactPage"));
+const Subtitles = lazy(() => import("./Components/Subtitles"));
+
+// Stage components
+const Stage1Page = lazy(() => import("./pages/Stage1Page"));
+const Stage2Page = lazy(() => import("./pages/Stage2Page"));
+const Stage3Page = lazy(() => import("./pages/Stage3Page"));
+const Stage4Page = lazy(() => import("./pages/Stage4Page"));
+const Stage5Page = lazy(() => import("./pages/Stage5Page"));
+const Stage6Page = lazy(() => import("./pages/Stage6Page"));
+const Stage1PageInternet = lazy(() => import("./pages/Stage1PageInternet"));
+const Stage1PageInternet2 = lazy(() => import("./pages/Stage1PageInternet2"));
+
+// End game components
+const EndRestore = lazy(() => import("./pages/EndRestore"));
+const EndShutdown = lazy(() => import("./pages/EndShutdown"));
+const EndPreserve = lazy(() => import("./pages/EndPreserve"));
+
+// Loading component
+const LoadingSpinner = () => (
+  <div className="flex items-center justify-center min-h-screen bg-yellow-50">
+    <div className="relative h-12 w-12">
+      <div className="pixel-spinner block h-full w-full animate-pixel-spin bg-yellow-400" />
+    </div>
+
+    <style jsx>{`
+      .pixel-spinner {
+        box-sizing: border-box;
+        border: 4px solid black;
+        border-top: 4px solid yellow;
+        border-right: 4px solid yellow;
+        border-radius: 0; /* no rounding = pixel style */
+      }
+
+      @keyframes pixel-spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      .animate-pixel-spin {
+        animation: pixel-spin 1s linear infinite;
+      }
+    `}</style>
+  </div>
+);
+
+// Wrapper component for protected routes with XP requirement
+const ProtectedStageRoute = ({ children, requiredStage }) => (
+  <RequireAuth>
+    <XPProtectedRoute requiredStage={requiredStage}>
+      {children}
+    </XPProtectedRoute>
+  </RequireAuth>
+);
+
+// Route configuration for better maintainability
+const routeConfig = {
+  // Public routes
+  public: [
+    { path: "/", component: MainPage },
+    { path: "/shipwrecked", component: ShipwreckedPage },
+    { path: "/peter", component: Peter },
+    { path: "/about", component: AboutPage },
+    { path: "/start", component: GameStartPage },
+    { path: "/contact", component: ContactPage },
+    { path: "/help", component: HelpPage },
+    { path: "/privacy", component: PrivacyPage },
+    { path: "/feedback", component: FeedbackPage },
+  ],
+
+  // Auth protected routes (login/register)
+  authProtected: [
+    { path: "/login", component: LoginPage },
+    { path: "/register", component: RegisterPage },
+  ],
+
+  // Simple auth required routes
+  authRequired: [
+    { path: "/game", component: GamePage },
+    { path: "/main-menu", component: MainMenu },
+  ],
+
+  // Stage-based protected routes
+  stageProtected: [
+    { path: "/stage1", component: Stage1Page, requiredStage: 1 },
+    {
+      path: "/stage1internet",
+      component: Stage1PageInternet,
+      requiredStage: 1,
+    },
+    {
+      path: "/stage1internet2",
+      component: Stage1PageInternet2,
+      requiredStage: 1,
+    },
+    { path: "/stage2", component: Stage2Page, requiredStage: 2 },
+    { path: "/stage3", component: Stage3Page, requiredStage: 3 },
+    { path: "/stage4", component: Stage4Page, requiredStage: 4 },
+    { path: "/stage5", component: Stage5Page, requiredStage: 5 },
+    { path: "/stage6", component: Stage6Page, requiredStage: 6 },
+    { path: "/restore", component: EndRestore, requiredStage: 6 },
+    { path: "/shutdown", component: EndShutdown, requiredStage: 6 },
+    { path: "/preserve", component: EndPreserve, requiredStage: 6 },
+    { path: "/subtitles", component: Subtitles, requiredStage: 6 },
+  ],
+};
 
 function App() {
   return (
     <>
       <PCOnlyPopup />
       <UserDataProvider>
-        <Routes>
-          <Route path="/" element={<MainPage />} />
-          <Route path="/shipwrecked" element={<ShipwreckedPage />} />
-          <Route path="/peter" element={<Peter />} />
-          <Route path="/about" element={<AboutPage />} />
+        <Suspense fallback={<LoadingSpinner />}>
+          <Routes>
+            {/* Public routes */}
+            {routeConfig.public.map(({ path, component: Component }) => (
+              <Route key={path} path={path} element={<Component />} />
+            ))}
 
-          <Route
-            path="/restore"
-            element={
-              <RequireAuth>
-                <XPProtectedRoute requiredStage={6}>
-                  <EndRestore />
-                </XPProtectedRoute>
-              </RequireAuth>
-            }
-          />
-          <Route
-            path="/shutdown"
-            element={
-              <RequireAuth>
-                <XPProtectedRoute requiredStage={6}>
-                  <EndShutdown />
-                </XPProtectedRoute>
-              </RequireAuth>
-            }
-          />
-          <Route
-            path="/preserve"
-            element={
-              <RequireAuth>
-                <XPProtectedRoute requiredStage={6}>
-                  <EndPreserve />
-                </XPProtectedRoute>
-              </RequireAuth>
-            }
-          />
-          <Route
-            path="/subtitles"
-            element={
-              <RequireAuth>
-                <XPProtectedRoute requiredStage={6}>
-                  <Subtitles />
-                </XPProtectedRoute>
-              </RequireAuth>
-            }
-          />
+            {/* Auth protected routes (login/register) */}
+            {routeConfig.authProtected.map(({ path, component: Component }) => (
+              <Route
+                key={path}
+                path={path}
+                element={
+                  <AuthProtectedRoute>
+                    <Component />
+                  </AuthProtectedRoute>
+                }
+              />
+            ))}
 
-          <Route
-            path="/login"
-            element={
-              <AuthProtectedRoute>
-                <LoginPage />
-              </AuthProtectedRoute>
-            }
-          />
+            {/* Simple auth required routes */}
+            {routeConfig.authRequired.map(({ path, component: Component }) => (
+              <Route
+                key={path}
+                path={path}
+                element={
+                  <RequireAuth>
+                    <Component />
+                  </RequireAuth>
+                }
+              />
+            ))}
 
-          <Route
-            path="/stage1"
-            element={
-              <RequireAuth>
-                <XPProtectedRoute requiredStage={1}>
-                  <Stage1Page />
-                </XPProtectedRoute>
-              </RequireAuth>
-            }
-          />
-          <Route
-            path="/stage1internet"
-            element={
-              <RequireAuth>
-                <XPProtectedRoute requiredStage={1}>
-                  <Stage1PageInternet />
-                </XPProtectedRoute>
-              </RequireAuth>
-            }
-          />
-          <Route
-            path="/stage1internet2"
-            element={
-              <RequireAuth>
-                <XPProtectedRoute requiredStage={1}>
-                  <Stage1PageInternet2 />
-                </XPProtectedRoute>
-              </RequireAuth>
-            }
-          />
-          <Route
-            path="/stage2"
-            element={
-              <RequireAuth>
-                <XPProtectedRoute requiredStage={2}>
-                  <Stage2Page />
-                </XPProtectedRoute>
-              </RequireAuth>
-            }
-          />
-          <Route
-            path="/stage3"
-            element={
-              <RequireAuth>
-                <XPProtectedRoute requiredStage={3}>
-                  <Stage3Page />
-                </XPProtectedRoute>
-              </RequireAuth>
-            }
-          />
-          <Route
-            path="/stage4"
-            element={
-              <RequireAuth>
-                <XPProtectedRoute requiredStage={4}>
-                  <Stage4Page />
-                </XPProtectedRoute>
-              </RequireAuth>
-            }
-          />
-          <Route
-            path="/stage5"
-            element={
-              <RequireAuth>
-                <XPProtectedRoute requiredStage={5}>
-                  <Stage5Page />
-                </XPProtectedRoute>
-              </RequireAuth>
-            }
-          />
-          <Route
-            path="/stage6"
-            element={
-              <RequireAuth>
-                <XPProtectedRoute requiredStage={6}>
-                  <Stage6Page />
-                </XPProtectedRoute>
-              </RequireAuth>
-            }
-          />
-
-          <Route
-            path="/register"
-            element={
-              <AuthProtectedRoute>
-                <RegisterPage />
-              </AuthProtectedRoute>
-            }
-          />
-          <Route
-            path="/game"
-            element={
-              <RequireAuth>
-                <GamePage />
-              </RequireAuth>
-            }
-          />
-          <Route
-            path="/main-menu"
-            element={
-              <RequireAuth>
-                <MainMenu />
-              </RequireAuth>
-            }
-          />
-
-          <Route path="/start" element={<GameStartPage />} />
-          <Route path="/contact" element={<ContactPage />} />
-          <Route path="/help" element={<HelpPage />} />
-          <Route path="/privacy" element={<PrivacyPage />} />
-          <Route path="/feedback" element={<FeedbackPage />} />
-        </Routes>
+            {/* Stage-based protected routes */}
+            {routeConfig.stageProtected.map(
+              ({ path, component: Component, requiredStage }) => (
+                <Route
+                  key={path}
+                  path={path}
+                  element={
+                    <ProtectedStageRoute requiredStage={requiredStage}>
+                      <Component />
+                    </ProtectedStageRoute>
+                  }
+                />
+              )
+            )}
+          </Routes>
+        </Suspense>
       </UserDataProvider>
     </>
   );
