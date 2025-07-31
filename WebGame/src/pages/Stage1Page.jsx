@@ -253,7 +253,7 @@ function Stage1Page() {
                       type="text"
                       value={userInput}
                       onChange={handleInputChange}
-                      placeholder="Super secret password for moms computer"
+                      placeholder="Super secret password for devs computer"
                       className="flex-1 text-lg outline-none bg-transparent text-gray-700 placeholder-gray-400"
                     />
 
