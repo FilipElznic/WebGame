@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import AILaughtE from "/AILaughtE.png";
+import AIStraight from "/AIStraight.png";
 import { Link } from "react-router-dom";
 
 import JumpingGame from "../Components/JumpingGame";
@@ -46,7 +46,7 @@ function Stage3Page() {
       {showDialogue && (
         <div className="">
           <img
-            src={AILaughtE}
+            src={AIStraight}
             alt="Peter's Idea"
             className="absolute max-w-2xl bottom-0 z-40"
           />

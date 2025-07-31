@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import AILaughtE from "/AILaughtE.png";
+import AIAngry from "/AIAngry.png";
 import peterThink from "/peterThink.png";
 import { Link } from "react-router-dom";
 import LetsPlayGame from "../Components/LetsPlayGame";
@@ -153,7 +153,7 @@ function Stage4Page() {
           </div>
           <div className=" z-40">
             <img
-              src={AILaughtE}
+              src={AIAngry}
               alt="AI"
               className="absolute max-w-2xl bottom-0 z-40  "
             />
