@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 
 import AIStraight from "/AIStraight.png";
-import { Link } from "react-router-dom";
 
 import JumpingGame from "../Components/JumpingGame";
 
@@ -116,11 +115,14 @@ function Stage3Page() {
         </div>
       )}
 
-      <Link to="/main-menu" className="z-50 relative">
+      <button
+        onClick={() => (window.location.href = "/main-menu")}
+        className="z-50 relative"
+      >
         <span className="bg-yellow-500 hover:bg-yellow-500 border-2 border-yellow-600 text-black font-bold py-2 px-6 font-mono text-sm transition-all duration-200 transform hover:scale-105 relative group">
           HOME ▶
         </span>
-      </Link>
+      </button>
 
       <div className="absolute inset-0 opacity-10">
         <div className="grid grid-cols-16 h-full">

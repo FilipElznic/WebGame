@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import peterHappy from "/peterHappy.png";
 import { useUserData } from "../Components/UserDataProvider";
-import { Link } from "react-router-dom";
 
 function Stage1PageInternet2() {
   const [displayText, setDisplayText] = useState("");
@@ -97,11 +96,14 @@ function Stage1PageInternet2() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-yellow-50 via-white to-yellow-100 relative overflow-hidden">
-      <Link to="/main-menu" className="z-50 relative">
+      <button
+        onClick={() => (window.location.href = "/main-menu")}
+        className="z-50 relative"
+      >
         <span className="bg-yellow-500 hover:bg-yellow-500 border-2 border-yellow-600 text-black font-bold py-2 px-6 font-mono text-sm transition-all duration-200 transform hover:scale-105 relative group">
           TASK MAP ▶
         </span>
-      </Link>
+      </button>
       {isPeterVisible && (
         <div className="z-50">
           <img
@@ -181,12 +183,12 @@ function Stage1PageInternet2() {
           className={` backdrop-blur-sm p-8 border-4 border-yellow-400 shadow-2xl h-[90vh] relative overflow-hidden flex flex-col items-center justify-center`}
         >
           <div className="w-full h-[5vh] border-2 relative">
-            <Link
-              to="/main-menu"
+            <button
+              onClick={() => (window.location.href = "/main-menu")}
               className="absolute right-0 top-0 bg-red-500 h-full w-11 text-center text-white text-xl items-center flex justify-center"
             >
               X
-            </Link>
+            </button>
             <div
               className={`"absolute left-3-0 top-0 bg-white border-2 border-gray-300  h-full w-32 rounded-t-xl rounded-lg text-center  text-xl items-center flex justify-center`}
             >
