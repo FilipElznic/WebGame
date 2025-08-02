@@ -102,7 +102,7 @@ function AboutPage() {
                     </p>
                     <p className="text-sm mb-1">
                       <span className="text-yellow-600">&gt;</span>{" "}
-                      GAMES_CREATED: 1
+                      GAMES_CREATED: 2
                     </p>
                     <p className="text-sm">
                       <span className="text-yellow-600">&gt;</span> STATUS:

@@ -40,31 +40,18 @@ const EndPreserve = lazy(() => import("./pages/EndPreserve"));
 const LoadingSpinner = () => (
   <div className="flex items-center justify-center min-h-screen bg-yellow-50">
     <div className="relative h-12 w-12">
-      <div className="pixel-spinner block h-full w-full animate-pixel-spin bg-yellow-400" />
+      <div
+        className="block h-full w-full bg-yellow-400"
+        style={{
+          boxSizing: "border-box",
+          border: "4px solid black",
+          borderTop: "4px solid yellow",
+          borderRight: "4px solid yellow",
+          borderRadius: "0",
+          animation: "spin 1s linear infinite",
+        }}
+      />
     </div>
-
-    <style jsx>{`
-      .pixel-spinner {
-        box-sizing: border-box;
-        border: 4px solid black;
-        border-top: 4px solid yellow;
-        border-right: 4px solid yellow;
-        border-radius: 0; /* no rounding = pixel style */
-      }
-
-      @keyframes pixel-spin {
-        0% {
-          transform: rotate(0deg);
-        }
-        100% {
-          transform: rotate(360deg);
-        }
-      }
-
-      .animate-pixel-spin {
-        animation: pixel-spin 1s linear infinite;
-      }
-    `}</style>
   </div>
 );
 
