@@ -51,7 +51,7 @@ function LandingPage() {
               <br />
               Your mission today is simple: Help Peter with his little problem!
               To continue this epic adventure, you'll need to sign up to make
-              your progress saveable. Please create an account or login to your
+              your progress savable. Please create an account or log in to your
               existing one.
             </p>
 
@@ -63,7 +63,7 @@ function LandingPage() {
               </p>
               <p className="text-green-600">
                 <span className="text-yellow-600">&gt;</span> DIFFICULTY:
-                TO_DO_HERO
+                TODO_HERO
               </p>
             </div>
           </div>

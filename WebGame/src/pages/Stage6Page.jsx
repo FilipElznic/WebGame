@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import Final from "../Components/Final";
 import Peter from "../Components/Peter";
 
-function Stage4Page() {
+function Stage6Page() {
   // AI text states
   const [aiDisplayText, setAiDisplayText] = useState("");
   const [aiIsTypingComplete, setAiIsTypingComplete] = useState(false);
@@ -34,10 +34,10 @@ function Stage4Page() {
   ];
 
   const aiText =
-    "Welcome to the final stage! Unlock the lock that is in on your screen with the numbers you have been collecting!";
+    "Welcome to the final stage! Unlock the lock that is on your screen with the numbers you have been collecting!";
 
   const peterText =
-    "Don't worry, I have written all the number for us, It's 822794. You can display the numbers by clicking the button on the left!";
+    "Don't worry, I have written all the numbers for us. It's 822794. You can display the numbers by clicking the button on the left!";
 
   // AI typing effect
   useEffect(() => {
@@ -95,6 +95,7 @@ function Stage4Page() {
 
   return (
     <div className="min-h-screen bg-black relative overflow-hidden ">
+      w
       <div
         className="w-[8vw] h-[8vw] bg-gradient-to-br from-zinc-700 via-black to-zinc-500 border-4 text-white border-yellow-400 absolute left-7 top-1/2 transform -translate-y-1/2 z-30 text-center flex items-center justify-center cursor-pointer hover:bg-yellow-50 transition-colors duration-200"
         onClick={() => setShowNumbers(true)}
@@ -137,7 +138,6 @@ function Stage4Page() {
           </div>
         </>
       )}
-
       {showDialogue && (
         <>
           {/* Overlay background while dialogue is active */}
@@ -328,13 +328,11 @@ function Stage4Page() {
           )}
         </>
       )}
-
       <Link to="/main-menu" className="z-50 relative">
         <span className="bg-yellow-500 hover:bg-yellow-500 border-2 border-yellow-600 text-black font-bold py-2 px-6 font-mono text-sm transition-all duration-200 transform hover:scale-105 relative group">
           HOME ▶
         </span>
       </Link>
-
       <div className="absolute inset-0 opacity-10">
         <div className="grid grid-cols-16 h-full">
           {Array.from({ length: 16 }).map((_, i) => (
@@ -399,7 +397,6 @@ function Stage4Page() {
           <Final />
         </div>
       </div>
-
       {/* Floating retro symbols */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-10 left-10 text-4xl text-yellow-400 opacity-20 animate-pulse font-mono">
@@ -436,4 +433,4 @@ function Stage4Page() {
   );
 }
 
-export default Stage4Page;
+export default Stage6Page;

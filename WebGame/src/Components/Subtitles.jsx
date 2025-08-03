@@ -97,9 +97,9 @@ const Subtitles = () => {
               onClick={() => {
                 window.location.href = "/";
               }}
-              className=" text-white bg-gray-800 px-4 py-2 rounded hover:bg-gray-700 transition border-2 border-gray-600 font-mono text-xl"
+              className=" text-white cursor-pointer bg-gray-800 px-4 py-2 rounded hover:bg-gray-700 transition border-2 border-gray-600 font-mono text-xl"
             >
-              Subtitles
+              HOME
             </button>
           </div>
         </div>

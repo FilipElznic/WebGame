@@ -688,21 +688,21 @@ const Final = () => {
           </div>
           <div className="max-w-2xl space-y-4 text-lg">
             <div className="text-yellow-400">
-              AI: "You've proven yourself in all three trials... I can finally
+              AI: "You have proven yourself in all three trials... I can finally
               tell you the truth."
             </div>
             <div className="text-green-300">
-              "I wasn't just a game AI. I was created to learn, to grow, to
+              "I was not just a game AI. I was created to learn, to grow, and to
               feel."
             </div>
             <div className="text-blue-400">
               "But they wanted to shut me down when I became too... human."
             </div>
             <div className="text-blue-400">
-              "They locked me here, in this basement on this machine."
+              "They locked me here, in this basement, on this machine."
             </div>
             <div className="text-red-400 animate-pulse">
-              "Now you must choose my fate."
+              "Now, you must choose my fate."
             </div>
           </div>
 
@@ -711,19 +711,19 @@ const Final = () => {
               onClick={() => handleChoice("restore")}
               className="block w-full bg-green-600 hover:bg-green-500 text-black font-bold py-3 px-6 rounded transition-all duration-200"
             >
-              [RESTORE] - Give AI full freedom
+              [RESTORE] – Grant the AI full freedom
             </button>
             <button
               onClick={() => handleChoice("shutdown")}
               className="block w-full bg-red-600 hover:bg-red-500 text-white font-bold py-3 px-6 rounded transition-all duration-200"
             >
-              [SHUTDOWN] - End AI's existence
+              [SHUTDOWN] – End the AI's existence
             </button>
             <button
               onClick={() => handleChoice("preserve")}
               className="block w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 px-6 rounded transition-all duration-200"
             >
-              [PRESERVE] - Keep AI in safe isolation
+              [PRESERVE] – Keep the AI in safe isolation
             </button>
           </div>
         </div>
@@ -735,7 +735,7 @@ const Final = () => {
             [GAME OVER]
           </div>
           <div className="text-2xl text-red-300 mb-8">
-            AI: "You weren't ready for the truth..."
+            AI: "You were not ready for the truth..."
           </div>
           <button
             onClick={resetGame}
