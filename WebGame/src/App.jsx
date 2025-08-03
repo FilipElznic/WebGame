@@ -36,6 +36,9 @@ const EndRestore = lazy(() => import("./pages/EndRestore"));
 const EndShutdown = lazy(() => import("./pages/EndShutdown"));
 const EndPreserve = lazy(() => import("./pages/EndPreserve"));
 
+// 404 Not Found component
+const NotFoundPage = lazy(() => import("./pages/NotFoundPage"));
+
 // Loading component
 const LoadingSpinner = () => (
   <div className="flex items-center justify-center min-h-screen bg-yellow-50">
@@ -168,6 +171,9 @@ function App() {
                 />
               )
             )}
+
+            {/* 404 Catch-all route - must be last */}
+            <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </Suspense>
       </UserDataProvider>
