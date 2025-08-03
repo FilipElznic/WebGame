@@ -60,8 +60,7 @@ function LandingPage() {
                 Your mission today is simple: Help Peter with his little
                 problem! To continue this epic adventure, you'll need to sign up
                 to make your progress savable. Please create an account or log
-                in to your existing one. This is part 2 of the game, so if you
-                haven't played part 1, you can find it here
+                in to your existing one.
               </p>
 
               {/* System status */}
