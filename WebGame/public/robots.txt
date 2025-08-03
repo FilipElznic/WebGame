@@ -1,0 +1,28 @@
+User-agent: *
+Allow: /
+
+# Allow crawling of all public pages
+Allow: /game
+Allow: /about
+Allow: /contact
+Allow: /help
+Allow: /privacy
+Allow: /feedback
+Allow: /testify
+
+# Disallow private/protected game stages for non-authenticated users
+Disallow: /stage1
+Disallow: /stage2
+Disallow: /stage3
+Disallow: /stage4
+Disallow: /stage5
+Disallow: /stage6
+Disallow: /main-menu
+Disallow: /game-start
+Disallow: /shipwrecked
+
+# Sitemap location
+Sitemap: https://web-game-ruby.vercel.app/sitemap.xml
+
+# Crawl delay (optional)
+Crawl-delay: 1

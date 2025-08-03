@@ -1,9 +1,16 @@
 import Footer from "../Components/Footer";
 import Navbar from "../Components/Navbar";
+import SEOHead from "../Components/SEOHead";
 
 function AboutPage() {
   return (
     <>
+      <SEOHead
+        title="About Peter's Quest - Retro Adventure Game Story"
+        description="Learn about Peter's Quest, a retro-inspired web adventure game. Discover the story behind the game, features, and the technology used to create this unique gaming experience."
+        keywords="about Peter's Quest, game story, retro game development, web game technology, React game, Tailwind CSS, Firebase gaming"
+        url="https://web-game-ruby.vercel.app/about"
+      />
       <Navbar />
       <div className="min-h-screen relative py-16" id="about">
         <div className="absolute inset-0 opacity-10">

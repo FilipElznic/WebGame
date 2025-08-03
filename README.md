@@ -1,6 +1,6 @@
 # PETER'S GUEST
 
-> A retro-inspired web game built with React, Vite, and Tailwind CSS. Features XP progression, protected stages, mini-games, and a unique retro UI.
+> A retro-inspired web game built with React, Vite, and Tailwind CSS. Features XP progression, protected stages, mini-games, and a unique retro user interface.
 
 ---
 
@@ -10,17 +10,17 @@
 - **Protected Routes**: XP-based access and authentication
 - **Mini-games**: Play interactive games (Snake, Jumping, Chest, etc.)
 - **Retro & Futuristic UI**: Pixel borders, scan lines, neon effects, floating symbols
-- **Design**: Works only on desktop
+- **Design**: Designed for desktop use only
 - **Custom Navigation**: Navbar, footer, popups, feedback forms
-- **Firebase Integration**: Auth, XP, and user data stored in Firestore
-- **User Data & Progress**: Save progress, feedback, and more
+- **Firebase Integration**: Authentication, XP, and user data stored in Firestore
+- **User Data & Progress**: Saves progress, feedback, and more
 
 ## 🛠️ Tech Stack
 
 - [React](https://reactjs.org/) (18+) - UI library
 - [Vite](https://vitejs.dev/) - Build tool
 - [Tailwind CSS](https://tailwindcss.com/) - CSS framework
-- [Firebase](https://firebase.google.com/) - Auth & XP logic
+- [Firebase](https://firebase.google.com/) - Authentication and XP logic
 - [React Router](https://reactrouter.com/) - Routing
 - [ESLint](https://eslint.org/) - Code linting
 
@@ -66,7 +66,7 @@ WebGame/
 ├── src/             # Source code
 │   ├── assets/      # Images, icons, etc.
 │   ├── Components/  # Reusable React components
-│   ├── pages/       # Page components (routes)
+│   ├── pages/       # Page components (routing)
 │   ├── firebase/    # Firebase config and auth
 │   ├── App.jsx      # Main App component
 │   ├── main.jsx     # Entry point
@@ -82,14 +82,14 @@ WebGame/
 ## 🎮 Main Pages & Components
 
 - **Home, About, Contact, Privacy, Help**: Core navigation
-- **GamePage, GameStartPage, Stage1-6Page**: Main game stages
+- **GamePage, GameStartPage, Stage1Page–Stage6Page**: Main game stages
 - **Mini-games**: Chest, JumpingGame, LetsPlayGame, Shipwrecked, etc.
 - **Testify**: Manage and track AI tests
-- **FeedbackPage**: Submit feedback, see themed backgrounds
+- **FeedbackPage**: Submit feedback and view themed backgrounds
 
 ## 🎨 Styling
 
-Tailwind CSS is used for all styling. Utility classes are applied directly in JSX.
+Tailwind CSS is used for all styling. Utility classes are applied directly within JSX.
 
 ### Example Usage
 
@@ -101,7 +101,7 @@ Tailwind CSS is used for all styling. Utility classes are applied directly in JS
 
 ## 🌐 Deployment
 
-This project is ready for deployment on [Vercel](https://web-game-ruby.vercel.app/). The included `vercel.json` ensures correct SPA routing for all client-side routes.
+This project is ready for deployment on [Vercel](https://web-game-ruby.vercel.app/). The included `vercel.json` ensures correct single-page application routing for all client-side routes.
 
 <div align="center">
   <a href="https://shipwrecked.hackclub.com/?t=ghrm" target="_blank">
@@ -111,4 +111,4 @@ This project is ready for deployment on [Vercel](https://web-game-ruby.vercel.ap
   </a>
 </div>
 
-Made with ❤️ by Filip Elznic
+Made with ❤️ by Filip Elznic.

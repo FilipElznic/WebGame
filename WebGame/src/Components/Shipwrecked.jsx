@@ -38,7 +38,7 @@ function Shipwrecked() {
                 onClick={() => {
                   window.location.href = "/game";
                 }}
-                className="bg-yellow-400 border-2 border-yellow-700 text-black font-bold px-6 py-2 rounded shadow-lg hover:bg-yellow-300 transition-all retro-btn"
+                className="bg-yellow-400 cursor-pointer z-50 border-2 border-yellow-700 text-black font-bold px-6 py-2 rounded shadow-lg hover:bg-yellow-300 transition-all retro-btn"
               >
                 START GAME
               </button>
