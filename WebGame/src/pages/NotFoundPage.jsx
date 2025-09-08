@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import peterThink from "/peterThink.png";
 
 function NotFoundPage() {
   return (
@@ -115,32 +114,11 @@ function NotFoundPage() {
             {/* Peter character */}
             <div className="flex justify-center mb-6">
               <div className="relative">
-                <img
-                  src={peterThink}
-                  alt="Peter thinking about the missing page"
-                  className="w-32 h-32 md:w-48 md:h-48 border-2 border-yellow-400"
-                  style={{
-                    filter: "drop-shadow(0 0 20px rgba(255, 255, 0, 0.3))",
-                  }}
-                />
                 <div className="absolute -top-1 -left-1 w-4 h-4 border-t-2 border-l-2 border-yellow-500"></div>
                 <div className="absolute -top-1 -right-1 w-4 h-4 border-t-2 border-r-2 border-yellow-500"></div>
                 <div className="absolute -bottom-1 -left-1 w-4 h-4 border-b-2 border-l-2 border-yellow-500"></div>
                 <div className="absolute -bottom-1 -right-1 w-4 h-4 border-b-2 border-r-2 border-yellow-500"></div>
               </div>
-            </div>
-
-            {/* Peter's message */}
-            <div className="bg-yellow-50 border-2 border-yellow-400 p-4 mb-6 relative">
-              <div className="absolute top-2 left-2 w-3 h-3 bg-yellow-400 rotate-45"></div>
-              <div className="absolute top-2 right-2 w-3 h-3 bg-yellow-400 rotate-45"></div>
-
-              <p className="text-black font-mono text-center">
-                <span className="text-yellow-700 font-bold">Peter says:</span>
-                <br />
-                "Oops! Looks like this page got lost in the system. Don't worry,
-                I can help you get back on track!"
-              </p>
             </div>
 
             {/* Navigation options */}

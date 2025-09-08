@@ -1,0 +1,185 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // === HELPER FUNCTIONS ===
+    
+    // Check if user is authenticated
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    // Check if user is the owner of the document
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+    
+    // Check if document data has required fields
+    function hasRequiredUserFields() {
+      return request.resource.data.keys().hasAll(['uid', 'email', 'displayName', 'xp', 'level', 'createdAt', 'IntroSkipped'])
+        && request.resource.data.uid is string
+        && request.resource.data.email is string
+        && request.resource.data.displayName is string
+        && request.resource.data.xp is number
+        && request.resource.data.level is number
+        && request.resource.data.createdAt is string
+        && request.resource.data.IntroSkipped is bool;
+    }
+    
+    // Validate XP is not negative and reasonable
+    function isValidXP() {
+      return request.resource.data.xp >= 0 && request.resource.data.xp <= 10000;
+    }
+    
+    // Validate level is reasonable
+    function isValidLevel() {
+      return request.resource.data.level >= 1 && request.resource.data.level <= 100;
+    }
+    
+    // Check if XP update is valid (only increasing, reasonable increment)
+    function isValidXPUpdate() {
+      return !('xp' in request.resource.data) || 
+             (request.resource.data.xp >= resource.data.xp && 
+              request.resource.data.xp <= resource.data.xp + 1000);
+    }
+    
+    // === USER DOCUMENTS RULES ===
+    
+    match /users/{userId} {
+      // Allow read access only to the document owner
+      allow read: if isOwner(userId);
+      
+      // Allow create only if:
+      // 1. User is authenticated and creating their own document
+      // 2. Document has all required fields with correct types
+      // 3. XP and level values are valid
+      // 4. UID matches the authenticated user
+      allow create: if isOwner(userId) 
+        && hasRequiredUserFields()
+        && isValidXP()
+        && isValidLevel()
+        && request.resource.data.uid == request.auth.uid;
+      
+      // Allow update only if:
+      // 1. User is the owner
+      // 2. Core identity fields (uid, email) are not changed
+      // 3. XP updates are valid (only increases, reasonable amounts)
+      // 4. XP and level values remain valid
+      allow update: if isOwner(userId)
+        && request.resource.data.uid == resource.data.uid
+        && request.resource.data.email == resource.data.email
+        && isValidXPUpdate()
+        && isValidXP()
+        && isValidLevel();
+      
+      // Deny delete operations for security
+      allow delete: if false;
+    }
+    
+    // === FEEDBACK COLLECTION (if you decide to store feedback in Firestore) ===
+    
+    match /feedback/{feedbackId} {
+      // Allow authenticated users to create feedback
+      allow create: if isAuthenticated()
+        && request.resource.data.keys().hasAll(['userId', 'email', 'feedbackType', 'message', 'createdAt'])
+        && request.resource.data.userId == request.auth.uid
+        && request.resource.data.feedbackType in ['general', 'bug', 'feature', 'compliment', 'complaint']
+        && request.resource.data.message is string
+        && request.resource.data.message.size() > 0
+        && request.resource.data.message.size() <= 5000;
+      
+      // Only allow admins to read feedback (you'd need to implement admin roles)
+      allow read: if false; // Set to admin check when implemented
+      
+      // Deny updates and deletes
+      allow update, delete: if false;
+    }
+    
+    // === GAME PROGRESS COLLECTION (if you want to track detailed progress) ===
+    
+    match /gameProgress/{userId} {
+      // Allow users to read and write their own progress
+      allow read, write: if isOwner(userId);
+      
+      // Structure validation for game progress
+      allow create, update: if isOwner(userId)
+        && request.resource.data.userId == request.auth.uid
+        && (!('stagesCompleted' in request.resource.data) || request.resource.data.stagesCompleted is list)
+        && (!('currentStage' in request.resource.data) || (request.resource.data.currentStage is number && request.resource.data.currentStage >= 1 && request.resource.data.currentStage <= 6))
+        && (!('tasksCompleted' in request.resource.data) || request.resource.data.tasksCompleted is list);
+    }
+    
+    // === AI TESTS COLLECTION (if you implement the Testify feature with Firestore) ===
+    
+    match /aiTests/{testId} {
+      // Allow authenticated users to create tests
+      allow create: if isAuthenticated()
+        && request.resource.data.keys().hasAll(['createdBy', 'testName', 'testDescription', 'createdAt'])
+        && request.resource.data.createdBy == request.auth.uid
+        && request.resource.data.testName is string
+        && request.resource.data.testName.size() > 0
+        && request.resource.data.testName.size() <= 100
+        && request.resource.data.testDescription is string
+        && request.resource.data.testDescription.size() <= 1000;
+      
+      // Allow users to read all tests (public)
+      allow read: if isAuthenticated();
+      
+      // Allow only test creator to update their tests
+      allow update: if isAuthenticated() 
+        && resource.data.createdBy == request.auth.uid
+        && request.resource.data.createdBy == resource.data.createdBy; // Prevent ownership transfer
+      
+      // Allow only test creator to delete their tests
+      allow delete: if isAuthenticated() 
+        && resource.data.createdBy == request.auth.uid;
+    }
+    
+    // === ADMIN COLLECTION (for future admin functionality) ===
+    
+    match /admins/{userId} {
+      // Only allow reading admin status
+      allow read: if isOwner(userId);
+      
+      // Deny all writes (admins should be set server-side)
+      allow write: if false;
+    }
+    
+    // === SYSTEM LOGS COLLECTION (for tracking important events) ===
+    
+    match /systemLogs/{logId} {
+      // Allow authenticated users to create logs for their actions
+      allow create: if isAuthenticated()
+        && request.resource.data.userId == request.auth.uid
+        && request.resource.data.keys().hasAll(['userId', 'action', 'timestamp'])
+        && request.resource.data.action in ['login', 'register', 'stage_complete', 'xp_gained', 'game_start', 'game_end'];
+      
+      // Deny read, update, delete for regular users
+      allow read, update, delete: if false;
+    }
+    
+    // === LEADERBOARD COLLECTION (if you want to implement a leaderboard) ===
+    
+    match /leaderboard/{userId} {
+      // Allow authenticated users to read the leaderboard
+      allow read: if isAuthenticated();
+      
+      // Allow users to create/update only their own leaderboard entry
+      allow create, update: if isOwner(userId)
+        && request.resource.data.userId == request.auth.uid
+        && request.resource.data.keys().hasAll(['userId', 'displayName', 'xp', 'level', 'lastUpdated'])
+        && request.resource.data.xp >= 0
+        && request.resource.data.level >= 1;
+      
+      // Deny delete
+      allow delete: if false;
+    }
+    
+    // === DEFAULT RULE - DENY ALL ===
+    
+    // Deny access to any other collections not explicitly defined
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
