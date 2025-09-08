@@ -157,7 +157,7 @@ function Stage1Page() {
 
               {/* Dialogue text */}
               <div className="text-black font-mono">
-                <p className="text-lg font-bold text-yellow-700 mb-2">Peter:</p>
+                <p className="text-lg font-bold text-yellow-700 mb-2">AI:</p>
                 <p className="text-sm leading-relaxed">
                   "{displayText}
                   {!isTypingComplete && (
